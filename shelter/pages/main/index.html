@@ -34,7 +34,7 @@
                 <div class="start-screen-text-container">
                     <h2 class="start-screen-title">Not only people need a house</h2>
                     <p class="start-screen-text-content">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</p>
-                    <button class="button-primary"><a href="#our-friends" class="button-link">Make a friend</a></button>
+                    <button class="button button-primary"><a href="#our-friends" class="button-link">Make a friend</a></button>
                 </div>
                 <div class="start-screen-pappy-container"></div>
             </section>
@@ -48,37 +48,37 @@
                     </div>
                 </div>
             </section>
-            <section class="container pets">
+            <section class="container pets" id="our-friends">
                 <div class="pets-container">
                     <h3 class="pets-title">Our friends who<br>are looking for a house</h3>
                     <div class="slider-container">
-                        <div class="button-arrow-left"></div>
+                        <div class="button button-arrow-left"></div>
                         <div class="pets-content">
                             <div class="card first-card">
                                 <div class="card-image">
                                     <img src="../../assets/images/pets/katrine.png" alt="Katrine" class="img-pet">
                                 </div>
                                 <p class="card-name">Katrine</p>
-                                <button class="button-secondary"><a href="#" class="button-link">Learn more</a></button>
+                                <button class="button button-secondary"><a href="#" class="button-link">Learn more</a></button>
                             </div>
                             <div class="card second-card">
                                 <div class="card-image">
                                     <img src="../../assets/images/pets/jennifer.png" alt="Jennifer" class="img-pet">
                                 </div>
                                 <p class="card-name">Jennifer</p>
-                                <button class="button-secondary"><a href="#" class="button-link">Learn more</a></button>
+                                <button class="button button-secondary"><a href="#" class="button-link">Learn more</a></button>
                             </div>
                             <div class="card third-card">
                                 <div class="card-image">
                                     <img src="../../assets/images/pets/woody.png" alt="Woody" class="img-pet">
                                 </div>
                                 <p class="card-name">Woody</p>
-                                <button class="button-secondary"><a href="#" class="button-link">Learn more</a></button>
+                                <button class="button button-secondary"><a href="#" class="button-link">Learn more</a></button>
                             </div>
                         </div>
-                        <div class="button-arrow-right"></div>
+                        <div class="button button-arrow-right"></div>
                     </div>
-                    <button class="button-primary-rest"><a href="#our-pets" class="button-link">Get to know the rest</a></button>
+                    <button class="button button-primary-rest"><a href="#our-pets" class="button-link">Get to know the rest</a></button>
                 </div>
             </section>
             <section class="container help" id="help">
@@ -134,7 +134,7 @@
                         <h5 class="name-bank">Name of the bank / Type of bank account</h5>
                         <div class="credit-card">
                             <div class="card-icon"></div>
-                            <h4 class="number-credit-card">8380 2880 8028 8791 7435</h4>
+                            <a href="#no_scroll" class="number-credit-card">8380 2880 8028 8791 7435</a>
                         </div>
                         <p class="legal-information">Legal information and lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
                     </div>
@@ -145,8 +145,38 @@
             </div>
         </div>
     </main>
-    <footer class="footer">
-        <div class="container footer-container"></div>
+    <footer class="footer" id="contacts">
+        <div class="container footer-container">
+            <div class="for-questions-container">
+                <h3 class="questions-title">For questions and suggestions</h3>
+                <ul class="questions-contact-list">
+                    <li class="email-contact-container footer-link-container">
+                        <div class="letter-img"></div>
+                        <a href="mailto:email@shelter.com" class="email-contact footer-link">email@shelter.com</a>
+                    </li>
+                    <li class="phone-contact-container footer-link-container">
+                        <div class="phone-img"></div>
+                        <a href="tel:+136745677554" class="phone-contact footer-link">+13 674 567 75 54</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="for-visit-container">
+                <h3 class="visit-title">We are waiting for your visit</h3>
+                <ul class="visit-places-list">
+                    <li class="boston-place-container footer-link-container">
+                        <div class="place-img"></div>
+                        <a href="https://www.google.com/maps/@51.797443,27.0951593,14z" class="boston-place footer-link" target="blank">1 Central Street, Boston (entrance from the store)</a>
+                    </li>
+                    <li class="london-place-container footer-link-container">
+                        <div class="place-img"></div>
+                        <a href="https://www.google.com/maps/@55.5673522,27.8001357,13.13z" class="london-place footer-link" target="blank">18 South Park, London</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="container-footer-dog">
+                <img src="../../assets/images/footer-puppy.png" alt="footer-puppy" class="footer-dog">
+            </div>
+        </div>
     </footer>
 </body>
 </html>
