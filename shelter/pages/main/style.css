@@ -273,7 +273,10 @@ h1 {
   border-radius: 100px;
   width: 52px;
   height: 52px;
-  background-image: url('../../assets/images/button-arrow/button_arrow_left.png');
+  background-image: url('../../assets/images/button-arrow/Arrow_left.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid var(--color-primary);
   transition: 0.5s;
 }
 
@@ -309,6 +312,7 @@ h1 {
   max-width: 270px;
   height: 270px;
   background-color: var(--color-light-s);
+  border-radius: 9px 9px 0 0;
 }
 
 .img-pet {
@@ -336,6 +340,7 @@ h1 {
 .card:hover .button {
   background-color: var(--color-primary-light);
   border: none;
+  transition: 0.5s;
 }
 
 .button-secondary {
@@ -360,7 +365,11 @@ h1 {
   border-radius: 100px;
   width: 52px;
   height: 52px;
-  background-image: url('../../assets/images/button-arrow/button_arrow_right.png');
+  background-image: url('../../assets/images/button-arrow/Arrow_left.png');
+  transform: rotate(-180deg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid var(--color-primary);
   transition: 0.5s;
 }
 
