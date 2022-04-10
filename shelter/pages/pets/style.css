@@ -52,8 +52,8 @@ align-items: center;
 text-align: center;
 }
 
-.logo:hover {
-cursor: pointer;
+.logo-link {
+  text-decoration: none;
 }
 
 h1 {
@@ -112,13 +112,12 @@ color: var(--color-dark-3xl);
 /*   ------------- main -------------- */
 
 .main-container {
-  padding: 80px 40px 10px;
+  padding: 80px 40px 101px;
   background-color:var(--color-light-l);
   display: flex;
   flex-direction: column;
   row-gap: 45px;
   align-items: center;
-  margin-bottom: 189px;
 }
 
 .slider-container {
@@ -215,10 +214,74 @@ color: var(--color-dark-3xl);
 .button:hover {
   background-color: var(--color-primary-light);
   cursor: pointer;
-  border: none;
+  border-color: var(--color-primary-light);
 }
 
+.slider-navigation-container {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+}
 
+.button-paginator {
+  position: relative;
+  border-radius: 100px;
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--color-primary);
+  transition: 0.5s;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 115%;
+  color: var(--color-dark-3xl);
+}
+
+.arrow-left-max {
+  position: absolute;
+  top: 26%;
+  left: 21%;
+}
+
+.arrow-left {
+  position: absolute;
+  top: 25%;
+  left: 35%;
+}
+
+.arrow-number {
+  position: absolute;
+  top: 25%;
+  left: 40%;
+}
+
+.arrow-right {
+  position: absolute;
+  top: 26%;
+  left: 36%;
+}
+
+.arrow-right-max {
+  position: absolute;
+  top: 26%;
+  left: 23%;
+}
+
+.active-button {
+  background-color: var(--color-primary);
+}
+
+.disabled {
+  border: 2px solid var(--color-dark-s);
+  color: var(--color-dark-s);
+}
+
+.active-button:hover, .normal-button:hover {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+  cursor: pointer;
+}
 
 
 /* ------- footer ---------- */
@@ -241,7 +304,7 @@ color: var(--color-dark-3xl);
   display: flex;
   flex-direction: column;
   margin-top: 16px;
-  row-gap: 34px;
+  row-gap: 32px;
 }
 
 .for-questions-container {
