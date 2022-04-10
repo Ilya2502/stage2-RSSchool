@@ -148,9 +148,10 @@ h1 {
 .button-primary {
   width: 207px;
   height: 52px;
-  padding: 15px 44px;
+  padding: 15px 0;
   border-radius: 100px;
-  background-color: var(--color-primary); 
+  background-color: var(--color-primary);
+  text-align: center;
 }
 
 .button {
@@ -160,7 +161,7 @@ h1 {
 .button:hover {
   background-color: var(--color-primary-light);
   cursor: pointer;
-  border: none;
+  border-color: var(--color-primary-light);
 }
 
 .button-link {
@@ -339,7 +340,7 @@ h1 {
 
 .card:hover .button {
   background-color: var(--color-primary-light);
-  border: none;
+  border-color: var(--color-primary-light);
   transition: 0.5s;
 }
 
@@ -350,6 +351,8 @@ h1 {
   border: 2px solid var(--color-primary);
   background-color: var(--color-light-s);
   transition: 0.5s;
+  padding: 14px 42px;
+  text-align: center;
 }
 
 
@@ -359,6 +362,8 @@ h1 {
   height: 52px;
   border-radius: 100px;
   background-color: var(--color-primary);
+  padding: 16px 42px;
+  text-align: center;
 }
 
 .button-arrow-right {
@@ -543,6 +548,11 @@ h1 {
   letter-spacing: 0.06em;
   color: var(--color-dark-l);
   text-decoration: none;
+  transition: 0.5s;
+}
+
+.number-credit-card:hover {
+  color: var(--color-dark-3xl);
 }
 
 .legal-information {
