@@ -277,6 +277,7 @@ color: var(--color-dark-3xl);
 .disabled {
   border: 2px solid var(--color-dark-s);
   color: var(--color-dark-s);
+  pointer-events: none;
 }
 
 .normal-button:hover {
