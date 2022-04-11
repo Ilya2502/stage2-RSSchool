@@ -188,13 +188,15 @@ h1 {
 }
 
 /* ------- about ----------*/
+.about {
+  background-color: var(--color-light-xl);
+}
 
 .about-container {
   display: flex;
   justify-content: center;
   padding: 80px 0px 100px 0px;
   width: 100%;
-  background-color: var(--color-light-xl);
 }
 
 .about-pets {
