@@ -477,7 +477,7 @@ h1 {
 /*-------------  donation  ---------*/
 
 .donation {
-  padding: 80px 0 100px 0;
+  padding: 80px 0 99.9px 0;
   background-color: var(--color-light-l);
 }
 
@@ -528,9 +528,15 @@ h1 {
 .credit-card {
   display: flex;
   padding: 10px 15px;
-  background: var(--color-primary);
+  background-color: var(--color-primary);
   border-radius: 9px;
   column-gap: 15px;
+  transition: 0.5s;
+}
+
+.credit-card:hover {
+  background-color: var(--color-primary-light);
+  cursor: pointer;
 }
 
 .card-icon {
@@ -549,10 +555,6 @@ h1 {
   color: var(--color-dark-l);
   text-decoration: none;
   transition: 0.5s;
-}
-
-.number-credit-card:hover {
-  color: var(--color-dark-3xl);
 }
 
 .legal-information {
