@@ -7,7 +7,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 10px;
   }
 
 body {
@@ -62,7 +62,7 @@ h1 {
   font-family: 'Georgia', serif;
   font-weight: normal;
   font-style: normal;
-  font-size: 32px;
+  font-size: 3.2rem;
   line-height: 110%;
   letter-spacing: 0.06em;
   color: var(--color-primary);
@@ -72,7 +72,7 @@ h1 {
   font-family: 'Arial', sans-serif;
   font-weight: normal;
   font-style: normal;
-  font-size: 13px;
+  font-size: 1.3rem;
   line-height: 265%;
   letter-spacing: 0.1em;
   color: var(--color-light-xl);
@@ -83,7 +83,7 @@ h1 {
   justify-content: space-between;  
   list-style: none;
   margin-bottom: 0.7em;
-  font-size: 15px;
+  font-size: 1.5rem;
   width: 29.5em;
 }
     
@@ -92,7 +92,7 @@ h1 {
   font-family: 'Arial', sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 1.5rem;
   line-height: 160%;
   color: var(--color-dark-s);
   transition: 0.5s;
@@ -121,8 +121,8 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 28.75rem;
-  height: 20.125rem;
+  width: 460px;
+  height: 322px;
   margin-top: 343px;
 }
 
@@ -140,7 +140,7 @@ h1 {
   font-family: 'Arial', sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 1.5rem;
   line-height: 160%;
   color: var(--color-dark-s);
 }
@@ -168,7 +168,7 @@ h1 {
   font-family: 'Georgia', serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 17px;
+  font-size: 1.7rem;
   line-height: 130%;
   letter-spacing: 0.06em;
   color: var(--color-dark-3xl);
@@ -220,7 +220,7 @@ h1 {
   font-family: 'Georgia', serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 35px;
+  font-size: 3.5rem;
   line-height: 130%;
   display: flex;
   align-items: left;
@@ -232,7 +232,7 @@ h1 {
   font-family: 'Arial', sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 1.5rem;
   line-height: 160%;
   color: var(--color-dark-l);
 }
@@ -259,7 +259,7 @@ h1 {
   font-family: 'Georgia', serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 35px;
+  font-size: 3.5rem;
   line-height: 130%;
   letter-spacing: 0.06em;
   color: var(--color-dark-l);
@@ -328,7 +328,7 @@ h1 {
   font-family: 'Georgia', serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 2rem;
   line-height: 23px;
   letter-spacing: 0.06em;
   color: var(--color-dark-l);
@@ -400,7 +400,7 @@ h1 {
   font-family: 'Georgia';
   font-style: normal;
   font-weight: normal;
-  font-size: 35px;
+  font-size: 3.5rem;
   line-height: 130%;
   letter-spacing: 0.06em;
   color: var(--color-dark-l);
@@ -470,7 +470,7 @@ h1 {
   font-family: 'Georgia';
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 2rem;
   line-height: 115%;
   letter-spacing: 0.06em;
   color: var(--color-dark-l);
@@ -511,7 +511,7 @@ h1 {
   font-family: 'Georgia';
   font-style: normal;
   font-weight: normal;
-  font-size: 35px;
+  font-size: 3.5rem;
   line-height: 130%;
   letter-spacing: 0.06em;
   color: var(--color-dark-l);
@@ -521,7 +521,7 @@ h1 {
   font-family: 'Georgia';
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 1.5rem;
   line-height: 110%;
   letter-spacing: 0.06em;
   color: var(--color-dark-l);
@@ -563,7 +563,7 @@ h1 {
   font-family: 'Arial';
   font-style: italic;
   font-weight: normal;
-  font-size: 12px;
+  font-size: 1.2rem;
   line-height: 18px;
   color: var(--color-dark-m);
 }
@@ -576,6 +576,11 @@ h1 {
   display: flex;
   justify-content: space-between;
   background: url("../../assets/images/noise_transparent@2x.png"), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 69%), #211F20;
+}
+
+.footer-text-container {
+  display: flex;
+  column-gap: 160px;
 }
 
 .for-questions-container, .for-visit-container {
@@ -604,7 +609,7 @@ h1 {
   font-family: 'Georgia';
   font-style: normal;
   font-weight: normal;
-  font-size: 35px;
+  font-size: 3.5rem;
   line-height: 130%;
   letter-spacing: 0.06em;
   color: var(--color-light-xl);
@@ -650,7 +655,7 @@ h1 {
   font-family: 'Georgia';
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 2rem;
   line-height: 115%;
   letter-spacing: 0.06em;
   color: var(--color-primary);
@@ -663,4 +668,128 @@ h1 {
 
 .container-footer-dog {
   line-height: 0;
+}
+
+
+/* ------------  MEDIA ------------ */
+
+@media (max-width: 1279.9px) {
+
+  .container {
+    max-width: 1279.9px;
+    margin: 0 auto;
+    padding: 0 30px;
+    }
+  
+  .header {
+    height: 60px;
+    padding: 30px 0;;
+    }
+
+/*------------------   not only -------------------*/
+
+  .start-screen {
+    display: block;
+    padding-top: 150px;
+    width: 100%;
+  }
+  
+  .start-screen-text-container {
+    margin: 0 auto 100px;
+  }
+  
+  .button-primary {
+    align-self: center;
+  }
+  
+  .start-screen-pappy-container {
+    width: 569px;
+    height: 593px;
+    background-size: contain;
+    margin: 0 0 0 auto;
+  }
+
+  /*------------------   about -------------------*/
+  
+  .about-container {
+    flex-direction: column-reverse;
+    row-gap: 80px;
+    align-items: center;
+  }
+  
+  .about-pets {
+    margin-right: 0;
+  }
+  
+  .about-text {
+    margin-top: 0;
+  }
+
+  /*------------------   our friends -------------------*/
+
+  .pets {
+    padding: 80px 30px 100px 30px;
+  }
+
+  .third-card {
+    display: none;
+  }
+  
+  .pets-content {
+    width: 65%;
+    min-width: 580px;
+  }
+  
+  .second-card {
+    margin: 0;
+  }
+  
+  /*  --------  help  -------- */
+  
+  .help {
+    padding: 80px 30px 40px;
+  }
+  
+  .help-icons-container {
+    column-gap: calc((88.98% - 510px)/2);
+    padding-left: 0;
+  }
+  
+  .help-card {
+    width: 170px;
+  }
+
+    /*  --------  donation  -------- */
+  
+    .donation {
+      padding: 80px 0 99.9px 0;
+    }
+    
+    .container-donation {
+      flex-direction: column-reverse;
+      row-gap: 60px;
+    }
+    
+ /*  --------  footer  -------- 180   880*/
+
+ .footer-container {
+  padding-top: 30px;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 65px;
+
+}
+
+.footer-text-container {
+  display: flex;
+  width: 70%;
+  min-width: 640px;
+  justify-content: space-between;
+  column-gap: 9.375%;
+}
+
+.for-questions-container, .for-visit-container {
+  margin-top: 0;
+}
+
 }
