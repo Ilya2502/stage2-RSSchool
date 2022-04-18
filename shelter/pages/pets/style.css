@@ -466,7 +466,7 @@ color: var(--color-dark-3xl);
 .for-questions-container, .for-visit-container {
   margin-top: 0;
 }
-
+}
 
 @media (max-width: 767.9px) {
   .container {
