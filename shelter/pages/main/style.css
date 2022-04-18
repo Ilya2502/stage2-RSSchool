@@ -889,6 +889,9 @@ h1 {
 
   .burger-open {
     transform: rotate(-90deg);
+    position: fixed;
+    top: 49px;
+    right: 54px;
 }
 
   .mobile-menu-open {
