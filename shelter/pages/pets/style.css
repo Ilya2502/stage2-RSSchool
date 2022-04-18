@@ -211,7 +211,7 @@ color: var(--color-dark-3xl);
   border: 2px solid var(--color-primary);
   background-color: var(--color-light-s);
   transition: 0.5s;
-  padding: 14px 42px;
+  padding: 14px;
   text-align: center;
 }
 
@@ -398,7 +398,7 @@ color: var(--color-dark-3xl);
 }
 
 .boston-place {
-  max-width: 260px;
+  max-width: 280px;
 }
 
 .container-footer-dog {
