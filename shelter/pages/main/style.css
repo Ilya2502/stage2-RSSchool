@@ -856,6 +856,7 @@ h1 {
     height: 100%;
     background-color: var(--color-dark-3xl);
     transition: 0.5s;
+    overflow-y: scroll;
   }
 
   .logo-mobile {
@@ -864,6 +865,7 @@ h1 {
   }
 
   .nav-list-mobile {
+    list-style: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -885,6 +887,10 @@ h1 {
     top: 0;
     z-index: 3;
     background: rgba(41, 41, 41, 0.6);
+  }
+
+  .no-scroll {
+    overflow-y: hidden;
   }
 
   .burger-open {

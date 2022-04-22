@@ -1,6 +1,5 @@
-
 function toggleMenu() {
-    backgroundBurger.classList.toggle('background-burger-open');
+    backgroundBurger.forEach((item) => item.classList.toggle('background-burger-open'));
     mobileMenu.classList.toggle('mobile-menu-open');
     burger.classList.toggle('burger-open');
     logo.classList.toggle('logo-open');
@@ -9,7 +8,7 @@ function toggleMenu() {
   };
   
   function closeMenu() {
-    backgroundBurger.classList.remove('background-burger-open');
+    backgroundBurger.forEach((item) => item.classList.remove('background-burger-open'));
     mobileMenu.classList.remove('mobile-menu-open');
     burger.classList.remove('burger-open');
     logo.classList.remove('logo-open');
@@ -21,7 +20,7 @@ function toggleMenu() {
   
   const burger = document.querySelector('.burger');
   const mobileMenu = document.querySelector('.mobile-menu');
-  const backgroundBurger = document.querySelector('.background-burger');
+  const backgroundBurger = document.querySelectorAll('.background-burger');
   const logo = document.querySelector('.logo');
   const body = document.querySelector('body');
   const navLinks = document.querySelectorAll('.nav-link');
@@ -29,9 +28,9 @@ function toggleMenu() {
   
   burger.addEventListener('click', toggleMenu);
   navLinks.forEach((item) => item.addEventListener('click', closeMenu));
-  backgroundBurger.addEventListener('click', closeMenu);
+  backgroundBurger.forEach((item) => item.addEventListener('click', closeMenu));
   logoMobile.addEventListener('click', closeMenu);
-  
+
 //   const itemSkills = document.querySelector('.nav-item-skills');
 //   itemSkills.addEventListener('click', closeMenu);
   
