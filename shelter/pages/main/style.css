@@ -309,15 +309,49 @@ h1 {
   transition: 0.5s;
 }
 
-/* .button-arrow-left:hover {
-  cursor: pointer;
-  background-color: var(--color-primary-light);
-} */
-
 .pets-content {
   display: flex;
   justify-content: space-between;
   max-width: 990px;
+}
+
+.carousel-wrapper {
+  width: 990px;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  position: relative;
+  left: -990px;
+}
+
+/* .pets-content:first-child .card {
+  background: LawnGreen;
+}
+
+.pets-content:last-child .card {
+  background: LightSkyBlue;
+} */
+
+@keyframes move-right {
+  from {left: -990px;}
+  to {left: -1980px;}
+}
+
+.transition-right {
+  animation-name: move-right;
+  animation-duration: 1.6s;
+}
+
+@keyframes move-left {
+  from {left: -990px;}
+  to {left: 0px;}
+}
+
+.transition-left {
+  animation-name: move-left;
+  animation-duration: 1.6s;
 }
 
 .card {
@@ -382,7 +416,6 @@ h1 {
   padding: 14px;
   text-align: center;
 }
-
 
 
 .button-primary-rest {
@@ -757,14 +790,46 @@ h1 {
     padding: 80px 30px 100px 30px;
   }
 
+  @keyframes move-right {
+    from {left: -580px;}
+    to {left: -1160px;}
+  }
+  
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 1.2s;
+  }
+  
+  @keyframes move-left {
+    from {left: -580px;}
+    to {left: 0px;}
+  }
+  
+  .transition-left {
+    animation-name: move-left;
+    animation-duration: 1.2s;
+  }
+
+  .pets-content {
+    min-width: 580px;
+  }
+  
+  .carousel-wrapper {
+    width: 580px;
+  }
+
+  .carousel {
+    left: -580px;
+  }
+
   .third-card {
     display: none;
   }
   
-  .pets-content {
+  /* .pets-content {
     width: 65%;
     min-width: 580px;
-  }
+  } */
   
   .second-card {
     margin: 0;
@@ -984,6 +1049,26 @@ h1 {
     height: 707px;
   }
 
+  @keyframes move-right {
+    from {left: -270px;}
+    to {left: -540px;}
+  }
+  
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 0.8s;
+  }
+  
+  @keyframes move-left {
+    from {left: -270px;}
+    to {left: 0px;}
+  }
+  
+  .transition-left {
+    animation-name: move-left;
+    animation-duration: 0.8s;
+  }
+
   .pets-title {
     font-size: 2.5rem;
     width: 100%;
@@ -1000,11 +1085,18 @@ h1 {
   .second-card {
     display: none;
   }
-  
+
   .pets-content {
-    order: -1;
     min-width: 270px;
+  }
+  
+  .carousel-wrapper {
     width: 270px;
+    order: -1;
+  }
+
+  .carousel {
+    left: -270px;
   }
   
   /*  --------  help  -------- */
