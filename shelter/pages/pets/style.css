@@ -151,7 +151,7 @@ color: var(--color-dark-3xl);
   display: flex;
   flex-wrap: wrap;
   row-gap: 30px;
-  width: 100%;
+  width: 100%;   /* was 100% before caurusel */
   justify-content: space-between;
 }
 
@@ -212,6 +212,40 @@ color: var(--color-dark-3xl);
   background-color: var(--color-primary-light);
   border-color: var(--color-primary-light);
 }
+
+/* add caorusel */
+/* .carousel-wrapper {
+  width: 1200px;
+  overflow: hidden;
+}
+
+.carousel {
+  width: 3600px;
+  display: flex;
+  position: relative;
+  left: -1200px;
+} 
+
+@keyframes move-right {
+  from {left: -1200px;}
+  to {left: -2400px;}
+}
+
+.transition-right {
+  animation-name: move-right;
+  animation-duration: 1.6s;
+}
+
+@keyframes move-left {
+  from {left: -1200px;}
+  to {left: 0px;}
+}
+
+.transition-left {
+  animation-name: move-left;
+  animation-duration: 1.6s; */
+/* } */
+/* add caorusel */
 
 .button-secondary {
   width: 187px;

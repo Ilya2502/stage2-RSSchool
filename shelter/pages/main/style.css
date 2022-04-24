@@ -326,14 +326,6 @@ h1 {
   left: -990px;
 }
 
-/* .pets-content:first-child .card {
-  background: LawnGreen;
-}
-
-.pets-content:last-child .card {
-  background: LightSkyBlue;
-} */
-
 @keyframes move-right {
   from {left: -990px;}
   to {left: -1980px;}
