@@ -74,7 +74,19 @@ body {
   transition: 0.5s;
 }
 
-.cross:hover {
+.modal-wrapper:hover .cross {
+  cursor: pointer;
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+
+.popup-container:hover .cross {
+  cursor: pointer;
+  background-color: transparent;
+  border-color: #F1CDB3;;
+}
+
+#cross:hover {
   cursor: pointer;
   background-color: #FDDCC4;
   border-color: #FDDCC4;
