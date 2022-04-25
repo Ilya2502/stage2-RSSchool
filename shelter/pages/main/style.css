@@ -31,6 +31,123 @@ body {
   display: none;
 }
 
+/* ----------- popup --------------*/
+
+.modal-wrapper {
+  position:fixed;
+  display:none;
+  top:0px;
+  left:0px;
+  width:100vw;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  background: rgba(41, 41, 41, 0.6);
+  z-index: 3;
+  cursor: pointer;
+}
+
+.modal-wrapper-open {
+  display: flex;
+}
+
+.popup-container {
+  position: relative;
+  display: flex;
+  width: 900px;
+  background: #FAFAFA;
+  border-radius: 9px;
+  cursor: auto;
+}
+
+.cross {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border: 2px solid #F1CDB3;
+  border-radius: 100px;
+  left: 890px;
+  top: -52px;
+  background-image: url('../../assets/icons/Cross.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.5s;
+}
+
+.cross:hover {
+  cursor: pointer;
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+
+.popup-image-container {
+  align-self: center;
+  line-height: 0;
+}
+
+.popup-pet-image {
+  width: 500px;
+  height: 500px;
+  border-radius: 9px;
+}
+
+.popup-text-container {
+  padding: 50px 20px 0 29px;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  color: #000000;
+  letter-spacing: 0.06em;
+}
+
+.popup-container h3 {
+  font-weight: 400;
+  font-size: 3.5rem;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.popup-container h4 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  margin-bottom: 40px;
+}
+
+#popup-description {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 113%;
+  letter-spacing: 0.06em;
+  margin-bottom: 41px;
+}
+
+.popup-item-list {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+  margin-left: 13px;
+  margin-bottom: 12px;
+  color: #F1CDB3;
+}
+
+.popup-item-list span {
+  color: #000000;
+}
+
+.popup-item-list span:nth-child(2) {
+  font-weight: 400;
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}
+
+/* ----------- popup --------------*/ 
+
 .mobile-menu {
   display: none;
 }
@@ -736,6 +853,38 @@ h1 {
     height: 60px;
     padding: 30px 0;;
     }
+    /*  ------- popup  -------- */
+
+    .popup-container {
+      width: 631px;
+    }
+    
+    .cross {
+      left: 620px;
+    }
+    
+    .popup-pet-image {
+      width: 350px;
+      height: 350px;
+    }
+    
+    .popup-text-container {
+      padding: 10px 9px 0 11px;
+    }
+    
+    .popup-container h4 {
+      margin-bottom: 20px;
+    }
+    
+    #popup-description {
+      font-size: 13px;
+      line-height: 110%;
+      margin-bottom: 20px;
+    }
+    
+    .popup-item-list {
+      margin-bottom: 6px;
+    }
 
 /*------------------   not only -------------------*/
 
@@ -895,6 +1044,45 @@ h1 {
 
   .nav-list {
     display: none;
+  }
+
+   /*  ------- popup  -------- */
+
+   .popup-container {
+    width: 240px;
+  }
+  
+  .cross {
+    left: 218px;
+  }
+  
+  .popup-pet-image {
+    display: none;
+  }
+  
+  .popup-text-container {
+    padding: 10px 10px 3px;
+    text-align: justify;
+  }
+
+  .popup-container h3, .popup-container h4 {
+    text-align: center;
+  }
+  
+  .popup-container h4 {
+    margin-bottom: 22px;
+  }
+  
+  #popup-description {
+    font-size: 13px;
+    line-height: 110%;
+    margin-bottom: 20px;
+  }
+  
+  .popup-item-list {
+    text-align: start;
+    margin-bottom: 7px;
+    margin-left: 15px;
   }
 
 /*   3 week  */

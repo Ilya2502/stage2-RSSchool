@@ -184,7 +184,43 @@ function toggleMenu() {
     for (let i = 0; i < quantityCardsOnePage; i++) {
       activeCards[i].querySelector(".card-image .img-pet").src = data[cardsBase[numberPage-1][i]].img;
       activeCards[i].querySelector(".card-name").innerHTML = data[cardsBase[numberPage-1][i]].name;
+      activeCards[i].id = cardsBase[numberPage-1][i];
     }
   }
  
    getActivePets();
+
+   /*  --------------   popup  -------------  */
+
+const cards = document.querySelectorAll(".card");
+const popup = document.querySelector(".popup-container");
+const modalWrapper = document.querySelector(".modal-wrapper");
+
+const closePopup = (event) => {
+  if (event.target.id === "modal-wrapper" || event.target.id === "cross") {
+    modalWrapper.classList.remove('modal-wrapper-open');
+    body.classList.toggle('no-scroll');
+  }
+};
+
+cards.forEach(item => item.addEventListener("click", showPopup));
+modalWrapper.addEventListener("click", closePopup);
+
+
+
+async function showPopup() { 
+  const res = await fetch('../../assets/json-files/pets-information.json');
+  const data = await res.json();
+  let id = this.id;
+  popup.querySelector("#pet-image").src = data[id].img;
+  popup.querySelector("#popup-name").innerHTML = data[id].name;
+  popup.querySelector("#type").innerHTML = data[id].type;
+  popup.querySelector("#breed").innerHTML = data[id].breed;
+  popup.querySelector("#popup-description").innerHTML = data[id].description;
+  popup.querySelector("#age").innerHTML = data[id].age;
+  popup.querySelector("#inoculations").innerHTML = data[id].inoculations.join(', ');
+  popup.querySelector("#diseases").innerHTML = data[id].diseases.join(', ');
+  popup.querySelector("#parasites").innerHTML = data[id].parasites.join(', ');
+  modalWrapper.classList.add('modal-wrapper-open');
+  body.classList.toggle('no-scroll');
+}
