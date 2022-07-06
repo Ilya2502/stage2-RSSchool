@@ -1,10 +1,10 @@
 
-interface SourceResp {
+export interface SourceResp {
     status: string;
     sources: Array<SourceItem>;
 }
 
-interface SourceItem {
+export interface SourceItem {
     id: string;
     name: string;
     description: string;
@@ -14,13 +14,13 @@ interface SourceItem {
     country: string;
 }
 
-interface ArticlesResp {
+export interface ArticlesResp {
     status: string;
     totalResults: number;
     articles: Array<ArticlesItem>;
 }
 
-interface ArticlesItem {
+export interface ArticlesItem {
     source: Source;
     author: string;
     title: string;
@@ -31,7 +31,7 @@ interface ArticlesItem {
     content: string;
 }
 
-interface Source {
+export interface Source {
     id: string;
     name: string;
 }
