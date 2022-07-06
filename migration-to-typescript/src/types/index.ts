@@ -36,6 +36,10 @@ export interface Source {
     name: string;
 }
 
+export interface Options {
+    [key: string]: string;
+}
+
 
 
 
