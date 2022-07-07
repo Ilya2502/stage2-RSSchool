@@ -1,5 +1,5 @@
 
-export interface SourceResp {
+export interface SourceResponse {
     status: string;
     sources: Array<SourceItem>;
 }
@@ -14,7 +14,7 @@ export interface SourceItem {
     country: string;
 }
 
-export interface ArticlesResp {
+export interface ArticlesResponse {
     status: string;
     totalResults: number;
     articles: Array<ArticlesItem>;

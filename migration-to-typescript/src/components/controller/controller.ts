@@ -1,15 +1,15 @@
 import AppLoader from './appLoader';
-import { SourceResp, ArticlesResp } from '../../types/index';
-interface ICallbackSource<SourceResp> {
+import { SourceResponse, ArticlesResponse } from '../../types/index';
+interface CallbackSource<SourceResp> {
     (data: SourceResp): void;
 }
 
-interface ICallbackEverything<ArticlesResp> {
+interface CallbackEverything<ArticlesResp> {
     (data: ArticlesResp): void;
 }
 
 class AppController extends AppLoader {
-    getSources(callback: ICallbackSource<SourceResp>) {
+    getSources(callback: CallbackSource<SourceResponse>) {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -18,7 +18,7 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: PointerEvent, callback: ICallbackEverything<ArticlesResp>) {
+    getNews(e: PointerEvent, callback: CallbackEverything<ArticlesResponse>) {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
 
