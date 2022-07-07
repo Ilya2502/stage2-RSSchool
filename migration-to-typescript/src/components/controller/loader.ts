@@ -10,9 +10,9 @@ class Loader {
         this.options = options;
     }
 
-    getResp(
-        { endpoint, options = {} }: { endpoint: string; options: object },
-        callback = () => {
+    getResp<T>(
+        { endpoint, options = {} }: { endpoint: string; options?: object },
+        callback: Callback<T> = () => {
             console.error('No callback for GET response');
         }
     ) {
