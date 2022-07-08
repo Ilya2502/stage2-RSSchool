@@ -17,19 +17,43 @@ footer {
     height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
+
+.developer-information-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 30px;
+}
+
+.footer-logo {
+    background-color: white;
+    height: 25px;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+.github-link {
+    color: #fff;
+}
+
 footer .copyright {
     font-size: 14px;
     color: #333;
     text-align: center;
 }
+
 footer .copyright a {
     color: #444;
 }
+
 footer .copyright a:hover {
     color: #555;
 }
+
 footer .copyright:before {
     content: '©';
 }
