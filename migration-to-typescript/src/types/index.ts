@@ -17,10 +17,10 @@ export interface Source {
 export interface ArticlesResponse {
     status: string;
     totalResults: number;
-    articles: Array<ArticlesItem>;
+    articles: Array<Article>;
 }
 
-export interface ArticlesItem {
+export interface Article {
     source: Pick<Source, "id" | "name">
     author: string;
     title: string;
