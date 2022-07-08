@@ -1,10 +1,10 @@
 
 export interface SourceResponse {
     status: string;
-    sources: Array<SourceItem>;
+    sources: Array<Source>;
 }
 
-export interface SourceItem {
+export interface Source {
     id: string;
     name: string;
     description: string;
@@ -21,7 +21,7 @@ export interface ArticlesResponse {
 }
 
 export interface ArticlesItem {
-    source: Source;
+    source: Pick<Source, "id" | "name">
     author: string;
     title: string;
     description: string;
@@ -31,10 +31,10 @@ export interface ArticlesItem {
     content: string;
 }
 
-export interface Source {
-    id: string;
-    name: string;
-}
+// export interface Source {
+//     id: string;
+//     name: string;
+// }
 
 export interface Options {
     [key: string]: string;

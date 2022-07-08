@@ -45,7 +45,7 @@ const baseConfig = {
         new EslingPlugin({ extensions: 'ts' }),
         new CopyPlugin({          //!!! если папка assets пустая, то проект не сбилдится, copyplugin надо подключать когда ужесть изображение
             patterns: [
-                { from: './src/assets', to: './assets'}
+                { from: 'src/assets', to: 'assets'}
             ]
         })
     ],
