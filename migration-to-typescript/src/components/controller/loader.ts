@@ -1,8 +1,8 @@
-import { Options } from '../../types/index';
+import { Options, LoaderInterface, Callback } from '../../types/index';
 
-type Callback<T> = { (data: T): void };
+// type Callback<T> = { (data: T): void };
 
-class Loader {
+class Loader implements LoaderInterface {
     baseLink: string;
     options: Options;
     constructor(baseLink: string, options: Options) {

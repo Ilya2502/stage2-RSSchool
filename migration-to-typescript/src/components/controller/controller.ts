@@ -1,15 +1,8 @@
 import AppLoader from './appLoader';
-import { SourceResponse, ArticlesResponse } from '../../types/index';
-interface CallbackSource<SourceResp> {
-    (data: SourceResp): void;
-}
+import { SourceResponse, ArticlesResponse, Callback, AppControllerInterface } from '../../types/index';
 
-interface CallbackEverything<ArticlesResp> {
-    (data: ArticlesResp): void;
-}
-
-class AppController extends AppLoader {
-    getSources(callback: CallbackSource<SourceResponse>) {
+class AppController extends AppLoader implements AppControllerInterface {
+    getSources(callback: Callback<SourceResponse>) {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -18,7 +11,7 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: MouseEvent, callback: CallbackEverything<ArticlesResponse>) {
+    getNews(e: MouseEvent, callback: Callback<ArticlesResponse>) {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
 
