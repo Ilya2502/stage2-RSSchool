@@ -16,10 +16,11 @@ class App implements AppInterface {
 
     start() {
         const burger = document.querySelector('.burger') as HTMLDivElement;
-        burger.addEventListener('click', () => {
+        function toggleMenu(): void {
             burger.classList.toggle('burger-open');
             documentSources.classList.toggle('menu-open');
-        });
+        }
+        burger.addEventListener('click', toggleMenu);
         const documentSources = document.querySelector('.sources') as HTMLDivElement;
         documentSources.addEventListener('click', (e) => {
             this.controller.getNews(e, (data) => this.view.drawNews(data));
