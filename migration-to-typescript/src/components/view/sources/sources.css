@@ -43,7 +43,7 @@
       position: fixed;
       right: -320px;
       top: 10px;
-      width: 320px;
+      width: 310px;
       height: calc(100vh - 20px);
       background: rgba(0, 0, 0, 0.85);
     }

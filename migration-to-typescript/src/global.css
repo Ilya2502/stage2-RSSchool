@@ -89,6 +89,9 @@ footer .copyright:before {
 
 
 @media (max-width: 768px) {
+html {
+    font-size: 14px;
+} 
 
 header {
     padding: 10px 20px 10px 10px;
