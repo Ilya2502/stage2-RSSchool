@@ -31,9 +31,7 @@ export interface Article {
     content: string;
 }
 
-export interface Options {
-    [key: string]: string;
-}
+export type Options = Record<string, string>;
 
 export interface Callback<T> { (data: T): void };
 
