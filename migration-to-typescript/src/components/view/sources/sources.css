@@ -6,6 +6,8 @@
     overflow: auto;
     align-items: center;
     font: 300 1em 'Fira Sans', sans-serif;
+    transition: 0.35s;
+    z-index: 5;
 }
 
 .source__item {
@@ -31,4 +33,29 @@
 .source__item-name {
     font-weight: 400;
     white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+
+    .sources {
+      flex-direction: column;
+      align-items: flex-start;
+      position: fixed;
+      right: -320px;
+      top: 10px;
+      width: 320px;
+      height: calc(100vh - 20px);
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    .menu-open {
+      right: 0;
+    }
+
+    .source__item {
+        font: inherit;
+        margin: 0.2em;
+        padding: 0.5em 1em;
+        margin-left: 10px;
+    }
 }

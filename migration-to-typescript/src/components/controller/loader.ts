@@ -1,7 +1,5 @@
 import { Options, LoaderInterface, Callback } from '../../types/index';
 
-// type Callback<T> = { (data: T): void };
-
 class Loader implements LoaderInterface {
     baseLink: string;
     options: Options;
