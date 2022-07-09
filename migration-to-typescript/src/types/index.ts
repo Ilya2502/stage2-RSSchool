@@ -16,7 +16,7 @@ export interface Source {
 
 export interface ArticlesResponse {
     status: string;
-    totalResults: number;
+    totalResults: Readonly<number>;
     articles: Array<Article>;
 }
 

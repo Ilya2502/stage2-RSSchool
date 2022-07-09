@@ -11,7 +11,7 @@ class App implements AppInterface {
     }
 
     start() {
-        const documentSources = document.querySelector('.sources') as HTMLTemplateElement;
+        const documentSources = document.querySelector('.sources') as HTMLDivElement;
         documentSources.addEventListener('click', (e) =>
             this.controller.getNews(e, (data) => this.view.drawNews(data))
         );
