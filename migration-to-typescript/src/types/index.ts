@@ -67,5 +67,6 @@ export interface AppControllerInterface extends LoaderInterface {
 export interface AppInterface {
     controller: AppControllerInterface;
     view: AppViewInterface;
+    addClickListenerToBurger(burger: HTMLDivElement, documentSources: HTMLDivElement): void;
     start(): void;
 }

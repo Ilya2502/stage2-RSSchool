@@ -10,18 +10,24 @@ class App implements AppInterface {
         this.view = new AppView();
     }
 
-    start() {
-        const burger = document.querySelector('.burger') as HTMLDivElement;
+    addClickListenerToBurger(burger: HTMLDivElement, documentSources: HTMLDivElement) {
         function toggleMenu(): void {
             burger.classList.toggle('burger-open');
             documentSources.classList.toggle('menu-open');
         }
         burger.addEventListener('click', toggleMenu);
-        const documentSources = document.querySelector('.sources') as HTMLDivElement;
-        documentSources.addEventListener('click', (e) => {
-            this.controller.getNews(e, (data) => this.view.drawNews(data));
+        documentSources.addEventListener('click', () => {
             burger.classList.remove('burger-open');
             documentSources.classList.remove('menu-open');
+        });
+    }
+
+    start() {
+        const burger = document.querySelector('.burger') as HTMLDivElement;
+        const documentSources = document.querySelector('.sources') as HTMLDivElement;
+        this.addClickListenerToBurger(burger, documentSources);
+        documentSources.addEventListener('click', (e) => {
+            this.controller.getNews(e, (data) => this.view.drawNews(data));
         });
         this.controller.getSources((data) => this.view.drawSources(data));
     }
