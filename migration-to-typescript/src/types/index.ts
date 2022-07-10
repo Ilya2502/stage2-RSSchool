@@ -44,8 +44,8 @@ export interface SourcesInterface {
 }
 
 export interface AppViewInterface {
-    news: NewsInterface;
-    sources: SourcesInterface;
+    // news: NewsInterface;
+    // sources: SourcesInterface;
     drawNews(data: ArticlesResponse): void;
     drawSources(data: SourceResponse): void;
 }
@@ -53,10 +53,10 @@ export interface AppViewInterface {
 export interface LoaderInterface {
     baseLink: string;
     options: Options;
-    getResponse<T>({ endpoint, options }: { endpoint: string; options?: object }, callback: Callback<T>): void;
-    errorHandler(res: Response): Response | void;
-    makeUrl(options: object, endpoint: string): string;
-    load<T>(method: string, endpoint: string, callback: Callback<T>, options: object ): void;
+    // getResponse<T>({ endpoint, options }: { endpoint: string; options?: object }, callback: Callback<T>): void;
+    // errorHandler(res: Response): Response | void;
+    // makeUrl(options: object, endpoint: string): string;
+    // load<T>(method: string, endpoint: string, callback: Callback<T>, options: object ): void;
 }
 
 export interface AppControllerInterface extends LoaderInterface {
@@ -65,8 +65,8 @@ export interface AppControllerInterface extends LoaderInterface {
 }
 
 export interface AppInterface {
-    controller: AppControllerInterface;
-    view: AppViewInterface;
-    addClickListenerToBurger(burger: HTMLDivElement, documentSources: HTMLDivElement): void;
+    // controller: AppControllerInterface;
+    // view: AppViewInterface;
+    // addClickListenerToBurger(burger: HTMLDivElement, documentSources: HTMLDivElement): void;
     start(): void;
 }

@@ -3,14 +3,14 @@ import { AppView } from '../view/appView';
 import { AppInterface } from '../../types/index';
 
 class App implements AppInterface {
-    controller: AppController;
-    view: AppView;
+    private controller: AppController;
+    private view: AppView;
     constructor() {
         this.controller = new AppController();
         this.view = new AppView();
     }
 
-    addClickListenerToBurger(burger: HTMLDivElement, documentSources: HTMLDivElement) {
+    private addClickListenerToBurger(burger: HTMLDivElement, documentSources: HTMLDivElement) {
         function toggleMenu(): void {
             burger.classList.toggle('burger-open');
             documentSources.classList.toggle('menu-open');
@@ -22,7 +22,7 @@ class App implements AppInterface {
         });
     }
 
-    start() {
+    public start() {
         const burger = document.querySelector('.burger') as HTMLDivElement;
         const documentSources = document.querySelector('.sources') as HTMLDivElement;
         this.addClickListenerToBurger(burger, documentSources);

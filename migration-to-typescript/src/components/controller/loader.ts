@@ -1,14 +1,14 @@
 import { Options, LoaderInterface, Callback } from '../../types/index';
 
 class Loader implements LoaderInterface {
-    baseLink: string;
-    options: Options;
+    readonly baseLink: string;
+    readonly options: Options;
     constructor(baseLink: string, options: Options) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
-    getResponse<T>(
+    protected getResponse<T>(
         { endpoint, options = {} }: { endpoint: string; options?: object },
         callback: Callback<T> = () => {
             console.error('No callback for GET response');
@@ -17,7 +17,7 @@ class Loader implements LoaderInterface {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: Response) {
+    private errorHandler(res: Response) {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -27,7 +27,7 @@ class Loader implements LoaderInterface {
         return res;
     }
 
-    makeUrl(options: object, endpoint: string) {
+    private makeUrl(options: object, endpoint: string) {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -38,7 +38,7 @@ class Loader implements LoaderInterface {
         return url.slice(0, -1);
     }
 
-    load<T>(method: string, endpoint: string, callback: Callback<T>, options = {}) {
+    protected load<T>(method: string, endpoint: string, callback: Callback<T>, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

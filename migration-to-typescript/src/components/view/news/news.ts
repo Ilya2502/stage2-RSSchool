@@ -2,7 +2,7 @@ import './news.css';
 import { Article, NewsInterface } from '../../../types/index';
 
 class News implements NewsInterface {
-    draw(data: Array<Article>) {
+    public draw(data: Array<Article>) {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
