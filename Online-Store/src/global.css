@@ -1,44 +1,72 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  }
+
 body {
     display: flex;
     flex-direction: column;
     color: #fff;
-    background: #17181c;
+    background: #000;
     font-family: sans-serif;
-    min-height: calc(100vh - 16px);
+    min-height: 100vh;
 }
 
-header {
+.container {
+    max-width: 1920рх;
+    padding: 0 20px;
+}
+
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;
+    padding-top: 20px;
 }
 
-header h1 {
-    font-size: 40px;
-    font-weight: 800;
-    line-height: 5px;
+.logo-container {
+    display: flex;
+    align-items: center;
+    column-gap: 10%;
 }
 
-.burger {
-    display: none;
+.logo-store-link {
+    display: block;
+    width: 100px;
+    height: 40px;
+    background-image: url('./assets/logo-store.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 25px;
+}
+
+.shop-cart {
     position: relative;
-    width: 30px;
-    height: 22px;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    transition: 0.5s;
-    z-index: 10;
-    }
-    
-    .burger-line1, .burger-line2, .burger-line3 {
-      width: 30px;
-      height: 2px;
-      background-color: #30c5ff;
-      display: block;
-      transition: 0.5s;
-    }
+    width: 60px;
+    height: 40px;
+    background-image: url('assets/icons/cart.png');
+    background-color: #fff;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.count-of-products-in-cart {
+    text-align: center;
+    color: red;
+    font-size: 1.5rem;
+    line-height: 1.1rem;
+    font-weight: 600;
+}
 
 footer {
     height: 50px;
@@ -60,30 +88,12 @@ footer {
     height: 25px;
 }
 
-footer a {
+.link {
     text-decoration: none;
     line-height: 0;
 }
 
 .github-link {
     color: #fff;
-}
-
-footer .copyright {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
-}
-
-footer .copyright a {
-    color: #444;
-}
-
-footer .copyright a:hover {
-    color: #555;
-}
-
-footer .copyright:before {
-    content: '©';
 }
 
