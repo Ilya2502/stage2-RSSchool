@@ -3,7 +3,7 @@ import { SourceResponse, ArticlesResponse, Callback, AppControllerInterface } fr
 
 class AppController extends AppLoader implements AppControllerInterface {
     getSources(callback: Callback<SourceResponse>) {
-        super.getResp(
+        super.getResponse(
             {
                 endpoint: 'sources',
             },
@@ -20,7 +20,7 @@ class AppController extends AppLoader implements AppControllerInterface {
                 const sourceId = target.getAttribute('data-source-id') as string;
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
-                    super.getResp(
+                    super.getResponse(
                         {
                             endpoint: 'everything',
                             options: {

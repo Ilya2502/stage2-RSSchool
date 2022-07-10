@@ -8,7 +8,7 @@ class Loader implements LoaderInterface {
         this.options = options;
     }
 
-    getResp<T>(
+    getResponse<T>(
         { endpoint, options = {} }: { endpoint: string; options?: object },
         callback: Callback<T> = () => {
             console.error('No callback for GET response');

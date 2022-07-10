@@ -53,7 +53,7 @@ export interface AppViewInterface {
 export interface LoaderInterface {
     baseLink: string;
     options: Options;
-    getResp<T>({ endpoint, options }: { endpoint: string; options?: object }, callback: Callback<T>): void;
+    getResponse<T>({ endpoint, options }: { endpoint: string; options?: object }, callback: Callback<T>): void;
     errorHandler(res: Response): Response | void;
     makeUrl(options: object, endpoint: string): string;
     load<T>(method: string, endpoint: string, callback: Callback<T>, options: object ): void;
