@@ -49,7 +49,9 @@ body {
 }
 
 .shop-cart {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 1px;
     width: 60px;
     height: 40px;
     background-image: url('assets/icons/cart.png');
@@ -60,12 +62,16 @@ body {
     border-radius: 10px;
 }
 
-.count-of-products-in-cart {
-    text-align: center;
-    color: red;
+.count-of-products-in-cart-container {
+    display: flex;
+    color: rgb(54, 210, 30);
+    padding: 3px;
+    height: 1.4rem;
     font-size: 1.5rem;
     line-height: 1.1rem;
     font-weight: 600;
+    background-color: #000;
+    border-radius: 10px;
 }
 
 footer {
