@@ -2,10 +2,6 @@ import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 import { AppInterface } from '../../types/index';
 
-// function toggleMenu() {
-//     burger.classList.toggle('burger-open');
-// }
-
 class App implements AppInterface {
     controller: AppController;
     view: AppView;
