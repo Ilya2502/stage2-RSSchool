@@ -10,7 +10,8 @@ class App implements AppInterface {
         this.view = new AppView();
     }
 
-    private addClickListenerToBurger(burger: HTMLDivElement, documentSources: HTMLDivElement) {
+    private addClickListenerToBurger(documentSources: HTMLDivElement) {
+        const burger = document.querySelector('.burger') as HTMLDivElement;
         function toggleMenu(): void {
             burger.classList.toggle('burger-open');
             documentSources.classList.toggle('menu-open');
@@ -23,9 +24,8 @@ class App implements AppInterface {
     }
 
     public start() {
-        const burger = document.querySelector('.burger') as HTMLDivElement;
         const documentSources = document.querySelector('.sources') as HTMLDivElement;
-        this.addClickListenerToBurger(burger, documentSources);
+        this.addClickListenerToBurger(documentSources);
         documentSources.addEventListener('click', (e) => {
             this.controller.getNews(e, (data) => this.view.drawNews(data));
         });
