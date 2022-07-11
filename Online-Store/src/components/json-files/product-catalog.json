@@ -1,8 +1,8 @@
 [
   {
-    "type": "guitar",
     "name": "CORT-AD810-BKS",
-    "price": 200,
+    "type": "guitar",
+    "price": "200",
     "producer": "Cort (Korea)",
     "date": "2018",
     "size": "small",
@@ -10,9 +10,9 @@
     "img": "assets/img/CORT-AD810-BKS.jpg"
   },
   {
-    "type": "guitar",
     "name": "CORT-AD810-SSB",
-    "price": 230,
+    "type": "guitar",
+    "price": "230",
     "producer": "Cort (Korea)",
     "date": "2020",
     "size": "medium",
@@ -20,9 +20,9 @@
     "img": "assets/img/CORT-AD810-SSB.jpg"
   },
   {
-    "type": "guitar",
     "name": "CORT-AF-510M-OP",
-    "price": 250,
+    "type": "guitar",
+    "price": "250",
     "producer": "Cort (Korea)",
     "date": "2021",
     "size": "large",
@@ -30,9 +30,9 @@
     "img": "assets/img/CORT-AF-510M-OP.jpg"
   },
   {
-    "type": "guitar",
     "name": "CORT-EARTH-60-OP",
-    "price": 300,
+    "type": "guitar",
+    "price": "300",
     "producer": "Cort (Korea)",
     "date": "2022",
     "size": "medium",
@@ -40,9 +40,9 @@
     "img": "assets/img/CORT-EARTH-60-OP.jpg"
   },
   {
-    "type": "guitar",
     "name": "YAMAXA-F-310",
-    "price": 290,
+    "type": "guitar",
+    "price": "290",
     "producer": "Cort (Korea)",
     "date": "2018",
     "size": "small",
@@ -50,9 +50,9 @@
     "img": "assets/img/YAMAXA-F-310.jpg"
   },
   {
-    "type": "piano",
     "name": "CASIO-PX-S1000RD",
-    "price": 350,
+    "type": "piano",
+    "price": "350",
     "producer": "Casio (Japan)",
     "date": "2020",
     "size": "small",
@@ -60,9 +60,9 @@
     "img": "assets/img/CASIO-PX-S1000RD.jpg"
   },
   {
-    "type": "piano",
     "name": "CASIO-PX-S1100WE",
-    "price": 380,
+    "type": "piano",
+    "price": "380",
     "producer": "Casio (Japan)",
     "date": "2020",
     "size": "large",
@@ -70,9 +70,9 @@
     "img": "assets/img/CASIO-PX-S1100WE.jpg"
   },
   {
-    "type": "piano",
     "name": "YAMAHA-P-45B",
-    "price": 500,
+    "type": "piano",
+    "price": "500",
     "producer": "Yamaha (Japan)",
     "date": "2022",
     "size": "medium",
@@ -80,9 +80,9 @@
     "img": "assets/img/YAMAHA-P-45B.jpg"
   },
   {
-    "type": "piano",
     "name": "YAMAHA-YDP-143B",
-    "price": 800,
+    "type": "piano",
+    "price": "800",
     "producer": "Yamaha (Japan)",
     "date": "2022",
     "size": "medium",
@@ -90,9 +90,9 @@
     "img": "assets/img/YAMAHA-YDP-143B.jpg"
   },
   {
-    "type": "piano",
     "name": "YAMAHA-YDP-163R",
-    "price": 950,
+    "type": "piano",
+    "price": "950",
     "producer": "Yamaha (Japan)",
     "date": "2022",
     "size": "large",
@@ -100,9 +100,9 @@
     "img": "assets/img/YAMAHA-YDP-163R.jpg"
   },
   {
-    "type": "cello",
     "name": "STRUNAL-4-15C",
-    "price": 870,
+    "type": "cello",
+    "price": "870",
     "producer": "Strunal (Czech)",
     "date": "2020",
     "size": "large",
@@ -110,9 +110,9 @@
     "img": "assets/img/STRUNAL-4-15C.jpg"
   },
   {
-    "type": "cello",
     "name": "STRUNAL-4-15F",
-    "price": 1050,
+    "type": "cello",
+    "price": "1050",
     "producer": "Strunal (Czech)",
     "date": "2019",
     "size": "small",
@@ -120,9 +120,9 @@
     "img": "assets/img/STRUNAL-4-15F.jpg"
   },
   {
-    "type": "cello",
     "name": "STRUNAL-40-4C",
-    "price": 1450,
+    "type": "cello",
+    "price": "1450",
     "producer": "Strunal (Czech)",
     "date": "2021",
     "size": "medium",
@@ -130,9 +130,9 @@
     "img": "assets/img/STRUNAL-40-4C.jpg"
   },
   {
-    "type": "cello",
     "name": "STRUNAL-40-4D",
-    "price": 1250,
+    "type": "cello",
+    "price": "1250",
     "producer": "Strunal (Czech)",
     "date": "2020",
     "size": "medium",
@@ -140,9 +140,9 @@
     "img": "assets/img/STRUNAL-40-4D.jpg"
   },
   {
-    "type": "cello",
     "name": "STRUNAL-40-7WE",
-    "price": 1850,
+    "type": "cello",
+    "price": "1850",
     "producer": "Strunal (Czech)",
     "date": "2022",
     "size": "large",
