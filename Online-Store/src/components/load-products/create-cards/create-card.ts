@@ -1,5 +1,5 @@
 import { ProductType } from '../../types/types';
-import { createProperty } from '../create-property/create-property';
+import { createProperty } from './create-property';
 import { productProperties } from '../../../constants/constants';
 
 export function createProductCard(): HTMLDivElement {
