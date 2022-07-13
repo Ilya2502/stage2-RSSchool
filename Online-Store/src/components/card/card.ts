@@ -1,29 +1,11 @@
 import { Product } from '../types/types';
+import { liClassList, liInnerHtmlList, spanClassList, spanInnerHtmlList } from '../../constants/constants';
 // import * as productsBase from '../json-files/product-catalog.json'; // declare module (d.ts)
 
 // const data: Array<Product> = productsBase;
 // const check = fetch('../json-files/product-catalog.json')
 //     .then((res) => res.json())
 //     .then((data) => console.log(data));
-
-const liClassList = [
-    'product-type',
-    'product-price',
-    'product-producer',
-    'product-market-launch-date',
-    'product-size',
-    'product-color',
-];
-const liInnerHtmlList = ['Type: ', 'Price: ', 'Producer: ', 'Market launch date: ', 'Size: ', 'Color: '];
-const spanClassList = [
-    'type-value',
-    'price-value',
-    'producer-value',
-    'market-launch-date-value',
-    'size-value',
-    'color-value',
-];
-const spanInnerHtmlList = ['type', 'price', 'producer', 'date', 'size', 'color'];
 
 export function createCards(data: Array<Product>): void {
     // const catalog: Response = await fetch('../../product-catalog.json');
