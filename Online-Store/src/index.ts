@@ -1,8 +1,9 @@
 import './global.css';
-import { createCards } from './components/card/card';
-import { Product } from './components/types/types';
-import * as productsBase from './components/json-files/product-catalog.json'; // declare module (d.ts)
+import { loadProducts } from './components/load-products/load-products';
+import { ProductType } from './components/types/types';
+import productsBase from './components/json-files/product-catalog.json';
+// import * as productsBase from './components/json-files/product-catalog.json'; // declare module (d.ts)
 
 // const data: Array<Product> = productsBase;
 
-createCards(<Product[]>productsBase);
+loadProducts(<ProductType[]>productsBase);

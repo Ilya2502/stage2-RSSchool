@@ -1,4 +1,4 @@
-export const liClassList = [
+export const productPropertiesClassNames = [
     'product-type',
     'product-price',
     'product-producer',
@@ -6,8 +6,10 @@ export const liClassList = [
     'product-size',
     'product-color',
 ];
-export const liInnerHtmlList = ['Type: ', 'Price: ', 'Producer: ', 'Market launch date: ', 'Size: ', 'Color: '];
-export const spanClassList = [
+
+export const productProperties = ['Type: ', 'Price: ', 'Producer: ', 'Market launch date: ', 'Size: ', 'Color: '];
+
+export const productPropertiesValueClassNames = [
     'type-value',
     'price-value',
     'producer-value',
@@ -15,4 +17,5 @@ export const spanClassList = [
     'size-value',
     'color-value',
 ];
-export const spanInnerHtmlList = ['type', 'price', 'producer', 'date', 'size', 'color'];
+
+export const productPropertiesValue = ['type', 'price', 'producer', 'date', 'size', 'color'];
