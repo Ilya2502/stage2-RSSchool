@@ -15,6 +15,8 @@ export interface CardInterface {
     createContainer(): HTMLDivElement,
     createName(): HTMLDivElement,
     createImageContainer(): HTMLDivElement,
-    createImage(item: ProductType): HTMLDivElement,
-    createList(item: ProductType): HTMLUListElement
+    createImage(): HTMLDivElement,
+    createList(): HTMLUListElement
 }
+
+export type MapperInterface = Record<string, ProductType>;

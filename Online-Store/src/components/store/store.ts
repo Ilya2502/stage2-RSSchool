@@ -3,7 +3,7 @@ import { Instrument } from '../instrument/instrument';
 import data from '../json-files/product-catalog.json';
 
 class Store implements StoreInterface {
-    data: Array<ProductType>;
+    data: ProductType[];
     constructor() {
         this.data = <ProductType[]>data;
     }

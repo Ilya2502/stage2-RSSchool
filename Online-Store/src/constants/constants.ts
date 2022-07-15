@@ -1,21 +1,32 @@
-export const productPropertiesClassNames = [
-    'product-type',
-    'product-price',
-    'product-producer',
-    'product-market-launch-date',
-    'product-size',
-    'product-color',
-];
-
-export const productProperties = ['Type: ', 'Price: ', 'Producer: ', 'Market launch date: ', 'Size: ', 'Color: '];
-
-export const productPropertiesValueClassNames = [
-    'type-value',
-    'price-value',
-    'producer-value',
-    'market-launch-date-value',
-    'size-value',
-    'color-value',
-];
-
-export const productPropertiesValue = ['type', 'price', 'producer', 'date', 'size', 'color'];
+export const mapper = {
+    type: {
+        classNameText: 'type-text',
+        text: 'Type: ',
+        classNameValue: 'type-value',
+    },
+    price: {
+        classNameText: 'price-text',
+        text: 'Price: ',
+        classNameValue: 'price-value',
+    },
+    producer: {
+        classNameText: 'producer-text',
+        text: 'Producer: ',
+        classNameValue: 'producer-value',
+    },
+    date: {
+        classNameText: 'date-text',
+        text: 'Market launch year: ',
+        classNameValue: 'date-value',
+    },
+    size: {
+        classNameText: 'size-text',
+        text: 'Size: ',
+        classNameValue: 'size-value',
+    },
+    color: {
+        classNameText: 'color-text',
+        text: 'Color: ',
+        classNameValue: 'color-value',
+    },
+};

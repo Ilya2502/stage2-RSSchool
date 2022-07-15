@@ -1,10 +1,7 @@
-import { CardInterface, ProductType } from '../../types/types';
-import { productProperties } from '../../constants/constants';
-import {
-    productPropertiesClassNames,
-    productPropertiesValueClassNames,
-    productPropertiesValue,
-} from '../../constants/constants';
+import { CardInterface, ProductType, MapperInterface } from '../../types/types';
+import { mapper } from '../../constants/constants';
+
+const mapper1: MapperInterface = mapper;
 
 export class Card implements CardInterface {
     properties: ProductType;
@@ -41,19 +38,19 @@ export class Card implements CardInterface {
 
     createList(): HTMLUListElement {
         const list = document.createElement('ul');
-        list.className = 'product-properties-list';
-        productProperties.forEach((property, index) => {
+        list.className = 'properties-list';
+        for (const key in mapper1) {
             const item = document.createElement('li');
-            item.className = productPropertiesClassNames[index];
-            item.innerHTML = property;
+            item.className = mapper1[key as keyof MapperInterface].classNameText;
+            item.innerHTML = mapper1[key as keyof MapperInterface].text;
 
             const propertyItemValue = document.createElement('span');
-            propertyItemValue.className = productPropertiesValueClassNames[index];
-            propertyItemValue.innerHTML = this.properties[productPropertiesValue[index] as keyof ProductType];
+            propertyItemValue.className = mapper1[key as keyof MapperInterface].classNameValue;
+            propertyItemValue.innerHTML = this.properties[key as keyof ProductType];
             item.append(propertyItemValue);
 
             list.append(item);
-        });
+        }
         return list;
     }
 }
