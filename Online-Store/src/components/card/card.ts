@@ -1,7 +1,7 @@
 import { CardInterface, PropertiesType, MapperInterface } from '../../types/types';
 import { mapper } from '../../constants/constants';
 
-const mapper1: MapperInterface = mapper;
+const mapperTyped: MapperInterface = mapper;
 
 export class Card implements CardInterface {
     properties: PropertiesType;
@@ -39,13 +39,13 @@ export class Card implements CardInterface {
     createList(): HTMLUListElement {
         const list = document.createElement('ul');
         list.className = 'list';
-        for (const key in mapper1) {
+        for (const key in mapperTyped) {
             const item = document.createElement('li');
-            item.className = mapper1[key as keyof MapperInterface].classNameText;
-            item.innerHTML = mapper1[key as keyof MapperInterface].text;
+            item.className = mapperTyped[key as keyof MapperInterface].classNameText;
+            item.innerHTML = mapperTyped[key as keyof MapperInterface].text;
 
             const itemValue = document.createElement('span');
-            itemValue.className = mapper1[key as keyof MapperInterface].classNameValue;
+            itemValue.className = mapperTyped[key as keyof MapperInterface].classNameValue;
             itemValue.innerHTML = this.properties[key as keyof PropertiesType];
             item.append(itemValue);
 
