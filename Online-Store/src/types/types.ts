@@ -7,16 +7,15 @@ export interface StoreInterface {
 
 export interface InstrumentInterface {
     properties: PropertiesType,
-    createCard(): HTMLDivElement;
+    createCard(cardClone: HTMLElement): void;
 }
 
 export interface CardInterface {
     properties: PropertiesType,
-    createContainer(): HTMLDivElement,
-    createName(): HTMLDivElement,
-    createImageContainer(): HTMLDivElement,
-    createImage(): HTMLDivElement,
-    createList(): HTMLUListElement
+    cardClone: HTMLElement,
+    addName(): void,
+    addImage(): void,
+    addList(): void
 }
 
 export type MapperInterface = Record<string, PropertiesType>;

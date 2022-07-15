@@ -5,52 +5,34 @@ const mapperTyped: MapperInterface = mapper;
 
 export class Card implements CardInterface {
     properties: PropertiesType;
-    constructor(properties: PropertiesType) {
+    cardClone: HTMLElement;
+    constructor(properties: PropertiesType, cardClone: HTMLElement) {
         this.properties = properties;
+        this.cardClone = cardClone;
     }
 
-    createContainer(): HTMLDivElement {
-        const cardContainer = document.createElement('div');
-        cardContainer.className = 'card';
-        return cardContainer;
-    }
-
-    createName(): HTMLDivElement {
-        const name = document.createElement('div');
-        name.className = 'name';
+    addName(): void {
+        const name = this.cardClone.querySelector('.name') as HTMLDivElement;
         name.innerHTML = this.properties.name;
-        return name;
     }
 
-    createImageContainer(): HTMLDivElement {
-        const imageContainer = document.createElement('div');
-        imageContainer.className = 'image-container';
-        return imageContainer;
-    }
-
-    createImage(): HTMLDivElement {
-        const image = document.createElement('img');
-        image.className = 'image';
+    addImage(): void {
+        const image = this.cardClone.querySelector('.image') as HTMLImageElement;
         image.src = this.properties.img;
         image.alt = this.properties.name;
-        return image;
     }
 
-    createList(): HTMLUListElement {
-        const list = document.createElement('ul');
-        list.className = 'list';
+    addList(): void {
         for (const key in mapperTyped) {
-            const item = document.createElement('li');
-            item.className = mapperTyped[key as keyof MapperInterface].classNameText;
+            const item = this.cardClone.querySelector(
+                `.${mapperTyped[key as keyof MapperInterface].classNameText}`
+            ) as HTMLSpanElement;
             item.innerHTML = mapperTyped[key as keyof MapperInterface].text;
 
-            const itemValue = document.createElement('span');
-            itemValue.className = mapperTyped[key as keyof MapperInterface].classNameValue;
+            const itemValue = this.cardClone.querySelector(
+                `.${mapperTyped[key as keyof MapperInterface].classNameValue}`
+            ) as HTMLSpanElement;
             itemValue.innerHTML = this.properties[key as keyof PropertiesType];
-            item.append(itemValue);
-
-            list.append(item);
         }
-        return list;
     }
 }

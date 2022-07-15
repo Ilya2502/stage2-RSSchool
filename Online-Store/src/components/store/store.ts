@@ -11,12 +11,16 @@ class Store implements StoreInterface {
     }
 
     start() {
+        const fragment = document.createDocumentFragment();
+        const cardItemTemp = document.querySelector('#cardItemTemp') as HTMLTemplateElement;
         const instrumentsContainer = document.querySelector('.instruments-container') as HTMLDivElement;
         this.dataCurrent.forEach((item: PropertiesType): void => {
+            const cardClone = cardItemTemp.content.cloneNode(true) as HTMLElement;
             const instrument = new Instrument(item);
-            const card: HTMLDivElement = instrument.createCard();
-            instrumentsContainer.append(card);
+            instrument.createCard(cardClone);
+            fragment.append(cardClone);
         });
+        instrumentsContainer.append(fragment);
     }
 }
 

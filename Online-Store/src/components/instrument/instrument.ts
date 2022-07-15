@@ -7,23 +7,10 @@ export class Instrument implements InstrumentInterface {
         this.properties = properties;
     }
 
-    createCard(): HTMLDivElement {
-        const card = new Card(this.properties);
-
-        const cardContainer = card.createContainer();
-
-        const name = card.createName();
-        cardContainer.append(name);
-
-        const imageContainer = card.createImageContainer();
-        cardContainer.append(imageContainer);
-
-        const image = card.createImage();
-        imageContainer.append(image);
-
-        const list = card.createList();
-        cardContainer.append(list);
-
-        return cardContainer;
+    createCard(cardClone: HTMLElement): void {
+        const card = new Card(this.properties, cardClone);
+        card.addName();
+        card.addImage();
+        card.addList();
     }
 }
