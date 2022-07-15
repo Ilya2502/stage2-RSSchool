@@ -1,17 +1,17 @@
-export type ProductType = Record<string, string>;
+export type PropertiesType = Record<string, string>;
 
 export interface StoreInterface {
-    data: Array<ProductType>;
+    data: Array<PropertiesType>;
     start(): void;
 }
 
 export interface InstrumentInterface {
-    properties: ProductType,
+    properties: PropertiesType,
     createCard(): HTMLDivElement;
 }
 
 export interface CardInterface {
-    properties: ProductType,
+    properties: PropertiesType,
     createContainer(): HTMLDivElement,
     createName(): HTMLDivElement,
     createImageContainer(): HTMLDivElement,
@@ -19,4 +19,4 @@ export interface CardInterface {
     createList(): HTMLUListElement
 }
 
-export type MapperInterface = Record<string, ProductType>;
+export type MapperInterface = Record<string, PropertiesType>;

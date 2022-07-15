@@ -1,53 +1,53 @@
-import { CardInterface, ProductType, MapperInterface } from '../../types/types';
+import { CardInterface, PropertiesType, MapperInterface } from '../../types/types';
 import { mapper } from '../../constants/constants';
 
 const mapper1: MapperInterface = mapper;
 
 export class Card implements CardInterface {
-    properties: ProductType;
-    constructor(properties: ProductType) {
+    properties: PropertiesType;
+    constructor(properties: PropertiesType) {
         this.properties = properties;
     }
 
     createContainer(): HTMLDivElement {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        return productCard;
+        const cardContainer = document.createElement('div');
+        cardContainer.className = 'card';
+        return cardContainer;
     }
 
     createName(): HTMLDivElement {
-        const productCardName = document.createElement('div');
-        productCardName.className = 'product-name';
-        productCardName.innerHTML = this.properties.name;
-        return productCardName;
+        const name = document.createElement('div');
+        name.className = 'name';
+        name.innerHTML = this.properties.name;
+        return name;
     }
 
     createImageContainer(): HTMLDivElement {
-        const productImageContainer = document.createElement('div');
-        productImageContainer.className = 'product-image-container';
-        return productImageContainer;
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'image-container';
+        return imageContainer;
     }
 
     createImage(): HTMLDivElement {
-        const productImg = document.createElement('img');
-        productImg.className = 'product-image';
-        productImg.src = this.properties.img;
-        productImg.alt = this.properties.name;
-        return productImg;
+        const image = document.createElement('img');
+        image.className = 'image';
+        image.src = this.properties.img;
+        image.alt = this.properties.name;
+        return image;
     }
 
     createList(): HTMLUListElement {
         const list = document.createElement('ul');
-        list.className = 'properties-list';
+        list.className = 'list';
         for (const key in mapper1) {
             const item = document.createElement('li');
             item.className = mapper1[key as keyof MapperInterface].classNameText;
             item.innerHTML = mapper1[key as keyof MapperInterface].text;
 
-            const propertyItemValue = document.createElement('span');
-            propertyItemValue.className = mapper1[key as keyof MapperInterface].classNameValue;
-            propertyItemValue.innerHTML = this.properties[key as keyof ProductType];
-            item.append(propertyItemValue);
+            const itemValue = document.createElement('span');
+            itemValue.className = mapper1[key as keyof MapperInterface].classNameValue;
+            itemValue.innerHTML = this.properties[key as keyof PropertiesType];
+            item.append(itemValue);
 
             list.append(item);
         }

@@ -78,7 +78,7 @@ body {
     padding: 20px 20px;
 }
 
-.products-container {
+.instruments-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -87,7 +87,7 @@ body {
     row-gap: 30px;
 }
 
-.product-card {
+.card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,13 +99,13 @@ body {
     border-radius: 10px;
 }
 
-.product-image {
+.image {
     width: 100%;
     height: 100%;
     object-fit: contain;	
 }
 
-.product-image-container {
+.image-container {
     width: 250px;
     height: 200px;
 }

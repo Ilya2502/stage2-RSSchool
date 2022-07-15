@@ -1,19 +1,21 @@
-import { StoreInterface, ProductType } from '../../types/types';
+import { StoreInterface, PropertiesType } from '../../types/types';
 import { Instrument } from '../instrument/instrument';
 import data from '../json-files/product-catalog.json';
 
 class Store implements StoreInterface {
-    data: ProductType[];
+    data: PropertiesType[];
+    dataCurrent: PropertiesType[];
     constructor() {
-        this.data = <ProductType[]>data;
+        this.data = <PropertiesType[]>data;
+        this.dataCurrent = Array.from(<PropertiesType[]>data);
     }
 
     start() {
-        const productsContainer = document.querySelector('.products-container') as HTMLDivElement;
-        this.data.forEach((item: ProductType): void => {
+        const instrumentsContainer = document.querySelector('.instruments-container') as HTMLDivElement;
+        this.dataCurrent.forEach((item: PropertiesType): void => {
             const instrument = new Instrument(item);
             const card: HTMLDivElement = instrument.createCard();
-            productsContainer.append(card);
+            instrumentsContainer.append(card);
         });
     }
 }
