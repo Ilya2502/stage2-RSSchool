@@ -12,7 +12,7 @@ export class Card implements CardInterface {
     }
 
     addName(): void {
-        const name = this.cardClone.querySelector('.name') as HTMLDivElement;
+        const name = this.cardClone.querySelector('.name') as HTMLTitleElement;
         name.innerHTML = this.properties.name;
     }
 

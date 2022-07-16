@@ -97,6 +97,7 @@ body {
     height: 350px;
     color: #000;
     border-radius: 10px;
+    padding: 10px;
 }
 
 .image {
@@ -106,8 +107,8 @@ body {
 }
 
 .image-container {
-    width: 250px;
-    height: 200px;
+    width: 230px;
+    height: 180px;
 }
 
 footer {

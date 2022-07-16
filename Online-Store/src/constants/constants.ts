@@ -14,15 +14,15 @@ export const mapper = {
         text: 'Producer: ',
         classNameValue: 'producer-value',
     },
-    date: {
-        classNameText: 'date-text',
-        text: 'Market launch year: ',
-        classNameValue: 'date-value',
+    count: {
+        classNameText: 'count-text',
+        text: 'Count: ',
+        classNameValue: 'count-value',
     },
-    size: {
-        classNameText: 'size-text',
-        text: 'Size: ',
-        classNameValue: 'size-value',
+    popular: {
+        classNameText: 'popular-text',
+        text: 'Popular: ',
+        classNameValue: 'popular-value',
     },
     color: {
         classNameText: 'color-text',
