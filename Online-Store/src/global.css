@@ -78,6 +78,18 @@ body {
     padding: 20px 20px;
 }
 
+.sorry {
+    display: none;
+    height: calc(100vh - 300px);
+    font-size: 1.5rem;
+}
+
+.sorry-active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 .filters-container {
@@ -94,7 +106,7 @@ body {
     border: 2px solid #fff;
 }
 
-.filtres-value-content {
+.filters-value-content {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -104,6 +116,34 @@ body {
     display: flex;
     flex-direction: column;
     padding: 10px;
+}
+
+
+
+
+#slider {
+    width: 100px;
+    height: 10px;
+}
+
+.noUi-touch-area {
+    height: 5px;
+    width: 5px;
+}
+
+.noUi-handle {
+    height: 5px;
+    width: 5px;
+}
+
+.noUi-handle-lower {
+    height: 5px;
+    width: 5px;
+}
+
+.noUi-horizontal .noUi-handle {
+    height: 5px;
+    width: 5px;
 }
 
 

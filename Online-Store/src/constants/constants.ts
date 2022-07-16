@@ -1,3 +1,5 @@
+import { FilterPropertiesInterface } from '../types/types';
+
 export const mapper = {
     type: {
         classNameText: 'type-text',
@@ -29,4 +31,11 @@ export const mapper = {
         text: 'Color: ',
         classNameValue: 'color-value',
     },
+};
+
+export const filterProperties: FilterPropertiesInterface = {
+    type: [],
+    producer: [],
+    color: [],
+    popular: [],
 };

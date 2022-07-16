@@ -20,3 +20,19 @@ export interface CardInterface {
 }
 
 export type MapperInterface = Record<string, PropertiesType>;
+
+export type FilterPropertiesInterface = Record<string, string[]>;
+
+export interface FilterInterface {
+    filterProperties: FilterPropertiesInterface;
+    dataCurrent: PropertiesType[];
+    addFilterListener(): void;
+    checkFilterProperties(): boolean;
+    changeFilterProperties(valueFilter: string, typeFilter: string): void;
+    filtrationData(): void;
+    filterType(instrument: PropertiesType): boolean;
+    filterProducer(instrument: PropertiesType): boolean;
+    filterColor(instrument: PropertiesType): boolean;
+    filterPopular(instrument: PropertiesType): boolean;
+    generateCards(): void;
+}

@@ -25,79 +25,96 @@
             <div class="filters-container">
                 <div class="filters-value-container">
                     <h3 class="filters-value-title">filters-value</h3>
-                    <div class="filtres-value-content">
-                        <div class="filter-type">
+                    <div class="filters-value-content">
+
+                        <div class="filter-type" id="type">
                             <p class="filter-title">Type:</p>
                             <div class="checkbox-container">
                                 <div class="guitar-checkbox">
-                                    <input type="checkbox" id="guitar">
+                                    <input type="checkbox" id="guitar" class="checkbox" value="guitar">
                                     <label for="guitar" class="checkbox-text"> guitar </label>
                                 </div>
                                 <div class="piano-checkbox">
-                                    <input type="checkbox" id="piano">
+                                    <input type="checkbox" id="piano" class="checkbox" value="piano">
                                     <label for="piano" class="checkbox-text"> piano </label>
                                 </div>
                                 <div class="cello-checkbox">
-                                    <input type="checkbox" id="cello">
+                                    <input type="checkbox" id="cello" class="checkbox" value="cello">
                                     <label for="cello" class="checkbox-text"> cello </label>
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-producer">
+
+                        <div class="filter-type" id="producer">
                             <p class="filter-title">Producer:</p>
                             <div class="checkbox-container">
                                 <div class="cort-checkbox">
-                                    <input type="checkbox" id="cort">
+                                    <input type="checkbox" id="cort" class="checkbox" value="Cort (Korea)">
                                     <label for="cort" class="checkbox-text"> Cort (Korea) </label>
                                 </div>
                                 <div class="casio-checkbox">
-                                    <input type="checkbox" id="casio">
+                                    <input type="checkbox" id="casio" class="checkbox" value="Casio (Japan)">
                                     <label for="casio" class="checkbox-text"> Casio (Japan) </label>
                                 </div>
                                 <div class="yamaha-checkbox">
-                                    <input type="checkbox" id="yamaha">
+                                    <input type="checkbox" id="yamaha" class="checkbox" value="Yamaha (Japan)">
                                     <label for="yamaha" class="checkbox-text"> Yamaha (Japan) </label>
                                 </div>
                                 <div class="strunal-checkbox">
-                                    <input type="checkbox" id="strunal">
+                                    <input type="checkbox" id="strunal" class="checkbox" value="Strunal (Czech)">
                                     <label for="strunal" class="checkbox-text"> Strunal (Czech) </label>
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-color">
+
+                        <div class="filter-type" id="color">
                             <p class="filter-title">Color:</p>
                             <div class="checkbox-container">
                                 <div class="red-checkbox">
-                                    <input type="checkbox" id="red">
+                                    <input type="checkbox" id="red" class="checkbox" value="red">
                                     <label for="red" class="checkbox-text"> red </label>
                                 </div>
                                 <div class="white-checkbox">
-                                    <input type="checkbox" id="white">
+                                    <input type="checkbox" id="white" class="checkbox" value="white">
                                     <label for="white" class="checkbox-text"> white </label>
                                 </div>
                                 <div class="black-checkbox">
-                                    <input type="checkbox" id="black">
+                                    <input type="checkbox" id="black" class="checkbox" value="black">
                                     <label for="black" class="checkbox-text"> black </label>
                                 </div>
                                 <div class="brown-checkbox">
-                                    <input type="checkbox" id="brown">
+                                    <input type="checkbox" id="brown" class="checkbox" value="brown">
                                     <label for="brown" class="checkbox-text"> brown </label>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="filter-type" id="popular">
+                            <p class="filter-title">Only popular:</p>
+                            <div class="checkbox-container">
+                                <div class="popular-checkbox">
+                                    <input type="checkbox" id="yes" class="checkbox" value="yes">
+                                    <label for="yes" class="checkbox-text"> Yes </label>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
+                </div> 
                 <div class="filters-range-container">
-                    <p class="filters-value-title">filters-range</p>
-                
+                    <p class="filters-range-title">filters-range</p>
+                    <div id="slider"></div>
                 </div>
                 <div class="filters-sort-container">
                     <p class="filters-value-title">Sort</p>
                 </div>
             </div>
+            <div class="sorry">
+                <p class="sorry-text">Sorry, no matches found</p>
+            </div>
             <div class="container main-container">
                 <section class="instruments-container">
-                
+                    
                 </section>
             </div>
         </main>
