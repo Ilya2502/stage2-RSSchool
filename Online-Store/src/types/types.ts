@@ -13,6 +13,7 @@ export interface InstrumentInterface {
 export interface CardInterface {
     properties: PropertiesType,
     cardClone: HTMLElement,
+    addId(): void,
     addName(): void,
     addImage(): void,
     addList(): void

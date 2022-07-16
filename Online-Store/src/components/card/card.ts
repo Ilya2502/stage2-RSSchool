@@ -11,6 +11,11 @@ export class Card implements CardInterface {
         this.cardClone = cardClone;
     }
 
+    addId(): void {
+        const card = this.cardClone.querySelector('.card') as HTMLDivElement;
+        card.id = this.properties.id;
+    }
+
     addName(): void {
         const name = this.cardClone.querySelector('.name') as HTMLTitleElement;
         name.innerHTML = this.properties.name;

@@ -9,6 +9,7 @@ export class Instrument implements InstrumentInterface {
 
     createCard(cardClone: HTMLElement): void {
         const card = new Card(this.properties, cardClone);
+        card.addId();
         card.addName();
         card.addImage();
         card.addList();

@@ -78,6 +78,37 @@ body {
     padding: 20px 20px;
 }
 
+
+
+.filters-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-top: 20px;
+}
+
+.filters-value-container, .filters-range-container, .filters-sort-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #fff;
+}
+
+.filtres-value-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.filter-type, .filter-producer, .filter-color {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+
+
+
 .instruments-container {
     display: flex;
     justify-content: space-around;
@@ -122,7 +153,7 @@ body {
 .button {
     width: 60px;
     color: #fff;
-    background-color: #000;
+    background-color: rgb(100, 100, 100);
     padding: 5px;
     border-radius: 15px;
 }
@@ -132,9 +163,12 @@ body {
 }
 
 .manage-cart-value {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     line-height: 0;
 }
+
+
+
 
 footer {
     height: 50px;
