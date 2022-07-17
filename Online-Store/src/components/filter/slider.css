@@ -24,3 +24,13 @@
 .noUi-connect {
     background: rgb(100, 100, 100);
 }
+
+.noUi-tooltip {
+  display: none;
+  font-size: 0.9rem;
+  padding: 2px;
+}
+
+.noUi-active .noUi-tooltip {
+  display: block;
+}

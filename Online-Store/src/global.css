@@ -80,7 +80,7 @@ body {
 
 .sorry {
     display: none;
-    height: calc(100vh - 300px);
+    height: calc(100vh - 400px);
     font-size: 1.5rem;
 }
 

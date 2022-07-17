@@ -38,4 +38,6 @@ export const filterProperties: FilterPropertiesInterface = {
     producer: [],
     color: [],
     popular: [],
+    price: [],
+    count: [],
 };
