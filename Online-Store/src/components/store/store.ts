@@ -19,6 +19,9 @@ class Store implements StoreInterface {
         this.filter.createSlider();
         this.filter.addSortListener();
         this.filter.addSearchListener();
+        const closeMessage = document.querySelector('.cross-container') as HTMLDivElement;
+        const fullCartMessage = document.querySelector('.full') as HTMLDivElement;
+        closeMessage.addEventListener('click', () => fullCartMessage.classList.remove('full-active'));
     }
 }
 

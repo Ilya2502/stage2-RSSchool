@@ -31,6 +31,8 @@ export interface FilterInterface {
     filterProperties: FilterPropertiesInterface;
     dataCurrent: PropertiesType[];
     sortFunctions: SortFunctions;
+    cart: CartInterface;
+    reset(): void;
     addFilterListener(): void;
     addSearchListener(): void;
     checkFilterProperties(): boolean;
@@ -49,4 +51,12 @@ export interface FilterInterface {
     addSliderListener(sliderPriceElement: HTMLDivElement, sliderCount: HTMLDivElement): void;
     addSortListener(): void;
     sortApply(): void;
+}
+
+export interface CartInterface {
+    cartContent: PropertiesType;
+    addCartListener(): void;
+    addInstrument(currentCard: HTMLDivElement): void;
+    deleteInstrument(currentCard: HTMLDivElement): void;
+    updateCount(): void;
 }

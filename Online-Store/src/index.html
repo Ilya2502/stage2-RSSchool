@@ -16,7 +16,7 @@
                 </div>
                 <div class="shop-cart">
                     <div class="count-of-products-in-cart-container">
-                        <p class="count-of-products-in-cart">0</p>
+                        <p class="cart-value">0</p>
                     </div>
                 </div>
             </div>
@@ -146,16 +146,26 @@
                         </select>
                     </div>
                     
-                    <div class="sort-container">
-                        <h5 class="sort-title">Search:</h5>
+                    <div class="search-container">
+                        <h5 class="search-title">Search:</h5>
                         <input placeholder="Enter text" type="text" class="search" value="">
                     </div>
+
+                    <button class="reset">Reset</button>
                     
                 </div>
             </div>
             <div class="sorry">
                 <p class="sorry-text">Sorry, no matches found</p>
             </div>
+            <div class="full">
+                <div class="cross-container">
+                    <span class="line-1"></span>
+                    <span class="line-2"></span>
+                </div>
+                <p class="sorry-text">Sorry, all slots are full</p>
+            </div>
+
             <div class="container main-container">
                 <section class="instruments-container">
                     
@@ -203,11 +213,11 @@
                     </li>
                 </ul>
                 <div class="manage-cart">
-                    <button class="button add">Delete</button>
+                    <button class="button delete">Delete</button>
                     <div class="manage-cart-value">
                         0
                     </div>
-                    <button class="button delete">Add</button>
+                    <button class="button add">Add</button>
                 </div>
             </div>
         </template>

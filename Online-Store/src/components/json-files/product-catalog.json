@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "card1",
     "name": "CORT-AD810-BKS",
     "type": "guitar",
     "price": "200$",
@@ -11,7 +11,7 @@
     "img": "assets/img/CORT-AD810-BKS.jpg"
   },
   {
-    "id": "2",
+    "id": "card2",
     "name": "CORT-AD810-SSB",
     "type": "guitar",
     "price": "230$",
@@ -22,7 +22,7 @@
     "img": "assets/img/CORT-AD810-SSB.jpg"
   },
   {
-    "id": "3",
+    "id": "card3",
     "name": "CORT-AF-510M-OP",
     "type": "guitar",
     "price": "250$",
@@ -33,7 +33,7 @@
     "img": "assets/img/CORT-AF-510M-OP.jpg"
   },
   {
-    "id": "4",
+    "id": "card4",
     "name": "CORT-EARTH-60-OP",
     "type": "guitar",
     "price": "300$",
@@ -44,7 +44,7 @@
     "img": "assets/img/CORT-EARTH-60-OP.jpg"
   },
   {
-    "id": "5",
+    "id": "card5",
     "name": "YAMAHA-F-310",
     "type": "guitar",
     "price": "290$",
@@ -55,7 +55,7 @@
     "img": "assets/img/YAMAHA-F-310.jpg"
   },
   {
-    "id": "6",
+    "id": "card6",
     "name": "CASIO-PX-S1000RD",
     "type": "piano",
     "price": "350$",
@@ -66,7 +66,7 @@
     "img": "assets/img/CASIO-PX-S1000RD.jpg"
   },
   {
-    "id": "7",
+    "id": "card7",
     "name": "CASIO-PX-S1100WE",
     "type": "piano",
     "price": "380$",
@@ -77,7 +77,7 @@
     "img": "assets/img/CASIO-PX-S1100WE.jpg"
   },
   {
-    "id": "8",
+    "id": "card8",
     "name": "YAMAHA-P-45B",
     "type": "piano",
     "price": "500$",
@@ -88,7 +88,7 @@
     "img": "assets/img/YAMAHA-P-45B.jpg"
   },
   {
-    "id": "9",
+    "id": "card9",
     "name": "YAMAHA-YDP-143B",
     "type": "piano",
     "price": "800$",
@@ -99,7 +99,7 @@
     "img": "assets/img/YAMAHA-YDP-143B.jpg"
   },
   {
-    "id": "10",
+    "id": "card10",
     "name": "YAMAHA-YDP-163R",
     "type": "piano",
     "price": "950$",
@@ -110,7 +110,7 @@
     "img": "assets/img/YAMAHA-YDP-163R.jpg"
   },
   {
-    "id": "11",
+    "id": "card11",
     "name": "STRUNAL-4-15C",
     "type": "cello",
     "price": "870$",
@@ -121,7 +121,7 @@
     "img": "assets/img/STRUNAL-4-15C.jpg"
   },
   {
-    "id": "12",
+    "id": "card12",
     "name": "STRUNAL-4-15F",
     "type": "cello",
     "price": "1050$",
@@ -132,7 +132,7 @@
     "img": "assets/img/STRUNAL-4-15F.jpg"
   },
   {
-    "id": "13",
+    "id": "card13",
     "name": "STRUNAL-40-4C",
     "type": "cello",
     "price": "1450$",
@@ -143,7 +143,7 @@
     "img": "assets/img/STRUNAL-40-4C.jpg"
   },
   {
-    "id": "14",
+    "id": "card14",
     "name": "STRUNAL-40-4D",
     "type": "cello",
     "price": "1250$",
@@ -154,7 +154,7 @@
     "img": "assets/img/STRUNAL-40-4D.jpg"
   },
   {
-    "id": "15",
+    "id": "card15",
     "name": "STRUNAL-40-7WE",
     "type": "cello",
     "price": "1500$",

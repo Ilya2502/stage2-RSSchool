@@ -4,16 +4,19 @@ import data from '../json-files/product-catalog.json';
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import './slider.css';
+import Cart from '../cart/cart';
 
 class Filter implements FilterInterface {
     filterProperties: FilterPropertiesInterface;
     dataCurrent: PropertiesType[];
     data: PropertiesType[];
     sortFunctions: SortFunctions;
+    cart: Cart;
     constructor(filterProperties: FilterPropertiesInterface, dataCurrent: PropertiesType[]) {
         this.filterProperties = filterProperties;
         this.dataCurrent = dataCurrent;
         this.data = <PropertiesType[]>data;
+        this.cart = new Cart();
         this.sortFunctions = {
             priceAscending: this.sortPriceAscending.bind(this),
             priceDescending: this.sortPriceDescending.bind(this),
@@ -34,6 +37,34 @@ class Filter implements FilterInterface {
                 this.filtrationCards();
             })
         );
+        const reset = document.querySelector('.reset') as HTMLButtonElement;
+        reset.addEventListener('click', () => {
+            this.reset();
+        });
+    }
+
+    reset() {
+        for (const key in this.filterProperties) {
+            this.filterProperties[key] = [];
+        }
+        const checkboxes = document.querySelectorAll('.checkbox');
+        checkboxes.forEach((item) => ((item as HTMLInputElement).checked = false));
+
+        const sliderPriceElement = document.getElementById('slider-price') as HTMLDivElement;
+        const sliderCount = document.getElementById('slider-count') as HTMLDivElement;
+        (sliderPriceElement as noUiSlider.target).noUiSlider?.reset();
+        (sliderCount as noUiSlider.target).noUiSlider?.reset();
+
+        const minPrice = document.querySelector(`.min-price-value`) as HTMLSpanElement;
+        minPrice.innerHTML = '200';
+        const maxPrice = document.querySelector(`.max-price-value`) as HTMLSpanElement;
+        maxPrice.innerHTML = '1500';
+        const minCount = document.querySelector(`.min-count-value`) as HTMLSpanElement;
+        minCount.innerHTML = '1';
+        const maxCount = document.querySelector(`.max-count-value`) as HTMLSpanElement;
+        maxCount.innerHTML = '8';
+
+        this.filtrationCards();
     }
 
     addSearchListener() {
@@ -41,7 +72,6 @@ class Filter implements FilterInterface {
         input.addEventListener('input', () => {
             this.filterProperties.search[0] = input.value;
             this.filtrationCards();
-            // console.log(input.value);
         });
     }
 
@@ -196,6 +226,8 @@ class Filter implements FilterInterface {
             fragment.append(cardClone);
         });
         instrumentsContainer.append(fragment);
+        this.cart.addCartListener();
+        this.cart.updateCount();
     }
 
     createSlider() {

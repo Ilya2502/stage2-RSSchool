@@ -64,9 +64,9 @@ body {
 
 .count-of-products-in-cart-container {
     display: flex;
-    color: rgb(54, 210, 30);
-    padding: 3px;
-    height: 1.4rem;
+    color: red;
+    padding: 4px;
+    height: 1.5rem;
     font-size: 1.5rem;
     line-height: 1.1rem;
     font-weight: 600;
@@ -90,6 +90,53 @@ body {
     align-items: center;
 }
 
+.full {
+    display: none;
+    min-width: 400px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    border-radius: 10px;
+}
+
+.full-active {
+    display: flex;
+    position: fixed;
+    z-index: 100;
+    top: calc(50% - 150px);
+    left: calc(50% - 200px);
+    background-color: rgb(99, 99, 99);
+}
+
+.cross-container {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.cross-container:hover {
+    cursor: pointer;
+}
+
+.line-1, .line-2 {
+    display: block;
+    position: absolute;
+    width: 3px;
+    height: 20px;
+    background-color: #fff;
+}
+
+.line-1 {
+    transform: rotate(45deg);
+}
+
+.line-2 {
+    transform: rotate(-45deg);
+}
+
+
+
 
 
 .filters-container {
@@ -103,9 +150,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: flex-start;
-    border: 2px solid #fff;
+    align-items: center;
+    border: 1px solid #fff;
     padding: 10px;
+    border-radius: 20px;
 }
 
 .filters-range-container {
@@ -161,13 +209,32 @@ body {
     text-align: center;
 }
 
+
+
+
+
+
 .sort-title {
+    align-self: flex-start;
+}
+
+.sort-container, .search-container {
     align-self: flex-start;
 }
 
 #select-sort:hover, .checkbox:hover, .checkbox-text:hover {
     cursor: pointer;
 }
+
+.reset {
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.reset:hover {
+    cursor: pointer;
+}
+
 
 
 
@@ -195,6 +262,10 @@ body {
     color: #000;
     border-radius: 10px;
     padding: 10px;
+}
+
+.choose {
+    box-shadow: 5px 5px 5px red, -5px -5px 5px red, 5px -5px 5px red, -5px 5px 5px red;
 }
 
 .image {
