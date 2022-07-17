@@ -133,9 +133,13 @@ body {
 }
 
 #slider-price, #slider-count {
-    width: 100px;
+    width: 150px;
     height: 12px;
     margin: 0 20px;
+}
+
+#slider-price:hover, #slider-count:hover {
+    cursor: pointer;
 }
 
 .price-filter-container, .count-filter-container {
@@ -153,6 +157,14 @@ body {
 .range-value {
     width: 40px;
     text-align: center;
+}
+
+.sort-title {
+    align-self: flex-start;
+}
+
+#select-sort:hover, .checkbox:hover, .checkbox-text:hover {
+    cursor: pointer;
 }
 
 

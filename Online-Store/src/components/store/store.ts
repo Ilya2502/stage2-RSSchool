@@ -17,6 +17,7 @@ class Store implements StoreInterface {
         this.filter.generateCards();
         this.filter.addFilterListener();
         this.filter.createSlider();
+        this.filter.addSortListener();
     }
 }
 

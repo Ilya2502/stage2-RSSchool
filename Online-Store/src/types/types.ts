@@ -23,9 +23,14 @@ export type MapperInterface = Record<string, PropertiesType>;
 
 export type FilterPropertiesInterface = Record<string, (string | number)[]>;
 
+export type SortFunctions = Record<string, Callback<string>>;
+
+export interface Callback<T> { (): void };
+
 export interface FilterInterface {
     filterProperties: FilterPropertiesInterface;
     dataCurrent: PropertiesType[];
+    sortFunctions: SortFunctions;
     addFilterListener(): void;
     checkFilterProperties(): boolean;
     changeFilterProperties(valueFilter: string, typeFilter: string): void;
@@ -40,4 +45,6 @@ export interface FilterInterface {
     generateCards(): void;
     createSlider(): void;
     addSliderListener(sliderPriceElement: HTMLDivElement, sliderCount: HTMLDivElement): void;
+    addSortListener(): void;
+    sortApply(): void;
 }
