@@ -235,6 +235,14 @@ body {
     cursor: pointer;
 }
 
+.search, #select-sort {
+    padding: 1px;
+}
+
+.search {
+    padding-left: 4px;
+}
+
 
 
 
