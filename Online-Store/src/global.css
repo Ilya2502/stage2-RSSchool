@@ -104,6 +104,11 @@ body {
     flex-direction: column;
     align-items: center;
     border: 2px solid #fff;
+    padding: 10px;
+}
+
+.filters-range-container {
+    justify-content: space-between;
 }
 
 .filters-value-content {
@@ -121,30 +126,37 @@ body {
 
 
 
-#slider {
+.slider-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#slider-price, #slider-count {
     width: 100px;
-    height: 10px;
+    height: 12px;
+    margin: 0 20px;
 }
 
-.noUi-touch-area {
-    height: 5px;
-    width: 5px;
+.price-filter-container, .count-filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.noUi-handle {
-    height: 5px;
-    width: 5px;
+.price-slider-container, .count-slider-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.noUi-handle-lower {
-    height: 5px;
-    width: 5px;
+.range-value {
+    width: 40px;
+    text-align: center;
 }
 
-.noUi-horizontal .noUi-handle {
-    height: 5px;
-    width: 5px;
-}
+
+
 
 
 

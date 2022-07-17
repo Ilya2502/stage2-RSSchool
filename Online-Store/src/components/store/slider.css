@@ -1,0 +1,26 @@
+.noUi-horizontal .noUi-handle {
+    width: 15px;
+    height: 17px;
+    right: -8px;
+    top: -3px;
+  }
+
+.noUi-handle:before,
+.noUi-handle:after {
+  height: 10px;
+  width: 1px;
+  background: #E8E7E6;
+  left: 5px;
+  top: 2px;
+}
+.noUi-handle:after {
+  left: 7px;
+}
+
+.noUi-connects {
+    background: #fff;
+}
+
+.noUi-connect {
+    background: rgb(100, 100, 100);
+}

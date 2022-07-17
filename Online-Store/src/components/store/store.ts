@@ -5,6 +5,7 @@ import data from '../json-files/product-catalog.json';
 import { filterProperties } from '../../constants/constants';
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
+import './slider.css';
 
 class Store implements StoreInterface {
     filter: FilterInterface;
@@ -30,18 +31,27 @@ class Store implements StoreInterface {
         this.filter.generateCards();
         this.filter.addFilterListener();
 
-        const slider = document.getElementById('slider') as HTMLDivElement;
-
-        noUiSlider.create(slider, {
-            start: [20, 900],
+        const sliderPrice = document.getElementById('slider-price') as HTMLDivElement;
+        noUiSlider.create(sliderPrice, {
+            start: [200, 1850],
             connect: true,
             range: {
-                min: 0,
-                max: 1000,
+                min: 200,
+                max: 1850,
             },
+            step: 10,
         });
-        slider.style.width = '100px';
-        slider.style.height = '10px';
+
+        const sliderCount = document.getElementById('slider-count') as HTMLDivElement;
+        noUiSlider.create(sliderCount, {
+            start: [1, 8],
+            connect: true,
+            range: {
+                min: 1,
+                max: 8,
+            },
+            step: 1,
+        });
     }
 }
 
