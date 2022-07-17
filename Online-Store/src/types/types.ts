@@ -32,6 +32,7 @@ export interface FilterInterface {
     dataCurrent: PropertiesType[];
     sortFunctions: SortFunctions;
     addFilterListener(): void;
+    addSearchListener(): void;
     checkFilterProperties(): boolean;
     changeFilterProperties(valueFilter: string, typeFilter: string): void;
     filtrationCards(): void;
@@ -42,6 +43,7 @@ export interface FilterInterface {
     filterPopular(instrument: PropertiesType): boolean;
     filterPrice(instrument: PropertiesType): boolean;
     filterCount(instrument: PropertiesType): boolean;
+    filterSearch(instrument: PropertiesType): boolean;
     generateCards(): void;
     createSlider(): void;
     addSliderListener(sliderPriceElement: HTMLDivElement, sliderCount: HTMLDivElement): void;

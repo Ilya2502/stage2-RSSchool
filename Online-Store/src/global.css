@@ -102,7 +102,8 @@ body {
 .filters-value-container, .filters-range-container, .filters-sort-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-around;
+    align-items: flex-start;
     border: 2px solid #fff;
     padding: 10px;
 }
@@ -122,6 +123,7 @@ body {
     flex-direction: column;
     padding: 10px;
 }
+
 
 
 

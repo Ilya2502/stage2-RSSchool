@@ -18,6 +18,7 @@ class Store implements StoreInterface {
         this.filter.addFilterListener();
         this.filter.createSlider();
         this.filter.addSortListener();
+        this.filter.addSearchListener();
     }
 }
 

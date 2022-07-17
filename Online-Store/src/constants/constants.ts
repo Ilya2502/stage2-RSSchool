@@ -40,4 +40,5 @@ export const filterProperties: FilterPropertiesInterface = {
     popular: [],
     price: [],
     count: [],
+    search: [],
 };

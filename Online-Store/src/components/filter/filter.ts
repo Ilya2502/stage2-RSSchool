@@ -36,6 +36,15 @@ class Filter implements FilterInterface {
         );
     }
 
+    addSearchListener() {
+        const input = document.querySelector('.search') as HTMLInputElement;
+        input.addEventListener('input', () => {
+            this.filterProperties.search[0] = input.value;
+            this.filtrationCards();
+            // console.log(input.value);
+        });
+    }
+
     checkFilterProperties() {
         for (const key in this.filterProperties) {
             if (this.filterProperties[key].length) {
@@ -77,7 +86,8 @@ class Filter implements FilterInterface {
                 this.filterProducer(item) &&
                 this.filterPopular(item) &&
                 this.filterPrice(item) &&
-                this.filterCount(item)
+                this.filterCount(item) &&
+                this.filterSearch(item)
             ) {
                 return true;
             } else {
@@ -154,6 +164,17 @@ class Filter implements FilterInterface {
                 +instrument.count <= +this.filterProperties.count[1] &&
                 +instrument.count >= +this.filterProperties.count[0]
             ) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    filterSearch(instrument: PropertiesType): boolean {
+        if (this.filterProperties.search.length !== 0) {
+            if (instrument.name.toLowerCase().includes((this.filterProperties.search[0] as string).toLowerCase())) {
                 return true;
             } else {
                 return false;
