@@ -1,3 +1,5 @@
+import * as noUiSlider from 'nouislider';
+
 export type PropertiesType = Record<string, string>;
 
 export interface StoreInterface {
@@ -32,6 +34,7 @@ export interface FilterInterface {
     dataCurrent: PropertiesType[];
     sortFunctions: SortFunctions;
     cart: CartInterface;
+    // noUiSliderCount:  noUiSlider.API;
     reset(): void;
     addFilterListener(): void;
     addSearchListener(): void;
@@ -60,3 +63,5 @@ export interface CartInterface {
     deleteInstrument(currentCard: HTMLDivElement): void;
     updateCount(): void;
 }
+
+// export interface SetLocalStorage<FilterInterface> { (data: FilterInterface): void };

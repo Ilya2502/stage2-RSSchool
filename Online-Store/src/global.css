@@ -144,6 +144,7 @@ body {
     justify-content: space-around;
     flex-wrap: wrap;
     padding-top: 20px;
+    row-gap: 10px;
 }
 
 .filters-value-container, .filters-range-container, .filters-sort-container {
@@ -154,6 +155,7 @@ body {
     border: 1px solid #fff;
     padding: 10px;
     border-radius: 20px;
+    row-gap: 5px;
 }
 
 .filters-range-container {
@@ -226,12 +228,17 @@ body {
     cursor: pointer;
 }
 
-.reset {
+.button-container {
+    display: flex;
+    column-gap: 10px;
+}
+
+.reset, .clear {
     padding: 3px;
     border-radius: 5px;
 }
 
-.reset:hover {
+.reset:hover, .clear:hover {
     cursor: pointer;
 }
 

@@ -41,6 +41,11 @@ class Filter implements FilterInterface {
         reset.addEventListener('click', () => {
             this.reset();
         });
+        const clear = document.querySelector('.clear') as HTMLButtonElement;
+        clear.addEventListener('click', () => {
+            location.reload();
+            localStorage.clear();
+        });
     }
 
     reset() {
