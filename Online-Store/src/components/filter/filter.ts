@@ -5,6 +5,7 @@ import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import './slider.css';
 import Cart from '../cart/cart';
+import { sliderPriceElement, sliderCountElement } from '../../constants/constants';
 
 class Filter implements FilterInterface {
     filterProperties: FilterPropertiesInterface;
@@ -236,57 +237,21 @@ class Filter implements FilterInterface {
     }
 
     createSlider() {
-        const sliderPriceElement = document.getElementById('slider-price') as HTMLDivElement;
-        noUiSlider.create(sliderPriceElement, {
-            start: [200, 1500],
-            tooltips: true,
-            connect: true,
-            range: {
-                min: 200,
-                max: 1500,
-            },
-            step: 10,
-            format: {
-                to: function (value) {
-                    return value.toFixed(0);
-                },
-                from: function (value) {
-                    return parseInt(value);
-                },
-            },
-        });
+        // noUiSliderPrice;
 
         const minPrice = document.querySelector(`.min-price-value`) as HTMLSpanElement;
         minPrice.innerHTML = '200';
         const maxPrice = document.querySelector(`.max-price-value`) as HTMLSpanElement;
         maxPrice.innerHTML = '1500';
 
-        const sliderCount = document.getElementById('slider-count') as HTMLDivElement;
-        noUiSlider.create(sliderCount, {
-            start: [1, 8],
-            tooltips: true,
-            connect: true,
-            range: {
-                min: 1,
-                max: 8,
-            },
-            step: 1,
-            format: {
-                to: function (value) {
-                    return value.toFixed(0);
-                },
-                from: function (value) {
-                    return parseInt(value);
-                },
-            },
-        });
+        // const sliderCountElement = document.getElementById('slider-count') as HTMLDivElement;
 
         const minCount = document.querySelector(`.min-count-value`) as HTMLSpanElement;
         minCount.innerHTML = '1';
         const maxCount = document.querySelector(`.max-count-value`) as HTMLSpanElement;
         maxCount.innerHTML = '8';
 
-        this.addSliderListener(sliderPriceElement, sliderCount);
+        this.addSliderListener(sliderPriceElement, sliderCountElement);
     }
 
     addSliderListener(...sliderArray: HTMLDivElement[]) {

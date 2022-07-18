@@ -2,6 +2,7 @@ import { StoreInterface, PropertiesType, FilterInterface } from '../../types/typ
 import Filter from '../filter/filter';
 import data from '../json-files/product-catalog.json';
 import { filterProperties } from '../../constants/constants';
+import { noUiSliderPrice, noUiSliderCount } from '../../constants/constants';
 
 class Store implements StoreInterface {
     filter: FilterInterface;
@@ -62,6 +63,22 @@ class Store implements StoreInterface {
 
             if (localStorage.getItem('filters')) {
                 this.filter.filterProperties = JSON.parse(localStorage.getItem('filters') as string);
+                if (this.filter.filterProperties.price[0]) {
+                    noUiSliderPrice.set([this.filter.filterProperties.price[0], this.filter.filterProperties.price[1]]);
+                    const minPrice = document.querySelector(`.min-price-value`) as HTMLSpanElement;
+                    minPrice.innerHTML = this.filter.filterProperties.price[0] + '';
+                    const maxPrice = document.querySelector(`.max-price-value`) as HTMLSpanElement;
+                    maxPrice.innerHTML = this.filter.filterProperties.price[1] + '';
+                }
+
+                if (this.filter.filterProperties.count[0]) {
+                    noUiSliderCount.set([this.filter.filterProperties.count[0], this.filter.filterProperties.count[1]]);
+                    const minCount = document.querySelector(`.min-count-value`) as HTMLSpanElement;
+                    minCount.innerHTML = this.filter.filterProperties.count[0] + '';
+                    const maxCount = document.querySelector(`.max-count-value`) as HTMLSpanElement;
+                    maxCount.innerHTML = this.filter.filterProperties.count[1] + '';
+                }
+
                 this.filter.filtrationCards();
             }
 
@@ -69,10 +86,6 @@ class Store implements StoreInterface {
                 const sortType = document.querySelector('#select-sort') as HTMLSelectElement;
                 sortType.value = JSON.parse(localStorage.getItem('sortType') as string);
             }
-
-            // if (localStorage.getItem('noUiSliderCount')) {
-            //     с
-            // }
         });
         this.filter.generateCards();
         this.filter.addFilterListener();
