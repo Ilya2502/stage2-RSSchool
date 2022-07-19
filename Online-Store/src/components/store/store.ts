@@ -61,6 +61,11 @@ class Store implements StoreInterface {
                 }
             }
 
+            if (localStorage.getItem('sortType')) {
+                const sortType = document.querySelector('#select-sort') as HTMLSelectElement;
+                sortType.value = JSON.parse(localStorage.getItem('sortType') as string);
+            }
+
             if (localStorage.getItem('filters')) {
                 this.filter.filterProperties = JSON.parse(localStorage.getItem('filters') as string);
                 if (this.filter.filterProperties.price[0]) {
@@ -78,14 +83,9 @@ class Store implements StoreInterface {
                     const maxCount = document.querySelector(`.max-count-value`) as HTMLSpanElement;
                     maxCount.innerHTML = this.filter.filterProperties.count[1] + '';
                 }
-
-                this.filter.filtrationCards();
             }
 
-            if (localStorage.getItem('sortType')) {
-                const sortType = document.querySelector('#select-sort') as HTMLSelectElement;
-                sortType.value = JSON.parse(localStorage.getItem('sortType') as string);
-            }
+            this.filter.filtrationCards();
         });
         this.filter.generateCards();
         this.filter.addFilterListener();
