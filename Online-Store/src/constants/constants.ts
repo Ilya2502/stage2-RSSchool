@@ -1,7 +1,7 @@
-import { FilterPropertiesInterface } from '../types/types';
+import { FilterPropertiesInterface, MapperInterface } from '../types/types';
 import * as noUiSlider from 'nouislider';
 
-export const mapper = {
+export const mapperTyped: MapperInterface = {
     type: {
         classNameText: 'type-text',
         text: 'Type: ',

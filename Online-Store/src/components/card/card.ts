@@ -1,7 +1,5 @@
 import { CardInterface, PropertiesType, MapperInterface } from '../../types/types';
-import { mapper } from '../../constants/constants';
-
-const mapperTyped: MapperInterface = mapper;
+import { mapperTyped } from '../../constants/constants';
 
 export class Card implements CardInterface {
     properties: PropertiesType;

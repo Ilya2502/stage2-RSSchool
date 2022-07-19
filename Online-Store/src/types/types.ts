@@ -6,20 +6,22 @@ export interface StoreInterface {
 }
 
 export interface InstrumentInterface {
-    properties: PropertiesType,
+    properties: PropertiesType;
     createCard(cardClone: HTMLElement): void;
 }
 
 export interface CardInterface {
-    properties: PropertiesType,
+    properties: PropertiesType;
     cardClone: HTMLElement,
-    addId(): void,
-    addName(): void,
-    addImage(): void,
-    addList(): void
+    addId(): void;
+    addName(): void;
+    addImage(): void;
+    addList(): void;
 }
 
-export type MapperInterface = Record<string, PropertiesType>;
+export enum Filters { type = 'type', price = 'price', producer = 'producer', count = 'count', popular = 'popular', color='color' };
+
+export type MapperInterface = Record<Filters, PropertiesType>;
 
 export type FilterPropertiesInterface = Record<string, (string | number)[]>;
 
