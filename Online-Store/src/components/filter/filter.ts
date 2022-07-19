@@ -116,7 +116,7 @@ class Filter implements FilterInterface {
 
     filtrationData() {
         this.dataCurrent = this.data.filter((item) => {
-            if (
+            return (
                 this.filterType(item) &&
                 this.filterColor(item) &&
                 this.filterProducer(item) &&
@@ -124,99 +124,48 @@ class Filter implements FilterInterface {
                 this.filterPrice(item) &&
                 this.filterCount(item) &&
                 this.filterSearch(item)
-            ) {
-                return true;
-            } else {
-                return false;
-            }
+            );
         });
     }
 
     filterType(instrument: PropertiesType): boolean {
-        if (this.filterProperties.type.length !== 0) {
-            for (let i = 0; i < this.filterProperties.type.length; i++) {
-                if (instrument.type === this.filterProperties.type[i]) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        return true;
+        return this.filterProperties.type.length !== 0 ? this.filterProperties.type.includes(instrument.type) : true;
     }
 
     filterProducer(instrument: PropertiesType): boolean {
-        if (this.filterProperties.producer.length !== 0) {
-            for (let i = 0; i < this.filterProperties.producer.length; i++) {
-                if (instrument.producer === this.filterProperties.producer[i]) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        return true;
+        return this.filterProperties.producer.length !== 0
+            ? this.filterProperties.producer.includes(instrument.producer)
+            : true;
     }
 
     filterColor(instrument: PropertiesType): boolean {
-        if (this.filterProperties.color.length !== 0) {
-            for (let i = 0; i < this.filterProperties.color.length; i++) {
-                if (instrument.color === this.filterProperties.color[i]) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        return true;
+        return this.filterProperties.color.length !== 0 ? this.filterProperties.color.includes(instrument.color) : true;
     }
 
     filterPopular(instrument: PropertiesType): boolean {
-        if (this.filterProperties.popular.length !== 0) {
-            for (let i = 0; i < this.filterProperties.popular.length; i++) {
-                if (instrument.popular === this.filterProperties.popular[i]) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        return true;
+        return this.filterProperties.popular.length !== 0
+            ? this.filterProperties.popular.includes(instrument.popular)
+            : true;
     }
 
     filterPrice(instrument: PropertiesType): boolean {
-        if (this.filterProperties.price.length !== 0) {
-            if (
-                +instrument.price.slice(0, -1) <= +this.filterProperties.price[1] &&
-                +instrument.price.slice(0, -1) >= +this.filterProperties.price[0]
-            ) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return true;
+        return this.filterProperties.price.length !== 0
+            ? +instrument.price.slice(0, -1) <= +this.filterProperties.price[1] &&
+                  +instrument.price.slice(0, -1) >= +this.filterProperties.price[0]
+            : true;
     }
 
     filterCount(instrument: PropertiesType): boolean {
-        if (this.filterProperties.count.length !== 0) {
-            if (
-                +instrument.count <= +this.filterProperties.count[1] &&
-                +instrument.count >= +this.filterProperties.count[0]
-            ) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return true;
+        return this.filterProperties.count.length !== 0
+            ? +instrument.count <= +this.filterProperties.count[1] &&
+                  +instrument.count >= +this.filterProperties.count[0]
+            : true;
     }
 
     filterSearch(instrument: PropertiesType): boolean {
-        if (this.filterProperties.search.length !== 0) {
-            if (instrument.name.toLowerCase().includes((this.filterProperties.search[0] as string).toLowerCase())) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return true;
+        return this.filterProperties.search.length !== 0
+            ? instrument.name.toLowerCase().includes((this.filterProperties.search[0] as string).toLowerCase())
+            : true;
     }
 
     generateCards() {
