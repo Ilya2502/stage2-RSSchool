@@ -9,23 +9,23 @@ export class Card implements CardInterface {
         this.cardClone = cardClone;
     }
 
-    addId(): void {
+    public addId(): void {
         const card = this.cardClone.querySelector('.card') as HTMLDivElement;
         card.id = this.properties.id;
     }
 
-    addName(): void {
+    public addName(): void {
         const name = this.cardClone.querySelector('.name') as HTMLTitleElement;
         name.innerHTML = this.properties.name;
     }
 
-    addImage(): void {
+    public addImage(): void {
         const image = this.cardClone.querySelector('.image') as HTMLImageElement;
         image.src = this.properties.img;
         image.alt = this.properties.name;
     }
 
-    addList(): void {
+    public addList(): void {
         for (const key in productAttributes) {
             const item = this.cardClone.querySelector(
                 `.${productAttributes[key as keyof ProductAttributesMapper].classNameText}`

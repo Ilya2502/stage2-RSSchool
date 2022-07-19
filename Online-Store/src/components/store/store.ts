@@ -5,16 +5,16 @@ import { filterProperties } from '../../constants/constants';
 import { noUiSliderPrice, noUiSliderCount } from '../../constants/constants';
 
 class Store implements StoreInterface {
-    filter: FilterInterface;
-    data: PropertiesType[];
-    dataCurrent: PropertiesType[];
+    readonly filter: FilterInterface;
+    readonly data: PropertiesType[];
+    readonly dataCurrent: PropertiesType[];
     constructor() {
         this.data = <PropertiesType[]>data;
         this.dataCurrent = Array.from(<PropertiesType[]>data);
         this.filter = new Filter(filterProperties, this.dataCurrent);
     }
 
-    start() {
+    public start() {
         window.addEventListener('beforeunload', () => {
             localStorage.setItem('filters', JSON.stringify(this.filter.filterProperties));
 
@@ -35,6 +35,7 @@ class Store implements StoreInterface {
             const sortType = document.querySelector('#select-sort') as HTMLSelectElement;
             localStorage.setItem('sortType', JSON.stringify(sortType.value));
         });
+
         window.addEventListener('load', () => {
             if (localStorage.getItem('checkbox-checked')) {
                 const checkboxCheckedId: string[] = JSON.parse(localStorage.getItem('checkbox-checked') as string);

@@ -13,10 +13,6 @@ export interface InstrumentInterface {
 export interface CardInterface {
     properties: PropertiesType;
     cardClone: HTMLElement;
-    addId(): void;
-    addName(): void;
-    addImage(): void;
-    addList(): void;
 }
 
 export enum Filters { 
@@ -38,31 +34,19 @@ export interface Callback<T> { (): void };
 
 export interface FilterInterface {
     filterProperties: FilterPropertiesInterface;
-    dataCurrent: PropertiesType[];
     sortFunctions: SortFunctions;
     cart: CartInterface;
-    reset(): void;
     addFilterListener(): void;
     addSearchListener(): void;
-    checkFilterProperties(): boolean;
-    changeFilterProperties(valueFilter: string, typeFilter: string): void;
     filtrationCards(): void;
-    filtrationData(): void;
-    filterValue(instrument: PropertiesType, filter: string): boolean;
-    filterRange(instrument: PropertiesType, filter: string): boolean;
-    filterSearch(instrument: PropertiesType): boolean;
     generateCards(): void;
     createSlider(): void;
-    addSliderListener(sliderPriceElement: HTMLDivElement, sliderCount: HTMLDivElement): void;
     addSortListener(): void;
-    sortApply(): void;
 }
 
 export interface CartInterface {
     cartContent: PropertiesType;
     addCartListener(): void;
-    addInstrument(currentCard: HTMLDivElement): void;
-    deleteInstrument(currentCard: HTMLDivElement): void;
     updateCount(): void;
 }
 

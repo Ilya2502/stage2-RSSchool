@@ -8,11 +8,11 @@ import Cart from '../cart/cart';
 import { sliderPriceElement, sliderCountElement } from '../../constants/constants';
 
 class Filter implements FilterInterface {
-    filterProperties: FilterPropertiesInterface;
-    dataCurrent: PropertiesType[];
-    data: PropertiesType[];
-    sortFunctions: SortFunctions;
-    cart: Cart;
+    readonly filterProperties: FilterPropertiesInterface;
+    private dataCurrent: PropertiesType[];
+    readonly data: PropertiesType[];
+    readonly sortFunctions: SortFunctions;
+    public cart: Cart;
     constructor(filterProperties: FilterPropertiesInterface, dataCurrent: PropertiesType[]) {
         this.filterProperties = filterProperties;
         this.dataCurrent = dataCurrent;
@@ -28,7 +28,7 @@ class Filter implements FilterInterface {
         };
     }
 
-    addFilterListener() {
+    public addFilterListener() {
         const checkboxes = document.querySelectorAll('.filter-type') as NodeListOf<HTMLElement>;
         checkboxes.forEach((item) =>
             item.addEventListener('change', (event) => {
@@ -49,7 +49,7 @@ class Filter implements FilterInterface {
         });
     }
 
-    reset() {
+    private reset() {
         for (const key in this.filterProperties) {
             this.filterProperties[key] = [];
         }
@@ -73,7 +73,7 @@ class Filter implements FilterInterface {
         this.filtrationCards();
     }
 
-    addSearchListener() {
+    public addSearchListener() {
         const input = document.querySelector('.search') as HTMLInputElement;
         input.addEventListener('input', () => {
             this.filterProperties.search[0] = input.value;
@@ -81,7 +81,7 @@ class Filter implements FilterInterface {
         });
     }
 
-    checkFilterProperties() {
+    private checkFilterProperties() {
         for (const key in this.filterProperties) {
             if (this.filterProperties[key].length) {
                 return true;
@@ -90,7 +90,7 @@ class Filter implements FilterInterface {
         return false;
     }
 
-    changeFilterProperties(valueFilter: string, typeFilter: string) {
+    private changeFilterProperties(valueFilter: string, typeFilter: string) {
         if (!this.filterProperties[typeFilter].includes(valueFilter)) {
             this.filterProperties[typeFilter].push(valueFilter);
         } else {
@@ -98,7 +98,7 @@ class Filter implements FilterInterface {
         }
     }
 
-    filtrationCards() {
+    public filtrationCards() {
         const sorryMessage = document.querySelector('.sorry') as HTMLDivElement;
         if (this.checkFilterProperties()) {
             this.filtrationData();
@@ -111,7 +111,7 @@ class Filter implements FilterInterface {
         this.generateCards();
     }
 
-    filtrationData() {
+    private filtrationData() {
         this.dataCurrent = this.data.filter((item) =>
             Object.keys(this.filterProperties).reduce(
                 (result, filter) =>
@@ -125,26 +125,26 @@ class Filter implements FilterInterface {
         );
     }
 
-    filterValue(instrument: PropertiesType, filter: string): boolean {
+    private filterValue(instrument: PropertiesType, filter: string): boolean {
         return this.filterProperties[filter].length !== 0
             ? this.filterProperties[filter].includes(instrument[filter])
             : true;
     }
 
-    filterRange(instrument: PropertiesType, filter: string): boolean {
+    private filterRange(instrument: PropertiesType, filter: string): boolean {
         return this.filterProperties[filter].length !== 0
             ? +instrument[filter] <= +this.filterProperties[filter][1] &&
                   +instrument[filter] >= +this.filterProperties[filter][0]
             : true;
     }
 
-    filterSearch(instrument: PropertiesType): boolean {
+    private filterSearch(instrument: PropertiesType): boolean {
         return this.filterProperties.search.length !== 0
             ? instrument.name.toLowerCase().includes((this.filterProperties.search[0] as string).toLowerCase())
             : true;
     }
 
-    generateCards() {
+    public generateCards() {
         this.sortApply();
         const instrumentsContainer = document.querySelector('.instruments-container') as HTMLDivElement;
         instrumentsContainer.innerHTML = '';
@@ -161,7 +161,7 @@ class Filter implements FilterInterface {
         this.cart.updateCount();
     }
 
-    createSlider() {
+    public createSlider() {
         const minPrice = document.querySelector(`.min-price-value`) as HTMLSpanElement;
         minPrice.innerHTML = '200';
         const maxPrice = document.querySelector(`.max-price-value`) as HTMLSpanElement;
@@ -175,7 +175,7 @@ class Filter implements FilterInterface {
         this.addSliderListener(sliderPriceElement, sliderCountElement);
     }
 
-    addSliderListener(...sliderArray: HTMLDivElement[]) {
+    private addSliderListener(...sliderArray: HTMLDivElement[]) {
         sliderArray.forEach((item) => {
             (item as noUiSlider.target).noUiSlider?.on('change', (value) => {
                 const property = item.id.split('-')[1];
@@ -201,39 +201,39 @@ class Filter implements FilterInterface {
         });
     }
 
-    addSortListener() {
+    public addSortListener() {
         const sortType = document.querySelector('#select-sort') as HTMLSelectElement;
         sortType.addEventListener('change', () => {
             this.generateCards();
         });
     }
 
-    sortApply() {
+    private sortApply() {
         const sortType = document.querySelector('#select-sort') as HTMLSelectElement;
         this.sortFunctions[sortType.value]();
     }
 
-    sortPriceAscending() {
+    private sortPriceAscending() {
         this.dataCurrent.sort((a, b) => +a.price - +b.price);
     }
 
-    sortPriceDescending() {
+    private sortPriceDescending() {
         this.dataCurrent.sort((a, b) => +b.price - +a.price);
     }
 
-    sortCountAscending() {
+    private sortCountAscending() {
         this.dataCurrent.sort((a, b) => +a.count - +b.count);
     }
 
-    sortCountDescending() {
+    private sortCountDescending() {
         this.dataCurrent.sort((a, b) => +b.count - +a.count);
     }
 
-    sortNameAscending() {
+    private sortNameAscending() {
         this.dataCurrent.sort((a, b) => (a.name >= b.name ? 1 : -1));
     }
 
-    sortNameDescending() {
+    private sortNameDescending() {
         this.dataCurrent.sort((a, b) => (b.name >= a.name ? 1 : -1));
     }
 }

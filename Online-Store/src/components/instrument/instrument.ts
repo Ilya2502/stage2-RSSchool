@@ -7,7 +7,7 @@ export class Instrument implements InstrumentInterface {
         this.properties = properties;
     }
 
-    createCard(cardClone: HTMLElement): void {
+    public createCard(cardClone: HTMLElement): void {
         const card = new Card(this.properties, cardClone);
         card.addId();
         card.addName();

@@ -6,7 +6,7 @@ class Cart implements CartInterface {
         this.cartContent = {};
     }
 
-    addCartListener() {
+    public addCartListener() {
         const cards = document.querySelectorAll('.card');
         cards.forEach((item) => {
             item.addEventListener('click', (event) => {
@@ -21,7 +21,7 @@ class Cart implements CartInterface {
         });
     }
 
-    addInstrument(currentCard: HTMLDivElement) {
+    private addInstrument(currentCard: HTMLDivElement) {
         const id = currentCard.id;
         const cartValue = document.querySelector('.cart-value') as HTMLParagraphElement;
         if (+cartValue.innerHTML === 20) {
@@ -45,7 +45,7 @@ class Cart implements CartInterface {
         }
     }
 
-    deleteInstrument(currentCard: HTMLDivElement) {
+    private deleteInstrument(currentCard: HTMLDivElement) {
         const id = currentCard.id;
         const countInstruments = currentCard.querySelector('.count-value') as HTMLSpanElement;
         const countInstrumentsReserved = currentCard.querySelector('.manage-cart-value') as HTMLSpanElement;
@@ -63,7 +63,7 @@ class Cart implements CartInterface {
         }
     }
 
-    updateCount() {
+    public updateCount() {
         for (const key in this.cartContent) {
             const card = document.querySelector(`#${key}`) as HTMLDivElement;
             if (card) {
