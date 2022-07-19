@@ -48,12 +48,8 @@ export interface FilterInterface {
     changeFilterProperties(valueFilter: string, typeFilter: string): void;
     filtrationCards(): void;
     filtrationData(): void;
-    filterType(instrument: PropertiesType): boolean;
-    filterProducer(instrument: PropertiesType): boolean;
-    filterColor(instrument: PropertiesType): boolean;
-    filterPopular(instrument: PropertiesType): boolean;
-    filterPrice(instrument: PropertiesType): boolean;
-    filterCount(instrument: PropertiesType): boolean;
+    filterValue(instrument: PropertiesType, filter: string): boolean;
+    filterRange(instrument: PropertiesType, filter: string): boolean;
     filterSearch(instrument: PropertiesType): boolean;
     generateCards(): void;
     createSlider(): void;

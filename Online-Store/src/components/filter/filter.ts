@@ -102,63 +102,39 @@ class Filter implements FilterInterface {
         const sorryMessage = document.querySelector('.sorry') as HTMLDivElement;
         if (this.checkFilterProperties()) {
             this.filtrationData();
-            if (!this.dataCurrent.length) {
-                sorryMessage.classList.add('sorry-active');
-            } else {
-                sorryMessage.classList.remove('sorry-active');
-            }
-            this.generateCards();
+            this.dataCurrent.length
+                ? sorryMessage.classList.remove('sorry-active')
+                : sorryMessage.classList.add('sorry-active');
         } else {
             this.dataCurrent = Array.from(<PropertiesType[]>data);
-            this.generateCards();
         }
+        this.generateCards();
     }
 
     filtrationData() {
-        this.dataCurrent = this.data.filter((item) => {
-            return (
-                this.filterType(item) &&
-                this.filterColor(item) &&
-                this.filterProducer(item) &&
-                this.filterPopular(item) &&
-                this.filterPrice(item) &&
-                this.filterCount(item) &&
-                this.filterSearch(item)
-            );
-        });
+        this.dataCurrent = this.data.filter((item) =>
+            Object.keys(this.filterProperties).reduce(
+                (result, filter) =>
+                    filter === 'price' || filter === 'count'
+                        ? result && this.filterRange(item, filter)
+                        : filter !== 'search'
+                        ? result && this.filterValue(item, filter)
+                        : result && this.filterSearch(item),
+                true
+            )
+        );
     }
 
-    filterType(instrument: PropertiesType): boolean {
-        return this.filterProperties.type.length !== 0 ? this.filterProperties.type.includes(instrument.type) : true;
-    }
-
-    filterProducer(instrument: PropertiesType): boolean {
-        return this.filterProperties.producer.length !== 0
-            ? this.filterProperties.producer.includes(instrument.producer)
+    filterValue(instrument: PropertiesType, filter: string): boolean {
+        return this.filterProperties[filter].length !== 0
+            ? this.filterProperties[filter].includes(instrument[filter])
             : true;
     }
 
-    filterColor(instrument: PropertiesType): boolean {
-        return this.filterProperties.color.length !== 0 ? this.filterProperties.color.includes(instrument.color) : true;
-    }
-
-    filterPopular(instrument: PropertiesType): boolean {
-        return this.filterProperties.popular.length !== 0
-            ? this.filterProperties.popular.includes(instrument.popular)
-            : true;
-    }
-
-    filterPrice(instrument: PropertiesType): boolean {
-        return this.filterProperties.price.length !== 0
-            ? +instrument.price.slice(0, -1) <= +this.filterProperties.price[1] &&
-                  +instrument.price.slice(0, -1) >= +this.filterProperties.price[0]
-            : true;
-    }
-
-    filterCount(instrument: PropertiesType): boolean {
-        return this.filterProperties.count.length !== 0
-            ? +instrument.count <= +this.filterProperties.count[1] &&
-                  +instrument.count >= +this.filterProperties.count[0]
+    filterRange(instrument: PropertiesType, filter: string): boolean {
+        return this.filterProperties[filter].length !== 0
+            ? +instrument[filter] <= +this.filterProperties[filter][1] &&
+                  +instrument[filter] >= +this.filterProperties[filter][0]
             : true;
     }
 
@@ -238,11 +214,11 @@ class Filter implements FilterInterface {
     }
 
     sortPriceAscending() {
-        this.dataCurrent.sort((a, b) => +a.price.slice(0, -1) - +b.price.slice(0, -1));
+        this.dataCurrent.sort((a, b) => +a.price - +b.price);
     }
 
     sortPriceDescending() {
-        this.dataCurrent.sort((a, b) => +b.price.slice(0, -1) - +a.price.slice(0, -1));
+        this.dataCurrent.sort((a, b) => +b.price - +a.price);
     }
 
     sortCountAscending() {
@@ -254,19 +230,11 @@ class Filter implements FilterInterface {
     }
 
     sortNameAscending() {
-        this.dataCurrent = this.dataCurrent.sort((a, b) => {
-            if (a.name > b.name) return 1;
-            if (a.name === b.name) return 0;
-            return -1;
-        });
+        this.dataCurrent.sort((a, b) => (a.name >= b.name ? 1 : -1));
     }
 
     sortNameDescending() {
-        this.dataCurrent = this.dataCurrent.sort((a, b) => {
-            if (b.name > a.name) return 1;
-            if (b.name === a.name) return 0;
-            return -1;
-        });
+        this.dataCurrent.sort((a, b) => (b.name >= a.name ? 1 : -1));
     }
 }
 

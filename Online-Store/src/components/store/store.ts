@@ -34,8 +34,6 @@ class Store implements StoreInterface {
 
             const sortType = document.querySelector('#select-sort') as HTMLSelectElement;
             localStorage.setItem('sortType', JSON.stringify(sortType.value));
-
-            // localStorage.clear();
         });
         window.addEventListener('load', () => {
             if (localStorage.getItem('checkbox-checked')) {
