@@ -237,14 +237,10 @@ class Filter implements FilterInterface {
     }
 
     createSlider() {
-        // noUiSliderPrice;
-
         const minPrice = document.querySelector(`.min-price-value`) as HTMLSpanElement;
         minPrice.innerHTML = '200';
         const maxPrice = document.querySelector(`.max-price-value`) as HTMLSpanElement;
         maxPrice.innerHTML = '1500';
-
-        // const sliderCountElement = document.getElementById('slider-count') as HTMLDivElement;
 
         const minCount = document.querySelector(`.min-count-value`) as HTMLSpanElement;
         minCount.innerHTML = '1';

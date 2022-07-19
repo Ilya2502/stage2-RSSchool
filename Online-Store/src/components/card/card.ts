@@ -1,5 +1,5 @@
-import { CardInterface, PropertiesType, MapperInterface } from '../../types/types';
-import { mapperTyped } from '../../constants/constants';
+import { CardInterface, PropertiesType, ProductAttributesMapper } from '../../types/types';
+import { productAttributes } from '../../utils/productAttributesMapper';
 
 export class Card implements CardInterface {
     properties: PropertiesType;
@@ -26,14 +26,14 @@ export class Card implements CardInterface {
     }
 
     addList(): void {
-        for (const key in mapperTyped) {
+        for (const key in productAttributes) {
             const item = this.cardClone.querySelector(
-                `.${mapperTyped[key as keyof MapperInterface].classNameText}`
+                `.${productAttributes[key as keyof ProductAttributesMapper].classNameText}`
             ) as HTMLSpanElement;
-            item.innerHTML = mapperTyped[key as keyof MapperInterface].text;
+            item.innerHTML = productAttributes[key as keyof ProductAttributesMapper].text;
 
             const itemValue = this.cardClone.querySelector(
-                `.${mapperTyped[key as keyof MapperInterface].classNameValue}`
+                `.${productAttributes[key as keyof ProductAttributesMapper].classNameValue}`
             ) as HTMLSpanElement;
             itemValue.innerHTML = this.properties[key as keyof PropertiesType];
         }

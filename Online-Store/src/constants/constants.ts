@@ -1,38 +1,5 @@
-import { FilterPropertiesInterface, MapperInterface } from '../types/types';
+import { FilterPropertiesInterface } from '../types/types';
 import * as noUiSlider from 'nouislider';
-
-export const mapperTyped: MapperInterface = {
-    type: {
-        classNameText: 'type-text',
-        text: 'Type: ',
-        classNameValue: 'type-value',
-    },
-    price: {
-        classNameText: 'price-text',
-        text: 'Price: ',
-        classNameValue: 'price-value',
-    },
-    producer: {
-        classNameText: 'producer-text',
-        text: 'Producer: ',
-        classNameValue: 'producer-value',
-    },
-    count: {
-        classNameText: 'count-text',
-        text: 'Count: ',
-        classNameValue: 'count-value',
-    },
-    popular: {
-        classNameText: 'popular-text',
-        text: 'Popular: ',
-        classNameValue: 'popular-value',
-    },
-    color: {
-        classNameText: 'color-text',
-        text: 'Color: ',
-        classNameValue: 'color-value',
-    },
-};
 
 export const filterProperties: FilterPropertiesInterface = {
     type: [],

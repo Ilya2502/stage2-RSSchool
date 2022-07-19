@@ -12,16 +12,23 @@ export interface InstrumentInterface {
 
 export interface CardInterface {
     properties: PropertiesType;
-    cardClone: HTMLElement,
+    cardClone: HTMLElement;
     addId(): void;
     addName(): void;
     addImage(): void;
     addList(): void;
 }
 
-export enum Filters { type = 'type', price = 'price', producer = 'producer', count = 'count', popular = 'popular', color='color' };
+export enum Filters { 
+    type = 'type',
+    price = 'price',
+    producer = 'producer',
+    count = 'count',
+    popular = 'popular',
+    color='color'
+}
 
-export type MapperInterface = Record<Filters, PropertiesType>;
+export type ProductAttributesMapper = Record<Filters, PropertiesType>;
 
 export type FilterPropertiesInterface = Record<string, (string | number)[]>;
 
