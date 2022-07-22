@@ -1,16 +1,16 @@
 export type PropertiesType = Record<string, string>;
 
-export interface StoreInterface {
+export interface IStore {
     data: Array<PropertiesType>;
     start(): void;
 }
 
-export interface InstrumentInterface {
+export interface IInstrument {
     properties: PropertiesType;
     createCard(cardClone: HTMLElement): void;
 }
 
-export interface CardInterface {
+export interface ICard {
     properties: PropertiesType;
     cardClone: HTMLElement;
 }
@@ -28,14 +28,14 @@ export type ProductAttributesMapper = Record<Filters, PropertiesType>;
 
 export type FilterPropertiesInterface = Record<string, (string | number)[]>;
 
-export type SortFunctions = Record<string, Callback<string>>;
+export type SortFunctions = Record<string, ICallback<string>>;
 
-export interface Callback<T> { (): void };
+export interface ICallback<T> { (): void };
 
-export interface FilterInterface {
+export interface IFilter {
     filterProperties: FilterPropertiesInterface;
     sortFunctions: SortFunctions;
-    cart: CartInterface;
+    cart: ICart;
     addFilterListener(): void;
     addSearchListener(): void;
     filtrationCards(): void;
@@ -44,7 +44,7 @@ export interface FilterInterface {
     addSortListener(): void;
 }
 
-export interface CartInterface {
+export interface ICart {
     cartContent: PropertiesType;
     addCartListener(): void;
     updateCount(): void;

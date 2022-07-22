@@ -1,6 +1,6 @@
-import { CartInterface, PropertiesType } from '../../types/types';
+import { ICart, PropertiesType } from '../../types/types';
 
-class Cart implements CartInterface {
+class Cart implements ICart {
     cartContent: PropertiesType;
     constructor() {
         this.cartContent = {};

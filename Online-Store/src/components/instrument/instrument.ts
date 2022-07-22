@@ -1,7 +1,7 @@
-import { InstrumentInterface, PropertiesType } from '../../types/types';
+import { IInstrument, PropertiesType } from '../../types/types';
 import { Card } from '../card/card';
 
-export class Instrument implements InstrumentInterface {
+export class Instrument implements IInstrument {
     properties: PropertiesType;
     constructor(properties: PropertiesType) {
         this.properties = properties;

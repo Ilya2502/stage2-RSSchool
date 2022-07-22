@@ -1,7 +1,7 @@
-import { CardInterface, PropertiesType, ProductAttributesMapper } from '../../types/types';
+import { ICard, PropertiesType, ProductAttributesMapper } from '../../types/types';
 import { productAttributes } from '../../utils/productAttributesMapper';
 
-export class Card implements CardInterface {
+export class Card implements ICard {
     properties: PropertiesType;
     cardClone: HTMLElement;
     constructor(properties: PropertiesType, cardClone: HTMLElement) {

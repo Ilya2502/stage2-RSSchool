@@ -1,4 +1,4 @@
-import { FilterPropertiesInterface, FilterInterface, PropertiesType, SortFunctions } from '../../types/types';
+import { FilterPropertiesInterface, IFilter, PropertiesType, SortFunctions } from '../../types/types';
 import { Instrument } from '../instrument/instrument';
 import data from '../json-files/product-catalog.json';
 import * as noUiSlider from 'nouislider';
@@ -7,7 +7,7 @@ import './slider.css';
 import Cart from '../cart/cart';
 import { sliderPriceElement, sliderCountElement } from '../../constants/constants';
 
-class Filter implements FilterInterface {
+class Filter implements IFilter {
     readonly filterProperties: FilterPropertiesInterface;
     private dataCurrent: PropertiesType[];
     readonly data: PropertiesType[];

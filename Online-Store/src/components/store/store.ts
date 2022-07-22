@@ -1,11 +1,11 @@
-import { StoreInterface, PropertiesType, FilterInterface } from '../../types/types';
+import { IStore, PropertiesType, IFilter } from '../../types/types';
 import Filter from '../filter/filter';
 import data from '../json-files/product-catalog.json';
 import { filterProperties } from '../../constants/constants';
 import { noUiSliderPrice, noUiSliderCount } from '../../constants/constants';
 
-class Store implements StoreInterface {
-    readonly filter: FilterInterface;
+class Store implements IStore {
+    readonly filter: IFilter;
     readonly data: PropertiesType[];
     readonly dataCurrent: PropertiesType[];
     constructor() {
