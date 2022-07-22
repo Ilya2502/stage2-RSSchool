@@ -1,4 +1,5 @@
 import { ICart, PropertiesType } from '../../types/types';
+import { SELECTOR } from '../../constants/constants';
 
 class Cart implements ICart {
     cartContent: PropertiesType;
@@ -7,7 +8,7 @@ class Cart implements ICart {
     }
 
     public addCartListener() {
-        const cards = document.querySelectorAll('.card');
+        const cards = document.querySelectorAll(SELECTOR.CARD);
         cards.forEach((item) => {
             item.addEventListener('click', (event) => {
                 const button = event.target as HTMLButtonElement;
@@ -23,14 +24,14 @@ class Cart implements ICart {
 
     private addInstrument(currentCard: HTMLDivElement) {
         const id = currentCard.id;
-        const cartValue = document.querySelector('.cart-value') as HTMLParagraphElement;
+        const cartValue = document.querySelector(SELECTOR.CART_VALUE) as HTMLParagraphElement;
         if (+cartValue.innerHTML === 20) {
-            const cartFull = document.querySelector('.full') as HTMLParagraphElement;
+            const cartFull = document.querySelector(SELECTOR.FULL) as HTMLParagraphElement;
             cartFull.classList.add('full-active');
             return;
         }
-        const countInstruments = currentCard.querySelector('.count-value') as HTMLSpanElement;
-        const countInstrumentsReserved = currentCard.querySelector('.manage-cart-value') as HTMLSpanElement;
+        const countInstruments = currentCard.querySelector(SELECTOR.COUNT_VALUE) as HTMLSpanElement;
+        const countInstrumentsReserved = currentCard.querySelector(SELECTOR.MANAGE_CART_VALUE) as HTMLSpanElement;
 
         if (+countInstruments.innerHTML > 0) {
             countInstrumentsReserved.innerHTML = +countInstrumentsReserved.innerHTML + 1 + '';
@@ -47,9 +48,9 @@ class Cart implements ICart {
 
     private deleteInstrument(currentCard: HTMLDivElement) {
         const id = currentCard.id;
-        const countInstruments = currentCard.querySelector('.count-value') as HTMLSpanElement;
-        const countInstrumentsReserved = currentCard.querySelector('.manage-cart-value') as HTMLSpanElement;
-        const cartValue = document.querySelector('.cart-value') as HTMLParagraphElement;
+        const countInstruments = currentCard.querySelector(SELECTOR.COUNT_VALUE) as HTMLSpanElement;
+        const countInstrumentsReserved = currentCard.querySelector(SELECTOR.MANAGE_CART_VALUE) as HTMLSpanElement;
+        const cartValue = document.querySelector(SELECTOR.CART_VALUE) as HTMLParagraphElement;
         if (+countInstrumentsReserved.innerHTML > 0) {
             countInstruments.innerHTML = +countInstruments.innerHTML + 1 + '';
             countInstrumentsReserved.innerHTML = +countInstrumentsReserved.innerHTML - 1 + '';
@@ -68,9 +69,9 @@ class Cart implements ICart {
             const card = document.querySelector(`#${key}`) as HTMLDivElement;
             if (card) {
                 card.classList.add('choose');
-                const countInstrumentsReserved = card.querySelector('.manage-cart-value') as HTMLSpanElement;
+                const countInstrumentsReserved = card.querySelector(SELECTOR.MANAGE_CART_VALUE) as HTMLSpanElement;
                 countInstrumentsReserved.innerHTML = this.cartContent[key];
-                const countInstruments = card.querySelector('.count-value') as HTMLSpanElement;
+                const countInstruments = card.querySelector(SELECTOR.COUNT_VALUE) as HTMLSpanElement;
                 countInstruments.innerHTML = +countInstruments.innerHTML - +this.cartContent[key] + '';
             }
         }

@@ -1,5 +1,6 @@
 import { ICard, PropertiesType, ProductAttributesMapper } from '../../types/types';
 import { productAttributes } from '../../utils/productAttributesMapper';
+import { SELECTOR } from '../../constants/constants';
 
 export class Card implements ICard {
     properties: PropertiesType;
@@ -10,17 +11,17 @@ export class Card implements ICard {
     }
 
     public addId(): void {
-        const card = this.cardClone.querySelector('.card') as HTMLDivElement;
+        const card = this.cardClone.querySelector(SELECTOR.CARD) as HTMLDivElement;
         card.id = this.properties.id;
     }
 
     public addName(): void {
-        const name = this.cardClone.querySelector('.name') as HTMLTitleElement;
+        const name = this.cardClone.querySelector(SELECTOR.NAME) as HTMLTitleElement;
         name.innerHTML = this.properties.name;
     }
 
     public addImage(): void {
-        const image = this.cardClone.querySelector('.image') as HTMLImageElement;
+        const image = this.cardClone.querySelector(SELECTOR.IMAGE) as HTMLImageElement;
         image.src = this.properties.img;
         image.alt = this.properties.name;
     }

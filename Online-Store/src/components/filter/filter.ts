@@ -5,7 +5,7 @@ import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import './slider.css';
 import Cart from '../cart/cart';
-import { sliderPriceElement, sliderCountElement } from '../../constants/constants';
+import { sliderPriceElement, sliderCountElement, SELECTOR } from '../../constants/constants';
 
 class Filter implements IFilter {
     readonly filterProperties: FilterPropertiesInterface;
@@ -29,7 +29,7 @@ class Filter implements IFilter {
     }
 
     public addFilterListener() {
-        const checkboxes = document.querySelectorAll('.filter-type') as NodeListOf<HTMLElement>;
+        const checkboxes = document.querySelectorAll(SELECTOR.FILTER_TYPE) as NodeListOf<HTMLElement>;
         checkboxes.forEach((item) =>
             item.addEventListener('change', (event) => {
                 const valueFilter = (event.target as HTMLInputElement).value;
@@ -38,11 +38,11 @@ class Filter implements IFilter {
                 this.filtrationCards();
             })
         );
-        const reset = document.querySelector('.reset') as HTMLButtonElement;
+        const reset = document.querySelector(SELECTOR.RESET) as HTMLButtonElement;
         reset.addEventListener('click', () => {
             this.reset();
         });
-        const clear = document.querySelector('.clear') as HTMLButtonElement;
+        const clear = document.querySelector(SELECTOR.CLEAR) as HTMLButtonElement;
         clear.addEventListener('click', () => {
             location.reload();
             localStorage.clear();
@@ -53,28 +53,28 @@ class Filter implements IFilter {
         for (const key in this.filterProperties) {
             this.filterProperties[key] = [];
         }
-        const checkboxes = document.querySelectorAll('.checkbox');
+        const checkboxes = document.querySelectorAll(SELECTOR.CHECKBOX);
         checkboxes.forEach((item) => ((item as HTMLInputElement).checked = false));
 
-        const sliderPriceElement = document.getElementById('slider-price') as HTMLDivElement;
-        const sliderCount = document.getElementById('slider-count') as HTMLDivElement;
+        const sliderPriceElement = document.querySelector(SELECTOR.SLIDER_PRICE) as HTMLDivElement;
+        const sliderCount = document.querySelector(SELECTOR.SLIDER_COUNT) as HTMLDivElement;
         (sliderPriceElement as noUiSlider.target).noUiSlider?.reset();
         (sliderCount as noUiSlider.target).noUiSlider?.reset();
 
-        const minPrice = document.querySelector(`.min-price-value`) as HTMLSpanElement;
+        const minPrice = document.querySelector(SELECTOR.MIN_PRICE_VALUE) as HTMLSpanElement;
         minPrice.innerHTML = '200';
-        const maxPrice = document.querySelector(`.max-price-value`) as HTMLSpanElement;
+        const maxPrice = document.querySelector(SELECTOR.MAX_PRICE_VALUE) as HTMLSpanElement;
         maxPrice.innerHTML = '1500';
-        const minCount = document.querySelector(`.min-count-value`) as HTMLSpanElement;
+        const minCount = document.querySelector(SELECTOR.MIN_COUNT_VALUE) as HTMLSpanElement;
         minCount.innerHTML = '1';
-        const maxCount = document.querySelector(`.max-count-value`) as HTMLSpanElement;
+        const maxCount = document.querySelector(SELECTOR.MAX_COUNT_VALUE) as HTMLSpanElement;
         maxCount.innerHTML = '8';
 
         this.filtrationCards();
     }
 
     public addSearchListener() {
-        const input = document.querySelector('.search') as HTMLInputElement;
+        const input = document.querySelector(SELECTOR.SEARCH) as HTMLInputElement;
         input.addEventListener('input', () => {
             this.filterProperties.search[0] = input.value;
             this.filtrationCards();
@@ -99,7 +99,7 @@ class Filter implements IFilter {
     }
 
     public filtrationCards() {
-        const sorryMessage = document.querySelector('.sorry') as HTMLDivElement;
+        const sorryMessage = document.querySelector(SELECTOR.SORRY) as HTMLDivElement;
         if (this.checkFilterProperties()) {
             this.filtrationData();
             this.dataCurrent.length
@@ -146,10 +146,10 @@ class Filter implements IFilter {
 
     public generateCards() {
         this.sortApply();
-        const instrumentsContainer = document.querySelector('.instruments-container') as HTMLDivElement;
+        const instrumentsContainer = document.querySelector(SELECTOR.INSTRUMENTS_CONTAINER) as HTMLDivElement;
         instrumentsContainer.innerHTML = '';
         const fragment = document.createDocumentFragment();
-        const cardItemTemp = document.querySelector('#cardItemTemp') as HTMLTemplateElement;
+        const cardItemTemp = document.querySelector(SELECTOR.CARD_ITEM_TEMP) as HTMLTemplateElement;
         this.dataCurrent.forEach((item: PropertiesType): void => {
             const cardClone = cardItemTemp.content.cloneNode(true) as HTMLElement;
             const instrument = new Instrument(item);
@@ -162,14 +162,14 @@ class Filter implements IFilter {
     }
 
     public createSlider() {
-        const minPrice = document.querySelector(`.min-price-value`) as HTMLSpanElement;
+        const minPrice = document.querySelector(SELECTOR.MIN_PRICE_VALUE) as HTMLSpanElement;
         minPrice.innerHTML = '200';
-        const maxPrice = document.querySelector(`.max-price-value`) as HTMLSpanElement;
+        const maxPrice = document.querySelector(SELECTOR.MAX_PRICE_VALUE) as HTMLSpanElement;
         maxPrice.innerHTML = '1500';
 
-        const minCount = document.querySelector(`.min-count-value`) as HTMLSpanElement;
+        const minCount = document.querySelector(SELECTOR.MIN_COUNT_VALUE) as HTMLSpanElement;
         minCount.innerHTML = '1';
-        const maxCount = document.querySelector(`.max-count-value`) as HTMLSpanElement;
+        const maxCount = document.querySelector(SELECTOR.MAX_COUNT_VALUE) as HTMLSpanElement;
         maxCount.innerHTML = '8';
 
         this.addSliderListener(sliderPriceElement, sliderCountElement);
@@ -202,14 +202,14 @@ class Filter implements IFilter {
     }
 
     public addSortListener() {
-        const sortType = document.querySelector('#select-sort') as HTMLSelectElement;
+        const sortType = document.querySelector(SELECTOR.SELECT_SORT) as HTMLSelectElement;
         sortType.addEventListener('change', () => {
             this.generateCards();
         });
     }
 
     private sortApply() {
-        const sortType = document.querySelector('#select-sort') as HTMLSelectElement;
+        const sortType = document.querySelector(SELECTOR.SELECT_SORT) as HTMLSelectElement;
         this.sortFunctions[sortType.value]();
     }
 
