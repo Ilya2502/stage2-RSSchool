@@ -1,17 +1,12 @@
-import { PropertyType, IFilter } from '../../types/types';
+import { IFilter } from '../../types/types';
 import { IStore } from '../store/store_types';
 import Filter from '../filter/filter';
-import data from '../json-files/product-catalog.json';
 import { filterProperties, SELECTOR } from '../../constants/constants';
 
 class Store implements IStore {
     readonly filter: IFilter;
-    readonly data: PropertyType[];
-    readonly dataCurrent: PropertyType[];
     constructor() {
-        this.data = <PropertyType[]>data;
-        this.dataCurrent = Array.from(<PropertyType[]>data);
-        this.filter = new Filter(filterProperties, this.dataCurrent);
+        this.filter = new Filter(filterProperties);
     }
 
     public init() {

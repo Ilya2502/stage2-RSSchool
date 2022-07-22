@@ -17,9 +17,9 @@ class Filter implements IFilter {
     public cart: Cart;
     public noUiSliderPrice: API;
     public noUiSliderCount: API;
-    constructor(filterProperties: FilterPropertiesType, dataCurrent: PropertyType[]) {
+    constructor(filterProperties: FilterPropertiesType) {
         this.filterProperties = filterProperties;
-        this.dataCurrent = dataCurrent;
+        this.dataCurrent = Array.from(data);
         this.data = <PropertyType[]>data;
         this.cart = new Cart();
         this.sortFunctions = {
