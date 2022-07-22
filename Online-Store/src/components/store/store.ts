@@ -1,7 +1,7 @@
 import { IStore, PropertiesType, IFilter } from '../../types/types';
 import Filter from '../filter/filter';
 import data from '../json-files/product-catalog.json';
-import { noUiSliderPrice, noUiSliderCount, filterProperties, SELECTOR } from '../../constants/constants';
+import { filterProperties, SELECTOR } from '../../constants/constants';
 
 class Store implements IStore {
     readonly filter: IFilter;
@@ -67,7 +67,10 @@ class Store implements IStore {
             if (localStorage.getItem('filters')) {
                 this.filter.filterProperties = JSON.parse(localStorage.getItem('filters') as string);
                 if (this.filter.filterProperties.price[0]) {
-                    noUiSliderPrice.set([this.filter.filterProperties.price[0], this.filter.filterProperties.price[1]]);
+                    this.filter.noUiSliderPrice.set([
+                        this.filter.filterProperties.price[0],
+                        this.filter.filterProperties.price[1],
+                    ]);
                     const minPrice = document.querySelector(SELECTOR.MIN_PRICE_VALUE) as HTMLSpanElement;
                     minPrice.innerHTML = this.filter.filterProperties.price[0] + '';
                     const maxPrice = document.querySelector(SELECTOR.MAX_PRICE_VALUE) as HTMLSpanElement;
@@ -75,7 +78,10 @@ class Store implements IStore {
                 }
 
                 if (this.filter.filterProperties.count[0]) {
-                    noUiSliderCount.set([this.filter.filterProperties.count[0], this.filter.filterProperties.count[1]]);
+                    this.filter.noUiSliderCount.set([
+                        this.filter.filterProperties.count[0],
+                        this.filter.filterProperties.count[1],
+                    ]);
                     const minCount = document.querySelector(SELECTOR.MIN_COUNT_VALUE) as HTMLSpanElement;
                     minCount.innerHTML = this.filter.filterProperties.count[0] + '';
                     const maxCount = document.querySelector(SELECTOR.MAX_COUNT_VALUE) as HTMLSpanElement;

@@ -6,6 +6,7 @@ import 'nouislider/dist/nouislider.css';
 import './slider.css';
 import Cart from '../cart/cart';
 import { sliderPriceElement, sliderCountElement, SELECTOR } from '../../constants/constants';
+import { API } from 'nouislider';
 
 class Filter implements IFilter {
     readonly filterProperties: FilterPropertiesInterface;
@@ -13,6 +14,8 @@ class Filter implements IFilter {
     readonly data: PropertiesType[];
     readonly sortFunctions: SortFunctions;
     public cart: Cart;
+    public noUiSliderPrice: API;
+    public noUiSliderCount: API;
     constructor(filterProperties: FilterPropertiesInterface, dataCurrent: PropertiesType[]) {
         this.filterProperties = filterProperties;
         this.dataCurrent = dataCurrent;
@@ -26,6 +29,42 @@ class Filter implements IFilter {
             nameAscending: this.sortNameAscending.bind(this),
             nameDescending: this.sortNameDescending.bind(this),
         };
+        this.noUiSliderPrice = noUiSlider.create(sliderPriceElement, {
+            start: [200, 1500],
+            tooltips: true,
+            connect: true,
+            range: {
+                min: 200,
+                max: 1500,
+            },
+            step: 10,
+            format: {
+                to: function (value) {
+                    return value.toFixed(0);
+                },
+                from: function (value) {
+                    return parseInt(value);
+                },
+            },
+        });
+        this.noUiSliderCount = noUiSlider.create(sliderCountElement, {
+            start: [1, 8],
+            tooltips: true,
+            connect: true,
+            range: {
+                min: 1,
+                max: 8,
+            },
+            step: 1,
+            format: {
+                to: function (value) {
+                    return value.toFixed(0);
+                },
+                from: function (value) {
+                    return parseInt(value);
+                },
+            },
+        });
     }
 
     public addFilterListener() {

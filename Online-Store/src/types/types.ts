@@ -1,3 +1,5 @@
+import { API } from 'nouislider';
+
 export type PropertiesType = Record<string, string>;
 
 export interface IStore {
@@ -36,6 +38,8 @@ export interface IFilter {
     filterProperties: FilterPropertiesInterface;
     sortFunctions: SortFunctions;
     cart: ICart;
+    noUiSliderPrice: API;
+    noUiSliderCount: API;
     addFilterListener(): void;
     addSearchListener(): void;
     filtrationCards(): void;
