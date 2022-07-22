@@ -1,4 +1,4 @@
-import { ProductAttributesMapper } from '../types/types';
+import { ProductAttributesMapper } from './mapper-types';
 
 export const productAttributes: ProductAttributesMapper = {
     type: {

@@ -1,4 +1,5 @@
-import { FilterPropertiesInterface, IFilter, PropertiesType, SortFunctions } from '../../types/types';
+import { IFilter, PropertyType, SortFunctions } from '../../types/types';
+import { FilterPropertiesType } from './filter-types';
 import { Instrument } from '../instrument/instrument';
 import data from '../json-files/product-catalog.json';
 import * as noUiSlider from 'nouislider';
@@ -9,17 +10,17 @@ import { sliderPriceElement, sliderCountElement, SELECTOR } from '../../constant
 import { API } from 'nouislider';
 
 class Filter implements IFilter {
-    readonly filterProperties: FilterPropertiesInterface;
-    private dataCurrent: PropertiesType[];
-    readonly data: PropertiesType[];
+    readonly filterProperties: FilterPropertiesType;
+    private dataCurrent: PropertyType[];
+    readonly data: PropertyType[];
     readonly sortFunctions: SortFunctions;
     public cart: Cart;
     public noUiSliderPrice: API;
     public noUiSliderCount: API;
-    constructor(filterProperties: FilterPropertiesInterface, dataCurrent: PropertiesType[]) {
+    constructor(filterProperties: FilterPropertiesType, dataCurrent: PropertyType[]) {
         this.filterProperties = filterProperties;
         this.dataCurrent = dataCurrent;
-        this.data = <PropertiesType[]>data;
+        this.data = <PropertyType[]>data;
         this.cart = new Cart();
         this.sortFunctions = {
             priceAscending: this.sortPriceAscending.bind(this),
@@ -145,7 +146,7 @@ class Filter implements IFilter {
                 ? sorryMessage.classList.remove('sorry-active')
                 : sorryMessage.classList.add('sorry-active');
         } else {
-            this.dataCurrent = Array.from(<PropertiesType[]>data);
+            this.dataCurrent = Array.from(<PropertyType[]>data);
         }
         this.generateCards();
     }
@@ -164,20 +165,20 @@ class Filter implements IFilter {
         );
     }
 
-    private filterValue(instrument: PropertiesType, filter: string): boolean {
+    private filterValue(instrument: PropertyType, filter: string): boolean {
         return this.filterProperties[filter].length !== 0
             ? this.filterProperties[filter].includes(instrument[filter])
             : true;
     }
 
-    private filterRange(instrument: PropertiesType, filter: string): boolean {
+    private filterRange(instrument: PropertyType, filter: string): boolean {
         return this.filterProperties[filter].length !== 0
             ? +instrument[filter] <= +this.filterProperties[filter][1] &&
                   +instrument[filter] >= +this.filterProperties[filter][0]
             : true;
     }
 
-    private filterSearch(instrument: PropertiesType): boolean {
+    private filterSearch(instrument: PropertyType): boolean {
         return this.filterProperties.search.length !== 0
             ? instrument.name.toLowerCase().includes((this.filterProperties.search[0] as string).toLowerCase())
             : true;
@@ -189,7 +190,7 @@ class Filter implements IFilter {
         instrumentsContainer.innerHTML = '';
         const fragment = document.createDocumentFragment();
         const cardItemTemp = document.querySelector(SELECTOR.CARD_ITEM_TEMP) as HTMLTemplateElement;
-        this.dataCurrent.forEach((item: PropertiesType): void => {
+        this.dataCurrent.forEach((item: PropertyType): void => {
             const cardClone = cardItemTemp.content.cloneNode(true) as HTMLElement;
             const instrument = new Instrument(item);
             instrument.createCard(cardClone);

@@ -6,7 +6,7 @@ const EslingPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const baseConfig = {
-    entry: path.resolve(__dirname, './src/index'),
+    entry: path.resolve(__dirname, 'src/index'),
     mode: 'development',
     module: {
         rules: [
@@ -33,12 +33,12 @@ const baseConfig = {
     },
     output: {
         filename: 'index.js',
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: 'assets/[hash][ext]',
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
+            template: path.resolve(__dirname, 'src/index.html'),
             filename: 'index.html',
         }),
         new CleanWebpackPlugin(),

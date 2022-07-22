@@ -1,11 +1,13 @@
-import { ICard, PropertiesType, ProductAttributesMapper } from '../../types/types';
+import { PropertyType } from '../../types/types';
+import { ProductAttributesMapper } from '../../utils/mapper-types';
+import { ICard } from '../card/card-types';
 import { productAttributes } from '../../utils/productAttributesMapper';
 import { SELECTOR } from '../../constants/constants';
 
 export class Card implements ICard {
-    properties: PropertiesType;
+    properties: PropertyType;
     cardClone: HTMLElement;
-    constructor(properties: PropertiesType, cardClone: HTMLElement) {
+    constructor(properties: PropertyType, cardClone: HTMLElement) {
         this.properties = properties;
         this.cardClone = cardClone;
     }
@@ -36,7 +38,7 @@ export class Card implements ICard {
             const itemValue = this.cardClone.querySelector(
                 `.${productAttributes[key as keyof ProductAttributesMapper].classNameValue}`
             ) as HTMLSpanElement;
-            itemValue.innerHTML = this.properties[key as keyof PropertiesType];
+            itemValue.innerHTML = this.properties[key as keyof PropertyType];
         }
     }
 }

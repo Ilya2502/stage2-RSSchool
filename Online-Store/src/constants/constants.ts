@@ -1,4 +1,4 @@
-import { FilterPropertiesInterface } from '../types/types';
+import { FilterPropertiesType } from '../components/filter/filter-types';
 
 const CHECKBOX = '.checkbox';
 const CART_VALUE = '.cart-value';
@@ -52,7 +52,7 @@ export const SELECTOR = {
     COUNT_VALUE,
 };
 
-export const filterProperties: FilterPropertiesInterface = {
+export const filterProperties: FilterPropertiesType = {
     type: [],
     producer: [],
     color: [],

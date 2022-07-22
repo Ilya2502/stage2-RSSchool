@@ -1,8 +1,9 @@
-import { ICart, PropertiesType } from '../../types/types';
+import { PropertyType } from '../../types/types';
+import { ICart } from '../cart/cart-types';
 import { SELECTOR } from '../../constants/constants';
 
 class Cart implements ICart {
-    cartContent: PropertiesType;
+    cartContent: PropertyType;
     constructor() {
         this.cartContent = {};
     }

@@ -1,41 +1,15 @@
 import { API } from 'nouislider';
+import { FilterPropertiesType } from '../components/filter/filter-types';
+import { ICart } from '../components/cart/cart-types';
 
-export type PropertiesType = Record<string, string>;
-
-export interface IStore {
-    data: Array<PropertiesType>;
-    start(): void;
-}
-
-export interface IInstrument {
-    properties: PropertiesType;
-    createCard(cardClone: HTMLElement): void;
-}
-
-export interface ICard {
-    properties: PropertiesType;
-    cardClone: HTMLElement;
-}
-
-export enum Filters { 
-    type = 'type',
-    price = 'price',
-    producer = 'producer',
-    count = 'count',
-    popular = 'popular',
-    color='color'
-}
-
-export type ProductAttributesMapper = Record<Filters, PropertiesType>;
-
-export type FilterPropertiesInterface = Record<string, (string | number)[]>;
+export type PropertyType = Record<string, string>;
 
 export type SortFunctions = Record<string, ICallback<string>>;
 
 export interface ICallback<T> { (): void };
 
 export interface IFilter {
-    filterProperties: FilterPropertiesInterface;
+    filterProperties: FilterPropertiesType;
     sortFunctions: SortFunctions;
     cart: ICart;
     noUiSliderPrice: API;
@@ -47,10 +21,3 @@ export interface IFilter {
     createSlider(): void;
     addSortListener(): void;
 }
-
-export interface ICart {
-    cartContent: PropertiesType;
-    addCartListener(): void;
-    updateCount(): void;
-}
-

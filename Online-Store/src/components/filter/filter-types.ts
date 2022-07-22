@@ -1,0 +1,1 @@
+export type FilterPropertiesType = Record<string, (string | number)[]>;

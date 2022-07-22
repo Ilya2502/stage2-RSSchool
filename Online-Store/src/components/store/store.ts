@@ -1,19 +1,20 @@
-import { IStore, PropertiesType, IFilter } from '../../types/types';
+import { PropertyType, IFilter } from '../../types/types';
+import { IStore } from '../store/store_types';
 import Filter from '../filter/filter';
 import data from '../json-files/product-catalog.json';
 import { filterProperties, SELECTOR } from '../../constants/constants';
 
 class Store implements IStore {
     readonly filter: IFilter;
-    readonly data: PropertiesType[];
-    readonly dataCurrent: PropertiesType[];
+    readonly data: PropertyType[];
+    readonly dataCurrent: PropertyType[];
     constructor() {
-        this.data = <PropertiesType[]>data;
-        this.dataCurrent = Array.from(<PropertiesType[]>data);
+        this.data = <PropertyType[]>data;
+        this.dataCurrent = Array.from(<PropertyType[]>data);
         this.filter = new Filter(filterProperties, this.dataCurrent);
     }
 
-    public start() {
+    public init() {
         window.addEventListener('beforeunload', () => {
             localStorage.setItem('filters', JSON.stringify(this.filter.filterProperties));
 
