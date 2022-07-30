@@ -11,7 +11,7 @@ class FetchService implements IFetchService {
         url = `${this.baseUrl}${url}`;
         const requestConfig = this.getRequestConfig(request, body);
         const response = await fetch(`${url}`, requestConfig);
-        return response.json();
+        return await response.json();
     }
 
     getRequestConfig(request: string, body?: CarBody) {
