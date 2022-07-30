@@ -1,14 +1,10 @@
-import { IGarageService, Cars } from './types';
-import { domen } from '../../constants/constants';
+import { baseUrl } from '../../constants/constants';
+import { IGarageService, Car } from './types';
 
 class GarageService implements IGarageService {
-    constructor() {
-        return this;
-    }
-
     async getCars(page = 1, limit = 7) {
-        const responseCars = await fetch(`${domen}garage?_page=${page}&_limit=${limit}`);
-        const cars: Cars = await responseCars.json();
+        const responseCars = await fetch(`${baseUrl}/garage?_page=${page}&_limit=${limit}`);
+        const cars: Car[] = await responseCars.json();
         const count = responseCars.headers.get('X-Total-Count');
         return {
             cars,
@@ -17,7 +13,7 @@ class GarageService implements IGarageService {
     }
 
     async deleteCar(id: number) {
-        const responseDeleteCar = await fetch(`${domen}garage/${id}`, {
+        const responseDeleteCar = await fetch(`${baseUrl}/garage/${id}`, {
             method: 'DELETE',
         });
         return await responseDeleteCar.json();

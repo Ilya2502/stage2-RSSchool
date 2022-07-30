@@ -1,5 +1,5 @@
+import CarService from '../../services/car-service/car-service';
 import { ICar } from './types';
-import CarService from '../../services/car_service/car-service';
 
 class Car implements ICar {
     private service;

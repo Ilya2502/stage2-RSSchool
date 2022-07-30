@@ -1,14 +1,14 @@
+import GarageService from '../../services/garage-service/garage-service';
 import { IGarage } from './types';
-import GarageService from '../../services/garage_service/garage-service';
-import { Car } from '../../services/car_service/types';
+import { Car } from '../../services/car-service/types';
 
 class Garage implements IGarage {
     private service;
-    cars: Car[] | [];
-    countCars: number;
+    cars: Car[];
+    totalCount;
     constructor() {
         this.service = new GarageService();
-        this.countCars = 0;
+        this.totalCount = 0;
         this.cars = [];
     }
 
@@ -19,7 +19,8 @@ class Garage implements IGarage {
     private async renderCars() {
         const responseCars = await this.service.getCars();
         if (responseCars.count) {
-            this.countCars = +responseCars.count;
+            this.totalCount = +responseCars.count;
+            this.cars = responseCars.cars;
         }
     }
 }
