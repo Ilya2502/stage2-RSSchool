@@ -43,11 +43,11 @@ const baseConfig = {
         }),
         new CleanWebpackPlugin(),
         new EslingPlugin({ extensions: 'ts' }),
-        new CopyPlugin({          //!!! если папка assets пустая, то проект не сбилдится, copyplugin надо подключать когда ужесть изображение
-            patterns: [
-                 { from: 'src/assets', to: 'assets'},
-            ]
-        })
+        // new CopyPlugin({          //!!! если папка assets пустая, то проект не сбилдится, copyplugin надо подключать когда ужесть изображение
+        //     patterns: [
+        //          { from: 'src/assets', to: 'assets'},
+        //     ]
+        // })
     ],
 };
 
