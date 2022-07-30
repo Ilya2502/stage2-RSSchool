@@ -1,13 +1,15 @@
 import { IGarage } from './types';
 import GarageService from '../../services/garage_service/garage-service';
+import { Car } from '../../services/car_service/types';
 
 class Garage implements IGarage {
     private service;
-    // cars: Car[];   как затипизировать свойство cars чтобы после ответа от this.service.getCars() я мог в него записать массив
+    cars: Car[] | [];
     countCars: number;
     constructor() {
         this.service = new GarageService();
         this.countCars = 0;
+        this.cars = [];
     }
 
     async init() {
