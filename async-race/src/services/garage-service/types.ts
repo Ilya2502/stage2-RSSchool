@@ -4,9 +4,9 @@ export type Car = {
     id: number;
 }
 
-export type Cars = {
+export type ResponseCars = {
     cars: Car[];
-    count: number;
+    totalCount: number;
 }
 
 export interface IGarageService {

@@ -5,10 +5,10 @@ class GarageService implements IGarageService {
     async getCars(page = 1, limit = 7) {
         const responseCars = await fetch(`${baseUrl}/garage?_page=${page}&_limit=${limit}`);
         const cars: Car[] = await responseCars.json();
-        const count = responseCars.headers.get('X-Total-Count');
+        const totalCount = responseCars.headers.get('X-Total-Count');
         return {
             cars,
-            count,
+            totalCount,
         };
     }
 

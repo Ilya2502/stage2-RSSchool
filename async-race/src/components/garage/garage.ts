@@ -18,8 +18,9 @@ class Garage implements IGarage {
 
     private async renderCars() {
         const responseCars = await this.service.getCars();
-        if (responseCars.count) {
-            this.totalCount = +responseCars.count;
+        console.log(responseCars);
+        if (responseCars.totalCount) {
+            this.totalCount = +responseCars.totalCount;
             this.cars = responseCars.cars;
         }
     }
