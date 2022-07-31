@@ -1,53 +1,38 @@
-import { baseUrl } from '../../constants/constants';
-import { ICarService, CarBody } from './types';
+import FetchService from '../fetch-service/fetch-service';
+import { ICarService } from './types';
 
-class CarService implements ICarService {
+class CarService extends FetchService implements ICarService {
     async getCar(id: number) {
-        const responseCar = await fetch(`${baseUrl}/garage/${id}`);
-        return await responseCar.json();
+        const data = await this.getData(id);
+        console.log(data);
     }
 
-    async createCar(body: CarBody) {
-        const responseNewCar = await fetch(`${baseUrl}/garage`, {
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        return await responseNewCar.json();
+    async createCar(name: string, color: string) {
+        const data = await this.postData(name, color);
+        console.log(data);
     }
 
-    async updateCar(id: number, body: CarBody) {
-        const responseUpdateCar = await fetch(`${baseUrl}/garage/${id}`, {
-            method: 'PUT',
-            body: JSON.stringify(body),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        return await responseUpdateCar.json();
+    async updateCar(id: number, name: string, color: string) {
+        const data = await this.putData(id, name, color);
+        console.log(data);
     }
 
     async start(id: number) {
-        const responseStart = await fetch(`${baseUrl}/engine?id=${id}&status=started`, {
-            method: 'PATCH',
-        });
-        return await responseStart.json();
+        const status = 'started';
+        const data = await this.patchData(id, status);
+        console.log(data);
     }
 
     async stop(id: number) {
-        const responseStop = await fetch(`${baseUrl}/engine?id=${id}&status=stopped`, {
-            method: 'PATCH',
-        });
-        return await responseStop.json();
+        const status = 'stopped';
+        const data = await this.patchData(id, status);
+        console.log(data);
     }
 
     async drive(id: number) {
-        const responseDrive = await fetch(`${baseUrl}/engine?id=${id}&status=drive`, {
-            method: 'PATCH',
-        });
-        return await responseDrive.json();
+        const status = 'drive';
+        const data = await this.patchData(id, status);
+        console.log(data);
     }
 }
 

@@ -1,22 +1,14 @@
-import { baseUrl } from '../../constants/constants';
-import { IGarageService, Car } from './types';
+import FetchService from '../fetch-service/fetch-service';
+import { IGarageService } from './types';
 
-class GarageService implements IGarageService {
+class GarageService extends FetchService implements IGarageService {
     async getCars(page = 1, limit = 7) {
-        const responseCars = await fetch(`${baseUrl}/garage?_page=${page}&_limit=${limit}`);
-        const cars: Car[] = await responseCars.json();
-        const totalCount = responseCars.headers.get('X-Total-Count');
-        return {
-            cars,
-            totalCount,
-        };
+        return this.getFullData(page, limit);
     }
 
     async deleteCar(id: number) {
-        const responseDeleteCar = await fetch(`${baseUrl}/garage/${id}`, {
-            method: 'DELETE',
-        });
-        return await responseDeleteCar.json();
+        const data = await this.deleteData(id);
+        console.log(data);
     }
 }
 

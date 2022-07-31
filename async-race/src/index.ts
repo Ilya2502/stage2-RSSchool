@@ -5,3 +5,5 @@ import Garage from './components/garage/garage';
 
 const garage = new Garage();
 garage.init();
+// const car = new Car();
+// car.init();
