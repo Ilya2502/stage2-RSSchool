@@ -1,7 +1,7 @@
-import { Car } from '../../services/garage-service/types'
+import { CarType } from '../../services/car-service/types'
 
 export interface IGarage {
-    cars: Car[],
+    cars: CarType[],
     totalCount: number,
     init(): void,
 }

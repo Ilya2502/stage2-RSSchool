@@ -1,6 +1,6 @@
 import GarageService from '../../services/garage-service/garage-service';
 import { IGarage } from './types';
-import { CarType } from '../../services/fetch-service/types';
+import { CarType } from '../../services/car-service/types';
 
 class Garage implements IGarage {
     private service;
@@ -14,20 +14,19 @@ class Garage implements IGarage {
 
     async init() {
         await this.renderCars();
-        // this.service.deleteCar(10);
-        // await this.service.getData();
+        this.service.getCar(5);
+        this.service.createCar('Zhiga', '#ffffff');
     }
 
     private async renderCars() {
         const responseCars = await this.service.getCars();
-        console.log(responseCars);
-        // if (Array.isArray(responseCars)) {
-        //     this.cars = responseCars;
-        // }
-        if (responseCars.totalCount) {
-            this.totalCount = +responseCars.totalCount;
-            this.cars = responseCars.cars;
+        if (responseCars?.data.length) {
+            this.cars = responseCars.data;
         }
+        if (responseCars?.totalCount) {
+            this.totalCount = +responseCars.totalCount;
+        }
+        console.log(this.cars, this.totalCount);
     }
 }
 

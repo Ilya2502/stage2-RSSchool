@@ -1,23 +1,36 @@
-import { IFetchService, requestType, CarType, PostBodyType, PutBodyType, StartStopType, DriveType } from './types';
+import { IFetchService, RequestType } from './types';
 
 class FetchService implements IFetchService {
     readonly baseUrl = 'http://127.0.0.1:3000';
+    totalCount = 0;
 
-    async typedFetch<T, B>(endPoint: string, request: requestType, body?: B): Promise<T | void> {
+    async typedFetch<T, B>(
+        endPoint: string,
+        request: RequestType,
+        body?: B
+    ): Promise<{ totalCount: string | null; data: T } | void> {
         try {
             const url = `${this.baseUrl}/${endPoint}`;
             const requestConfig = this.getRequestConfig(request, body);
             const response = await fetch(`${url}`, requestConfig);
-            return await response.json();
+            return await response.json().then((data: T) => {
+                return new Promise((resolve) => {
+                    resolve({ totalCount: response.headers.get('X-Total-Count'), data });
+                });
+            });
         } catch (error) {
-            // console.log(error);
+            console.log(error);
         }
     }
 
-    getRequestConfig<B>(request: string, body?: B) {
-        switch (request) {
-            case 'GET':
-                return {};
+    getRequestConfig<B>(requestType: RequestType, body?: B) {
+        const config = {
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        switch (requestType) {
             case 'DELETE':
                 return { method: 'DELETE' };
             case 'PATCH':
@@ -25,59 +38,35 @@ class FetchService implements IFetchService {
             case 'POST':
                 return {
                     method: 'POST',
-                    body: JSON.stringify(body),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    ...config,
                 };
             case 'PUT':
                 return {
                     method: 'PUT',
-                    body: JSON.stringify(body),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    ...config,
                 };
             default:
                 return {};
         }
     }
 
-    async getData(id: number) {
-        const endPoint = `garage/${id}`;
-        return await this.typedFetch<CarType, never>(endPoint, 'GET');
+    async getData<T>(endPoint: string) {
+        return await this.typedFetch<T, never>(endPoint, 'GET');
     }
 
-    async getFullData(page: number, limit: number) {
-        const endpoint = `garage?_page=${page}&_limit=${limit}`;
-        const responseCars = await fetch(`${this.baseUrl}/${endpoint}`);
-        const cars: CarType[] = await responseCars.json();
-        const totalCount = responseCars.headers.get('X-Total-Count');
-        return {
-            cars,
-            totalCount,
-        };
+    async postData<R, B>(endPoint: string, body: B) {
+        return await this.typedFetch<R, B>(endPoint, 'POST', body);
     }
 
-    async postData(name: string, color: string) {
-        const endPoint = 'garage';
-        const body = { name, color };
-        return await this.typedFetch<CarType, PostBodyType>(endPoint, 'POST', body);
+    async putData<R, B>(endPoint: string, body: B) {
+        return await this.typedFetch<R, B>(endPoint, 'PUT', body);
     }
 
-    async putData(id: number, name: string, color: string) {
-        const endPoint = `garage/${id}`;
-        const body = { name, color };
-        return await this.typedFetch<CarType, PutBodyType>(endPoint, 'PUT', body);
+    async patchData<T>(endPoint: string) {
+        return await this.typedFetch<T, never>(endPoint, 'PATCH');
     }
 
-    async patchData(id: number, status: string) {
-        const endPoint = `engine?id=${id}&status=${status}`;
-        return await this.typedFetch<StartStopType | DriveType, never>(endPoint, 'PATCH');
-    }
-
-    async deleteData(id: number) {
-        const endPoint = `garage/${id}`;
+    async deleteData(endPoint: string) {
         return await this.typedFetch<never, never>(endPoint, 'DELETE');
     }
 }

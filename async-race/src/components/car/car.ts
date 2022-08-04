@@ -7,14 +7,12 @@ class Car implements ICar {
         this.service = new CarService();
     }
 
-    // init() {
-    //     this.service.getCar(2);
-    //     this.service.createCar('Zhiga', '#ffffff');
-    //     this.service.updateCar(5, 'Moskvich', '#dddfee');
-    //     this.service.start(4);
-    //     this.service.drive(4);
-    //     this.service.stop(4);
-    // }
+    init() {
+        this.service.updateCar(5, 'Moskvich', '#dddfee');
+        this.service.start(4);
+        this.service.drive(4);
+        this.service.stop(4);
+    }
 }
 
 export default Car;
