@@ -7,7 +7,33 @@
         <title>Async Race</title>
     </head>
     <body>
-   
+        <template id="navigation-temp">
+            <nav id="navigation">
+                <button class="button" id="to-garage">TO GARAGE</button>
+                <button class="button" id="to-winners">TO WINNERS</button>
+            </nav>
+        </template>
+        
+        <template id="garage-menu-temp">
+            <div class="garage-menu">
+                <div class="create-container">
+                    <input type="text" id="create-name" list="models-list">
+                    <datalist id="models-list"></datalist>
+                    <input type="color" value="#e66465" id="create-color">
+                    <button class="button" id="create-button">CREATE</button>
+                </div>
+                <div class="update-container">
+                    <input type="text" id="update-name" list="models-list">
+                    <input type="color" value="#e66465" id="update-color">
+                    <button class="button" id="update-button">UPDATE</button>
+                </div>
+                <div class="manage-container">
+                    <button class="button" id="race">RACE</button>
+                    <button class="button" id="reset">RESET</button>
+                    <button class="button" id="generate-cars">GENERATE CARS</button>
+                </div>
+            </div>
+        </template>
     </body>
 </html>
 

@@ -8,10 +8,10 @@ class Car implements ICar {
     }
 
     init() {
-        this.service.updateCar(5, 'Moskvich', '#dddfee');
-        this.service.start(4);
-        this.service.drive(4);
-        this.service.stop(4);
+        // this.service.updateCar(5, 'Moskvich', '#dddfee');
+        // this.service.start(4);
+        // this.service.drive(4);
+        // this.service.stop(4);
     }
 }
 
