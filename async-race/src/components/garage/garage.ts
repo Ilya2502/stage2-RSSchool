@@ -1,21 +1,19 @@
 import GarageService from '../../services/garage-service/garage-service';
-// import Car from '../car/car';
+import Car from '../car/car';
 import { IGarage } from './types';
-import { CarType } from '../../services/car-service/types';
+// import { CarType } from '../../services/car-service/types';
 import { SELECTOR, carNames } from '../../constants/constants';
 
 class Garage implements IGarage {
     private service;
-    cars: CarType[];
+    cars: Car[];
     totalCount;
-    // car;
     page;
     carsOnPage;
     constructor() {
         this.service = new GarageService();
         this.totalCount = 0;
         this.cars = [];
-        // this.car = new Car();
         this.page = 1;
         this.carsOnPage = 7;
     }
@@ -24,44 +22,75 @@ class Garage implements IGarage {
         // await this.renderCars();
         // this.service.getCar(5);
         // this.service.createCar('Zhiga', '#ffffff');
-        await this.generatePage();
+        await this.renderPage();
         // await this.generateCars();
     }
 
     private async getCars() {
         const responseCars = await this.service.getCars(this.page, this.carsOnPage);
         if (responseCars?.data.length) {
-            this.cars = responseCars.data;
+            this.cars = [];
+            responseCars.data.forEach((item) => {
+                this.cars.push(new Car(item));
+            });
         }
         if (responseCars?.totalCount) {
             this.totalCount = +responseCars.totalCount;
         }
-        // console.log(this.cars, this.totalCount);
     }
 
-    async generatePage() {
+    async renderPage() {
         await this.getCars();
         const wrapper = document.createElement('div');
-        wrapper.id = 'wrapper';
+        wrapper.id = SELECTOR.WRAPPER.slice(1);
         const body = document.querySelector(SELECTOR.BODY) as HTMLBodyElement;
         body.append(wrapper);
-        const navigation = this.addNavigation();
-        wrapper.append(navigation);
-        const garageMenu = this.addGarageMenu();
-        wrapper.append(garageMenu);
-        wrapper.append(this.addGarageContent());
-        this.addCars();
+        this.renderNavigation();
+        this.renderGarageMenu();
+        this.renderGarageContent();
+        this.addNavigationListener();
+        this.addCreateListener();
+        this.renderCars();
     }
 
-    addNavigation() {
+    renderNavigation() {
         const fragment = document.createDocumentFragment();
         const navigationTemp = document.querySelector(SELECTOR.NAVIGATION_TEMP) as HTMLTemplateElement;
         const navigationClone = navigationTemp.content.cloneNode(true) as HTMLElement;
         fragment.append(navigationClone);
-        return fragment;
+        const wrapper = document.querySelector(SELECTOR.WRAPPER) as HTMLDivElement;
+        wrapper.append(fragment);
     }
 
-    addGarageMenu() {
+    addNavigationListener() {
+        const toGarage = document.querySelector(SELECTOR.TO_GARAGE) as HTMLButtonElement;
+        const toWinners = document.querySelector(SELECTOR.TO_WINNERS) as HTMLButtonElement;
+        const garageMenu = document.querySelector(SELECTOR.GARAGE_MENU) as HTMLDivElement;
+        const garageContent = document.querySelector(SELECTOR.GARAGE_CONTENT) as HTMLDivElement;
+        toGarage.addEventListener('click', () => {
+            garageMenu.classList.remove('hidden-page');
+            garageContent.classList.remove('hidden-page');
+        });
+        toWinners.addEventListener('click', () => {
+            garageMenu.classList.add('hidden-page');
+            garageContent.classList.add('hidden-page');
+        });
+    }
+
+    addCreateListener() {
+        const createButton = document.querySelector(SELECTOR.CREATE_BUTTON) as HTMLButtonElement;
+        createButton.addEventListener('click', async () => {
+            const createName = document.querySelector(SELECTOR.CREATE_NAME) as HTMLInputElement;
+            const name = createName.value;
+            const createColor = document.querySelector(SELECTOR.CREATE_COLOR) as HTMLInputElement;
+            const color = createColor.value;
+            this.service.createCar(name, color);
+            await this.getCars();
+            this.renderCars();
+        });
+    }
+
+    renderGarageMenu() {
         const fragment = document.createDocumentFragment();
         const garageMenuTemp = document.querySelector(SELECTOR.GARAGE_MENU_TEMP) as HTMLTemplateElement;
         const garageMenuClone = garageMenuTemp.content.cloneNode(true) as HTMLElement;
@@ -74,40 +103,29 @@ class Garage implements IGarage {
             });
         }
         fragment.append(garageMenuClone);
-        return fragment;
+        const wrapper = document.querySelector(SELECTOR.WRAPPER) as HTMLDivElement;
+        wrapper.append(fragment);
     }
 
-    addGarageContent() {
+    renderGarageContent() {
         const fragment = document.createDocumentFragment();
         const garageContentTemp = document.querySelector(SELECTOR.GARAGE_CONTENT_TEMP) as HTMLTemplateElement;
         const garageContentClone = garageContentTemp.content.cloneNode(true) as HTMLElement;
-        const totalCount = garageContentClone.querySelector(SELECTOR.TOTAL_COUNT) as HTMLTitleElement;
-        totalCount.innerHTML = `${this.totalCount}`;
         const page = garageContentClone.querySelector(SELECTOR.PAGE) as HTMLTitleElement;
         page.innerHTML = `${this.page}`;
         fragment.append(garageContentClone);
-        return fragment;
+        const wrapper = document.querySelector(SELECTOR.WRAPPER) as HTMLDivElement;
+        wrapper.append(fragment);
     }
 
-    addCars() {
+    renderCars() {
+        const totalCount = document.querySelector(SELECTOR.TOTAL_COUNT) as HTMLTitleElement;
+        totalCount.innerHTML = `${this.totalCount}`;
         const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
+        carsContainer.innerHTML = '';
         this.cars.forEach((item) => {
-            carsContainer.append(this.addCar(item));
+            item.renderCar();
         });
-    }
-
-    addCar(car: CarType) {
-        const fragment = document.createDocumentFragment();
-        const carContentTemp = document.querySelector(SELECTOR.CAR_CONTENT_TEMP) as HTMLTemplateElement;
-        const carContentClone = carContentTemp.content.cloneNode(true) as HTMLElement;
-        const carContent = carContentClone.querySelector('.car-content') as HTMLDivElement;
-        carContent.id = `car${car.id}`;
-        const carName = carContentClone.querySelector('.car-name') as HTMLTitleElement;
-        carName.innerHTML = car.name;
-        const carImage = carContentClone.querySelector('.icon-use') as HTMLElement;
-        carImage.style.fill = car.color;
-        fragment.append(carContentClone);
-        return fragment;
     }
 
     async generateCars() {
@@ -120,7 +138,7 @@ class Garage implements IGarage {
         const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
         carsContainer.innerHTML = '';
         await this.getCars();
-        this.addCars();
+        this.renderCars();
     }
 
     getRandomInteger(min: number, max: number) {

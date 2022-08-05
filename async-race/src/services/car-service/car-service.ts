@@ -1,13 +1,13 @@
 import FetchService from '../fetch-service/fetch-service';
-import { ICarService, CarType, PostBodyType, StartStopType, DriveType } from './types';
+import { ICarService, /*CarType, PostBodyType, */ StartStopType, DriveType } from './types';
 
 class CarService extends FetchService implements ICarService {
-    async updateCar(id: number, name: string, color: string) {
-        const endPoint = `garage/${id}`;
-        const body = { name, color };
-        const data = await this.putData<CarType, PostBodyType>(endPoint, body);
-        console.log(data);
-    }
+    // async updateCar(id: number, name: string, color: string) {
+    //     const endPoint = `garage/${id}`;
+    //     const body = { name, color };
+    //     const data = await this.putData<CarType, PostBodyType>(endPoint, body);
+    //     console.log(data);
+    // }
 
     async start(id: number) {
         const status = 'started';

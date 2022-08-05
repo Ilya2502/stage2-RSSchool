@@ -10,6 +10,16 @@ const TOTAL_COUNT = '#total-count';
 const PAGE = '#page';
 const GARAGE_CONTENT = '#garage-content';
 const CARS_CONTAINER = '.cars-container';
+const WRAPPER = '#wrapper';
+const CAR_CONTENT = '.car-content';
+const CAR_NAME = '.car-name';
+const ICON_USE = '.icon-use';
+const TO_GARAGE = '#to-garage';
+const GARAGE_MENU = '.garage-menu';
+const TO_WINNERS = '#to-winners';
+const CREATE_BUTTON = '#create-button';
+const CREATE_NAME = '#create-name';
+const CREATE_COLOR = '#create-color';
 
 export const SELECTOR = {
     BODY,
@@ -22,6 +32,16 @@ export const SELECTOR = {
     PAGE,
     GARAGE_CONTENT,
     CARS_CONTAINER,
+    WRAPPER,
+    CAR_CONTENT,
+    CAR_NAME,
+    ICON_USE,
+    TO_GARAGE,
+    GARAGE_MENU,
+    TO_WINNERS,
+    CREATE_BUTTON,
+    CREATE_NAME,
+    CREATE_COLOR,
 };
 
 export const carNames: ModelType = {
