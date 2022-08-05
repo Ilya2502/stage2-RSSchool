@@ -1,0 +1,46 @@
+#navigation, .garage-menu {
+    padding-bottom: 10px;
+}
+
+.create-container, .update-container, .manage-container {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    padding-bottom: 8px;
+}
+
+#create-name, #update-name {
+    padding: 3px;
+    border-radius: 5px;
+}
+
+#create-color, #update-color {
+    height: 20px;
+}
+
+#create-color, #update-color {
+    border-radius: 5px;
+}
+
+.button {
+    width: 85px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+#generate-cars {
+    width: 135px;
+}
+
+.title, .page {
+    padding-bottom: 15px;
+}
+
+.title {
+    font-size: 20px;
+}

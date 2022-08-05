@@ -1,5 +1,8 @@
 import Garage from './components/garage/garage';
 import Car from './components/car/car';
+import './global.css';
+import './components/garage/style.css';
+import './components/car/style.css';
 
 // import './global.css';
 

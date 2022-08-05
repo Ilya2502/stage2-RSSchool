@@ -1,0 +1,46 @@
+.car-content {
+    padding-bottom: 10px;
+}
+
+.icon-car { 
+    width: 100px; 
+    height: 40px;
+    margin-bottom: -5px;
+    align-self: flex-end;
+    /* margin: .5em; */
+  }
+
+.icon-use {
+    fill: red;
+}
+
+.car-menu {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.car-manage {
+    display: flex;
+    align-items: center;
+    /* padding-top: 10px; */
+    column-gap: 5px;
+    border-bottom: 2px dashed #FFFFFF;
+}
+
+#start, #stop {
+    width: auto;
+    align-self: center;
+    font-size: 13px;
+}
+
+.flag-container {
+    width: 30px;
+    height: 40px;
+    background-image: url('../../assets/flag.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: 100px;
+}

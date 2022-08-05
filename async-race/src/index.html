@@ -34,6 +34,32 @@
                 </div>
             </div>
         </template>
+
+        <template id="garage-content-temp">
+            <div id="garage-content">
+                <h1 class="title garage-title">GARAGE (<span id="total-count"></span>)</h1>
+                <h3 class="page">Page #<span id="page"></span></h3>
+                <div class="cars-container"></div>
+            </div>
+        </template>
+
+        <template id="car-content-temp">
+            <div class="car-content">
+                <div class="car-menu">
+                    <button class="button" id="select">SELECT</button>
+                    <button class="button" id="remove">REMOVE</button>
+                    <h5 class="car-name"></h5>
+                </div>
+                <div class="car-manage">
+                    <button class="button" id="start">A</button>
+                    <button class="button" id="stop">B</button>
+                    <svg class="icon-car">
+                        <use class="icon-use" xlink:href="./assets/sprite.svg#car"></use>
+                    </svg>
+                    <div class="flag-container"></div>
+                </div>
+            </div>
+        </template>
     </body>
 </html>
 
