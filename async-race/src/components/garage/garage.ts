@@ -99,6 +99,7 @@ class Garage implements IGarage {
         this.cars.forEach((item) => {
             item.renderCar();
         });
+        console.log(this.cars);
         this.addCarListener();
     }
 
@@ -168,7 +169,12 @@ class Garage implements IGarage {
     }
 
     generateColor() {
-        return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i += 1) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
     addCarListener() {
