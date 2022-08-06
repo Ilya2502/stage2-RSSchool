@@ -20,6 +20,12 @@ const TO_WINNERS = '#to-winners';
 const CREATE_BUTTON = '#create-button';
 const CREATE_NAME = '#create-name';
 const CREATE_COLOR = '#create-color';
+const UPDATE_BUTTON = '#update-button';
+const UPDATE_NAME = '#update-name';
+const UPDATE_COLOR = '#update-color';
+const SELECT = '.select';
+const UPDATE_CONTAINER = '.update-container';
+const GENERATE_CARS = '#generate-cars';
 
 export const SELECTOR = {
     BODY,
@@ -42,6 +48,12 @@ export const SELECTOR = {
     CREATE_BUTTON,
     CREATE_NAME,
     CREATE_COLOR,
+    UPDATE_BUTTON,
+    UPDATE_NAME,
+    UPDATE_COLOR,
+    SELECT,
+    UPDATE_CONTAINER,
+    GENERATE_CARS,
 };
 
 export const carNames: ModelType = {

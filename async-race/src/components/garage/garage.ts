@@ -10,12 +10,14 @@ class Garage implements IGarage {
     totalCount;
     page;
     carsOnPage;
+    idCurrentCar;
     constructor() {
         this.service = new GarageService();
         this.totalCount = 0;
         this.cars = [];
         this.page = 1;
         this.carsOnPage = 7;
+        this.idCurrentCar = 0;
     }
 
     async init() {
@@ -28,7 +30,7 @@ class Garage implements IGarage {
 
     private async getCars() {
         const responseCars = await this.service.getCars(this.page, this.carsOnPage);
-        if (responseCars?.data.length) {
+        if (responseCars?.data) {
             this.cars = [];
             responseCars.data.forEach((item) => {
                 this.cars.push(new Car(item));
@@ -48,9 +50,8 @@ class Garage implements IGarage {
         this.renderNavigation();
         this.renderGarageMenu();
         this.renderGarageContent();
-        this.addNavigationListener();
-        this.addCreateListener();
         this.renderCars();
+        this.addAllListeners();
     }
 
     renderNavigation() {
@@ -60,34 +61,6 @@ class Garage implements IGarage {
         fragment.append(navigationClone);
         const wrapper = document.querySelector(SELECTOR.WRAPPER) as HTMLDivElement;
         wrapper.append(fragment);
-    }
-
-    addNavigationListener() {
-        const toGarage = document.querySelector(SELECTOR.TO_GARAGE) as HTMLButtonElement;
-        const toWinners = document.querySelector(SELECTOR.TO_WINNERS) as HTMLButtonElement;
-        const garageMenu = document.querySelector(SELECTOR.GARAGE_MENU) as HTMLDivElement;
-        const garageContent = document.querySelector(SELECTOR.GARAGE_CONTENT) as HTMLDivElement;
-        toGarage.addEventListener('click', () => {
-            garageMenu.classList.remove('hidden-page');
-            garageContent.classList.remove('hidden-page');
-        });
-        toWinners.addEventListener('click', () => {
-            garageMenu.classList.add('hidden-page');
-            garageContent.classList.add('hidden-page');
-        });
-    }
-
-    addCreateListener() {
-        const createButton = document.querySelector(SELECTOR.CREATE_BUTTON) as HTMLButtonElement;
-        createButton.addEventListener('click', async () => {
-            const createName = document.querySelector(SELECTOR.CREATE_NAME) as HTMLInputElement;
-            const name = createName.value;
-            const createColor = document.querySelector(SELECTOR.CREATE_COLOR) as HTMLInputElement;
-            const color = createColor.value;
-            this.service.createCar(name, color);
-            await this.getCars();
-            this.renderCars();
-        });
     }
 
     renderGarageMenu() {
@@ -126,6 +99,48 @@ class Garage implements IGarage {
         this.cars.forEach((item) => {
             item.renderCar();
         });
+        this.addCarListener();
+    }
+
+    addAllListeners() {
+        this.addNavigationListener();
+        this.addCreateListener();
+        this.addUpdateListener();
+        this.addGenerateCarsListener();
+    }
+
+    addNavigationListener() {
+        const toGarage = document.querySelector(SELECTOR.TO_GARAGE) as HTMLButtonElement;
+        const toWinners = document.querySelector(SELECTOR.TO_WINNERS) as HTMLButtonElement;
+        const garageMenu = document.querySelector(SELECTOR.GARAGE_MENU) as HTMLDivElement;
+        const garageContent = document.querySelector(SELECTOR.GARAGE_CONTENT) as HTMLDivElement;
+        toGarage.addEventListener('click', () => {
+            garageMenu.classList.remove('hidden-page');
+            garageContent.classList.remove('hidden-page');
+        });
+        toWinners.addEventListener('click', () => {
+            garageMenu.classList.add('hidden-page');
+            garageContent.classList.add('hidden-page');
+        });
+    }
+
+    addCreateListener() {
+        const createButton = document.querySelector(SELECTOR.CREATE_BUTTON) as HTMLButtonElement;
+        createButton.addEventListener('click', async () => {
+            const createName = document.querySelector(SELECTOR.CREATE_NAME) as HTMLInputElement;
+            const name = createName.value;
+            const createColor = document.querySelector(SELECTOR.CREATE_COLOR) as HTMLInputElement;
+            const color = createColor.value;
+            this.service.createCar(name, color);
+            createName.value = '';
+            await this.getCars();
+            this.renderCars();
+        });
+    }
+
+    addGenerateCarsListener() {
+        const generateCarsButton = document.querySelector(SELECTOR.GENERATE_CARS) as HTMLButtonElement;
+        generateCarsButton.addEventListener('click', this.generateCars.bind(this));
     }
 
     async generateCars() {
@@ -154,6 +169,70 @@ class Garage implements IGarage {
 
     generateColor() {
         return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    }
+
+    addCarListener() {
+        const carContainers = document.querySelectorAll(SELECTOR.CAR_CONTENT) as NodeListOf<HTMLDivElement>;
+        carContainers.forEach((item) => {
+            item.addEventListener('click', (event) => {
+                const button = event.target as HTMLButtonElement;
+                const currentCar = event.currentTarget as HTMLDivElement;
+                if (this.checkContainsSelector(button, 'select')) {
+                    this.selectCar(currentCar);
+                } else if (this.checkContainsSelector(button, 'remove')) {
+                    this.removeCar(currentCar);
+                }
+            });
+        });
+    }
+
+    checkContainsSelector(element: HTMLElement, selector: string) {
+        return element.classList.contains(selector);
+    }
+
+    selectCar(currentCar: HTMLDivElement) {
+        this.idCurrentCar = +currentCar.id.slice(3);
+        const updateName = document.querySelector(SELECTOR.UPDATE_NAME) as HTMLInputElement;
+        const updateColor = document.querySelector(SELECTOR.UPDATE_COLOR) as HTMLInputElement;
+        const updateButton = document.querySelector(SELECTOR.UPDATE_BUTTON) as HTMLButtonElement;
+        this.removeDisabled(updateName, updateColor, updateButton);
+    }
+
+    async removeCar(currentCar: HTMLDivElement) {
+        this.idCurrentCar = +currentCar.id.slice(3);
+        await this.service.deleteCar(this.idCurrentCar);
+        const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
+        carsContainer.innerHTML = '';
+        await this.getCars();
+        this.renderCars();
+    }
+
+    removeDisabled(...elements: (HTMLInputElement | HTMLButtonElement)[]) {
+        elements.forEach((item) => {
+            item.disabled = false;
+        });
+    }
+
+    addDisabled(...elements: (HTMLInputElement | HTMLButtonElement)[]) {
+        elements.forEach((item) => {
+            item.disabled = true;
+        });
+    }
+
+    addUpdateListener() {
+        const updateButton = document.querySelector(SELECTOR.UPDATE_BUTTON) as HTMLButtonElement;
+        updateButton.addEventListener('click', async () => {
+            const updateName = document.querySelector(SELECTOR.UPDATE_NAME) as HTMLInputElement;
+            const name = updateName.value;
+            const updateColor = document.querySelector(SELECTOR.UPDATE_COLOR) as HTMLInputElement;
+            const color = updateColor.value;
+            await this.service.updateCar(this.idCurrentCar, name, color);
+            updateName.value = '';
+            const updateButton = document.querySelector(SELECTOR.UPDATE_BUTTON) as HTMLButtonElement;
+            this.addDisabled(updateName, updateColor, updateButton);
+            await this.getCars();
+            this.renderCars();
+        });
     }
 }
 

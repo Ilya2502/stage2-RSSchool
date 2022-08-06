@@ -23,9 +23,9 @@
                     <button class="button" id="create-button">CREATE</button>
                 </div>
                 <div class="update-container">
-                    <input type="text" id="update-name" list="models-list">
-                    <input type="color" value="#e66465" id="update-color">
-                    <button class="button" id="update-button">UPDATE</button>
+                    <input type="text" id="update-name" list="models-list" disabled>
+                    <input type="color" value="#e66465" id="update-color" disabled>
+                    <button class="button" id="update-button" disabled>UPDATE</button>
                 </div>
                 <div class="manage-container">
                     <button class="button" id="race">RACE</button>
@@ -46,8 +46,8 @@
         <template id="car-content-temp">
             <div class="car-content">
                 <div class="car-menu">
-                    <button class="button" id="select">SELECT</button>
-                    <button class="button" id="remove">REMOVE</button>
+                    <button class="button select">SELECT</button>
+                    <button class="button remove">REMOVE</button>
                     <h5 class="car-name"></h5>
                 </div>
                 <div class="car-manage">
