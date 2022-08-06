@@ -83,6 +83,8 @@ export enum SELECTOR {
     SELECT = '.select',
     UPDATE_CONTAINER = '.update-container',
     GENERATE_CARS = '#generate-cars',
+    PREV_BUTTON = '#prev',
+    NEXT_BUTTON = '#next',
 }
 
 export const carNames: ModelType = {

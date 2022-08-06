@@ -100,7 +100,15 @@ class Garage implements IGarage {
             item.renderCar();
         });
         console.log(this.cars);
+        this.checkDisabledPagination();
         this.addCarListener();
+    }
+
+    checkDisabledPagination() {
+        const prevButton = document.querySelector(SELECTOR.PREV_BUTTON) as HTMLButtonElement;
+        const nextButton = document.querySelector(SELECTOR.NEXT_BUTTON) as HTMLButtonElement;
+        prevButton.disabled = this.page === 1 ? true : false;
+        nextButton.disabled = this.totalCount / this.carsOnPage <= this.page ? true : false;
     }
 
     addAllListeners() {
@@ -108,6 +116,7 @@ class Garage implements IGarage {
         this.addCreateListener();
         this.addUpdateListener();
         this.addGenerateCarsListener();
+        this.addPaginationListener();
     }
 
     addNavigationListener() {
@@ -142,6 +151,29 @@ class Garage implements IGarage {
     addGenerateCarsListener() {
         const generateCarsButton = document.querySelector(SELECTOR.GENERATE_CARS) as HTMLButtonElement;
         generateCarsButton.addEventListener('click', this.generateCars.bind(this));
+    }
+
+    addPaginationListener() {
+        const prevButton = document.querySelector(SELECTOR.PREV_BUTTON) as HTMLButtonElement;
+        const nextButton = document.querySelector(SELECTOR.NEXT_BUTTON) as HTMLButtonElement;
+        prevButton.addEventListener('click', async () => {
+            this.page -= 1;
+            const page = document.querySelector(SELECTOR.PAGE) as HTMLTitleElement;
+            page.innerHTML = `${this.page}`;
+            const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
+            carsContainer.innerHTML = '';
+            await this.getCars();
+            this.renderCars();
+        });
+        nextButton.addEventListener('click', async () => {
+            this.page += 1;
+            const page = document.querySelector(SELECTOR.PAGE) as HTMLTitleElement;
+            page.innerHTML = `${this.page}`;
+            const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
+            carsContainer.innerHTML = '';
+            await this.getCars();
+            this.renderCars();
+        });
     }
 
     async generateCars() {
