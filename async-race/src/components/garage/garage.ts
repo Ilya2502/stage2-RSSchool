@@ -154,25 +154,19 @@ class Garage implements IGarage {
     }
 
     addPaginationListener() {
-        const prevButton = document.querySelector(SELECTOR.PREV_BUTTON) as HTMLButtonElement;
-        const nextButton = document.querySelector(SELECTOR.NEXT_BUTTON) as HTMLButtonElement;
-        prevButton.addEventListener('click', async () => {
-            this.page -= 1;
-            const page = document.querySelector(SELECTOR.PAGE) as HTMLTitleElement;
-            page.innerHTML = `${this.page}`;
-            const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
-            carsContainer.innerHTML = '';
-            await this.getCars();
-            this.renderCars();
-        });
-        nextButton.addEventListener('click', async () => {
-            this.page += 1;
-            const page = document.querySelector(SELECTOR.PAGE) as HTMLTitleElement;
-            page.innerHTML = `${this.page}`;
-            const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
-            carsContainer.innerHTML = '';
-            await this.getCars();
-            this.renderCars();
+        const paginationButtons = document.querySelectorAll(
+            `${SELECTOR.PREV_BUTTON}, ${SELECTOR.NEXT_BUTTON}`
+        ) as NodeListOf<HTMLDivElement>;
+        const page = document.querySelector(SELECTOR.PAGE) as HTMLTitleElement;
+        paginationButtons.forEach((item) => {
+            item.addEventListener('click', async (event) => {
+                (event.target as HTMLButtonElement).id === 'prev' ? (this.page -= 1) : (this.page += 1);
+                page.innerHTML = `${this.page}`;
+                const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
+                carsContainer.innerHTML = '';
+                await this.getCars();
+                this.renderCars();
+            });
         });
     }
 
