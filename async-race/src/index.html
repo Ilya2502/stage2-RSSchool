@@ -38,11 +38,11 @@
         <template id="garage-content-temp">
             <div id="garage-content">
                 <h1 class="title garage-title">GARAGE (<span id="total-count"></span>)</h1>
-                <h3 class="page">Page #<span id="page"></span></h3>
+                <h3 class="page">Page #<span id="garage-page"></span></h3>
                 <div class="cars-container"></div>
                 <div class="pagination-container">
-                    <button class="button" id="prev">PREV</button>
-                    <button class="button" id="next">NEXT</button>
+                    <button class="button" id="garage-prev">PREV</button>
+                    <button class="button" id="garage-next">NEXT</button>
                 </div>
             </div>
         </template>
@@ -61,6 +61,20 @@
                         <use class="icon-use" xlink:href="./assets/sprite.svg#car"></use>
                     </svg>
                     <div class="flag-container"></div>
+                </div>
+            </div>
+        </template>
+
+        <template id="winners-content-temp">
+            <div id="winners-content">
+                <h2 class="title winners-title">WINNERS (<span id="winners-count"></span>)</h2>
+                <h3 class="page">Page #<span id="winners-page"></span></h3>
+                <div class="winners-container">
+                    
+                </div>
+                <div class="pagination-container">
+                    <button class="button" id="winners-prev">PREV</button>
+                    <button class="button" id="winners-next">NEXT</button>
                 </div>
             </div>
         </template>

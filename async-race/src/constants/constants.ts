@@ -64,7 +64,7 @@ export enum SELECTOR {
     GARAGE_CONTENT_TEMP = '#garage-content-temp',
     CAR_CONTENT_TEMP = '#car-content-temp',
     TOTAL_COUNT = '#total-count',
-    PAGE = '#page',
+    GARAGE_PAGE = '#garage-page',
     GARAGE_CONTENT = '#garage-content',
     CARS_CONTAINER = '.cars-container',
     WRAPPER = '#wrapper',
@@ -83,8 +83,10 @@ export enum SELECTOR {
     SELECT = '.select',
     UPDATE_CONTAINER = '.update-container',
     GENERATE_CARS = '#generate-cars',
-    PREV_BUTTON = '#prev',
-    NEXT_BUTTON = '#next',
+    PREV_BUTTON_GARAGE = '#garage-prev',
+    NEXT_BUTTON_GARAGE = '#garage-next',
+    WINNERS_CONTENT_TEMP = '#winners-content-temp',
+    WINNERS_PAGE = '#winners-page',
 }
 
 export const carNames: ModelType = {

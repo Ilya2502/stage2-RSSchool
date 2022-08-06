@@ -3,6 +3,8 @@ import Car from '../car/car';
 import { IGarage } from './types';
 // import { CarType } from '../../services/car-service/types';
 import { SELECTOR, carNames } from '../../constants/constants';
+import { IWinners } from '../winners/types';
+import Winners from '../winners/winners';
 
 class Garage implements IGarage {
     private service;
@@ -11,6 +13,7 @@ class Garage implements IGarage {
     page;
     carsOnPage;
     idCurrentCar;
+    winners: IWinners;
     constructor() {
         this.service = new GarageService();
         this.totalCount = 0;
@@ -18,14 +21,12 @@ class Garage implements IGarage {
         this.page = 1;
         this.carsOnPage = 7;
         this.idCurrentCar = 0;
+        this.winners = new Winners();
     }
 
     async init() {
-        // await this.renderCars();
-        // this.service.getCar(5);
-        // this.service.createCar('Zhiga', '#ffffff');
         await this.renderPage();
-        // await this.generateCars();
+        this.addAllListeners();
     }
 
     private async getCars() {
@@ -51,7 +52,6 @@ class Garage implements IGarage {
         this.renderGarageMenu();
         this.renderGarageContent();
         this.renderCars();
-        this.addAllListeners();
     }
 
     renderNavigation() {
@@ -84,7 +84,7 @@ class Garage implements IGarage {
         const fragment = document.createDocumentFragment();
         const garageContentTemp = document.querySelector(SELECTOR.GARAGE_CONTENT_TEMP) as HTMLTemplateElement;
         const garageContentClone = garageContentTemp.content.cloneNode(true) as HTMLElement;
-        const page = garageContentClone.querySelector(SELECTOR.PAGE) as HTMLTitleElement;
+        const page = garageContentClone.querySelector(SELECTOR.GARAGE_PAGE) as HTMLTitleElement;
         page.innerHTML = `${this.page}`;
         fragment.append(garageContentClone);
         const wrapper = document.querySelector(SELECTOR.WRAPPER) as HTMLDivElement;
@@ -105,8 +105,8 @@ class Garage implements IGarage {
     }
 
     checkDisabledPagination() {
-        const prevButton = document.querySelector(SELECTOR.PREV_BUTTON) as HTMLButtonElement;
-        const nextButton = document.querySelector(SELECTOR.NEXT_BUTTON) as HTMLButtonElement;
+        const prevButton = document.querySelector(SELECTOR.PREV_BUTTON_GARAGE) as HTMLButtonElement;
+        const nextButton = document.querySelector(SELECTOR.NEXT_BUTTON_GARAGE) as HTMLButtonElement;
         prevButton.disabled = this.page === 1 ? true : false;
         nextButton.disabled = this.totalCount / this.carsOnPage <= this.page ? true : false;
     }
@@ -141,7 +141,7 @@ class Garage implements IGarage {
             const name = createName.value;
             const createColor = document.querySelector(SELECTOR.CREATE_COLOR) as HTMLInputElement;
             const color = createColor.value;
-            this.service.createCar(name, color);
+            await this.service.createCar(name, color);
             createName.value = '';
             await this.getCars();
             this.renderCars();
@@ -155,12 +155,12 @@ class Garage implements IGarage {
 
     addPaginationListener() {
         const paginationButtons = document.querySelectorAll(
-            `${SELECTOR.PREV_BUTTON}, ${SELECTOR.NEXT_BUTTON}`
+            `${SELECTOR.PREV_BUTTON_GARAGE}, ${SELECTOR.NEXT_BUTTON_GARAGE}`
         ) as NodeListOf<HTMLDivElement>;
-        const page = document.querySelector(SELECTOR.PAGE) as HTMLTitleElement;
+        const page = document.querySelector(SELECTOR.GARAGE_PAGE) as HTMLTitleElement;
         paginationButtons.forEach((item) => {
             item.addEventListener('click', async (event) => {
-                (event.target as HTMLButtonElement).id === 'prev' ? (this.page -= 1) : (this.page += 1);
+                (event.target as HTMLButtonElement).id === 'garage-prev' ? (this.page -= 1) : (this.page += 1);
                 page.innerHTML = `${this.page}`;
                 const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
                 carsContainer.innerHTML = '';
