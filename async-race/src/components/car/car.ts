@@ -98,7 +98,7 @@ class Car implements ICar {
         const carImage = document.querySelector(`#icon${this.id}`) as HTMLDivElement;
         let currentPosition = 0;
         const stepCount = (time / 1000) * 60;
-        const step = (distance - currentPosition) / stepCount;
+        const step = distance / stepCount;
         this.intervalId = setInterval(() => {
             currentPosition += step;
             if (currentPosition > distance) {

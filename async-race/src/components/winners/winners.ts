@@ -1,9 +1,10 @@
-// import GarageService from '../../services/garage-service/garage-service';
+import WinnersService from '../../services/winners-service/winners-service';
 // import Car from '../car/car';
 import { Selector } from '../../types/types';
 import { IWinners, WinnerType } from './types';
 
 class Winners implements IWinners {
+    service;
     winnersCars: WinnerType[];
     totalCount;
     page;
@@ -13,12 +14,17 @@ class Winners implements IWinners {
         this.winnersCars = [];
         this.page = 1;
         this.winnersOnPage = 10;
+        this.service = new WinnersService();
     }
 
     init() {
         this.renderWinnersContent();
         // this.renderWinnersContainer();
         this.addAllListeners();
+        // this.service.updateWinner(8, 1, 8);
+        // this.service.getWinner(8);
+        // this.service.deleteWinner(1);
+        // this.service.getWinners();
     }
 
     renderWinnersContent() {
