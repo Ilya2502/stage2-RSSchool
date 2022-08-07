@@ -1,0 +1,30 @@
+#winners-content {
+    margin-top: 40px;
+}
+
+.table-winners {
+    display: inline-flex;;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.header-table {
+    display: flex;
+    background-color: rgb(96, 149, 242);
+}
+
+.header-number {
+    width: 70px;
+}
+
+.header-car {
+    width: 40px;
+}
+
+.header-name {
+    width: 100px;
+}
+
+.header-wins {
+    width: 60px; 
+}

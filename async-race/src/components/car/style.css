@@ -5,9 +5,8 @@
 .icon-car { 
     width: 100px; 
     height: 40px;
-    margin-bottom: -5px;
+    margin-bottom: -15px;
     align-self: flex-end;
-    /* margin: .5em; */
   }
 
 /* .icon-use {
@@ -23,12 +22,11 @@
 .car-manage {
     display: flex;
     align-items: center;
-    /* padding-top: 10px; */
     column-gap: 5px;
     border-bottom: 2px dashed #FFFFFF;
 }
 
-#start, #stop {
+.start, .stop {
     width: auto;
     align-self: center;
     font-size: 13px;

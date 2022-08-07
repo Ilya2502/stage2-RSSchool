@@ -55,22 +55,32 @@
                     <h5 class="car-name"></h5>
                 </div>
                 <div class="car-manage">
-                    <button class="button" id="start">A</button>
-                    <button class="button" id="stop">B</button>
-                    <svg class="icon-car">
-                        <use class="icon-use" xlink:href="./assets/sprite.svg#car"></use>
-                    </svg>
+                    <button class="button start">A</button>
+                    <button class="button stop" disabled>B</button>
+                    <div class="icon-container">
+                        <svg class="icon-car">
+                            <use class="icon-use" xlink:href="./assets/sprite.svg#car"></use>
+                        </svg>
+                    </div>
                     <div class="flag-container"></div>
                 </div>
             </div>
         </template>
 
         <template id="winners-content-temp">
-            <div id="winners-content">
+            <div id="winners-content" class="hidden-page">
                 <h2 class="title winners-title">WINNERS (<span id="winners-count"></span>)</h2>
                 <h3 class="page">Page #<span id="winners-page"></span></h3>
                 <div class="winners-container">
-                    
+                    <div class="table-winners">
+                        <div class="header-table">
+                            <div class="header-number">Number</div>
+                            <div class="header-car">Car</div>
+                            <div class="header-name">Name</div>
+                            <div class="header-wins">Wins</div>
+                            <div class="header-best-time">Best time (seconds)</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="pagination-container">
                     <button class="button" id="winners-prev">PREV</button>

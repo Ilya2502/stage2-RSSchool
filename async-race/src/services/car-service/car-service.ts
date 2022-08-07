@@ -12,22 +12,23 @@ class CarService extends FetchService implements ICarService {
     async start(id: number) {
         const status = 'started';
         const endPoint = `engine?id=${id}&status=${status}`;
-        const data = await this.patchData<StartStopType | DriveType>(endPoint);
-        console.log(data);
+        const data = await this.patchData<StartStopType>(endPoint);
+        console.log(data?.data);
+        return data;
     }
 
     async stop(id: number) {
         const status = 'stopped';
         const endPoint = `engine?id=${id}&status=${status}`;
-        const data = await this.patchData<StartStopType | DriveType>(endPoint);
-        console.log(data);
+        const data = await this.patchData<StartStopType>(endPoint);
+        return data;
     }
 
     async drive(id: number) {
         const status = 'drive';
         const endPoint = `engine?id=${id}&status=${status}`;
-        const data = await this.patchData<StartStopType | DriveType>(endPoint);
-        console.log(data);
+        const data = await this.patchData<DriveType>(endPoint);
+        return data;
     }
 }
 

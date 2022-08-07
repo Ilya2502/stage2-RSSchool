@@ -1,6 +1,6 @@
 // import GarageService from '../../services/garage-service/garage-service';
 // import Car from '../car/car';
-import { SELECTOR } from '../../constants/constants';
+import { Selector } from '../../types/types';
 import { IWinners, WinnerType } from './types';
 
 class Winners implements IWinners {
@@ -23,26 +23,14 @@ class Winners implements IWinners {
 
     renderWinnersContent() {
         const fragment = document.createDocumentFragment();
-        const winnersContentTemp = document.querySelector(SELECTOR.WINNERS_CONTENT_TEMP) as HTMLTemplateElement;
+        const winnersContentTemp = document.querySelector(Selector.WinnersContentTemp) as HTMLTemplateElement;
         const winnersContentClone = winnersContentTemp.content.cloneNode(true) as HTMLElement;
-        const page = winnersContentClone.querySelector(SELECTOR.WINNERS_PAGE) as HTMLTitleElement;
+        const page = winnersContentClone.querySelector(Selector.WinnersPage) as HTMLTitleElement;
         page.innerHTML = `${this.page}`;
         fragment.append(winnersContentClone);
-        const wrapper = document.querySelector(SELECTOR.WRAPPER) as HTMLDivElement;
+        const wrapper = document.querySelector(Selector.Wrapper) as HTMLDivElement;
         wrapper.append(fragment);
     }
-
-    // async renderPage() {
-    //     await this.getCars();
-    //     const wrapper = document.createElement('div');
-    //     wrapper.id = SELECTOR.WRAPPER.slice(1);
-    //     const body = document.querySelector(SELECTOR.BODY) as HTMLBodyElement;
-    //     body.append(wrapper);
-    //     this.renderNavigation();
-    //     this.renderGarageMenu();
-    //     this.renderGarageContent();
-    //     this.renderCars();
-    // }
 
     addAllListeners() {
         console.log('hi');
