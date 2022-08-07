@@ -117,6 +117,8 @@ class Garage implements IGarage {
         this.addUpdateListener();
         this.addGenerateCarsListener();
         this.addPaginationListener();
+        this.addRaceListener();
+        this.addResetListener();
     }
 
     addNavigationListener() {
@@ -169,6 +171,24 @@ class Garage implements IGarage {
                 carsContainer.innerHTML = '';
                 await this.getCars();
                 this.renderCars();
+            });
+        });
+    }
+
+    addRaceListener() {
+        const raceButton = document.querySelector(Selector.Race) as HTMLButtonElement;
+        raceButton.addEventListener('click', () => {
+            this.cars.forEach((item) => {
+                item.startCar();
+            });
+        });
+    }
+
+    addResetListener() {
+        const resetButton = document.querySelector(Selector.Reset) as HTMLButtonElement;
+        resetButton.addEventListener('click', () => {
+            this.cars.forEach((item) => {
+                item.stopCar();
             });
         });
     }

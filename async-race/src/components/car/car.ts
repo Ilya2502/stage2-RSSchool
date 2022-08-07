@@ -107,10 +107,6 @@ class Car implements ICar {
             carImage.style.transform = `translateX(${currentPosition}px)`;
         }, 16);
     }
-
-    addStartListener() {
-        // const startButton = document.querySelectorAll()
-    }
 }
 
 export default Car;

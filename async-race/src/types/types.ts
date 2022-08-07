@@ -36,4 +36,6 @@ export enum Selector {
     Stop = '.stop',
     CarManage = '.car-manage',
     IconContainer = '.icon-container',
+    Race = '#race',
+    Reset = '#reset',
 }
