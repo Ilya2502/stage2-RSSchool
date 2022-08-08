@@ -1,4 +1,12 @@
+import { ICarService } from "../../services/car-service/types";
+
 export interface ICar {
-    // intervalId: NodeJS.Timer;
-    // init: () => void
+    service: ICarService;
+    name: string;
+    color: string;
+    id: number;
+    intervalId: NodeJS.Timer;
+    renderCar(): void;
+    startCar(): void;
+    stopCar(): void;
 }

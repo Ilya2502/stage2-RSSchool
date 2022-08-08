@@ -1,5 +1,7 @@
 export interface ICarService {
-    // getCar(id: number): void;
+    start(id: number): Promise<responseStartType | void>;
+    stop(id: number): Promise<responseStartType | void>;
+    drive(id: number): Promise<DriveType | void>;
 }
 
 export type CarType = {
@@ -21,3 +23,9 @@ export type StartStopType = {
 export type DriveType = {
     success: boolean;
 }
+
+export type responseStartType = {
+    totalCount: string | null;
+    data: StartStopType;
+}
+

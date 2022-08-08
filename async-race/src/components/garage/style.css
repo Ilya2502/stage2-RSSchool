@@ -53,17 +53,6 @@
     margin-top: 50px;
 }
 
-/* .winner-message-container {
-    position:fixed;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    top:0px;
-    left:0px;
-    width:100vw;
-    height:100vh;
-} */
-
 .winner-message {
     position: absolute;
     top: 50%; left: 35%;

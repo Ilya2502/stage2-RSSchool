@@ -4,12 +4,12 @@ import { Selector } from '../../types/types';
 import { CarType } from '../../services/car-service/types';
 
 class WinnerCar implements IWinnerCar {
-    name;
-    color;
-    id;
-    wins;
-    time;
-    number;
+    readonly name;
+    readonly color;
+    readonly id;
+    readonly wins;
+    readonly time;
+    readonly number;
     constructor(winnerCar: WinnerType, car: CarType, number: number) {
         this.name = car.name;
         this.color = car.color;
@@ -19,7 +19,7 @@ class WinnerCar implements IWinnerCar {
         this.number = number;
     }
 
-    renderWinnerCar() {
+    public renderWinnerCar() {
         const fragment = document.createDocumentFragment();
         const winnerCarContentTemp = document.querySelector(Selector.WinnerCarContentTemp) as HTMLTemplateElement;
         const winnerCarContentClone = winnerCarContentTemp.content.cloneNode(true) as HTMLElement;

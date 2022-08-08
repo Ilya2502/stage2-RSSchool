@@ -2,16 +2,15 @@ import WinnersService from '../../services/winners-service/winners-service';
 import WinnerCar from '../winner-car/winner-car';
 import { Selector } from '../../types/types';
 import { IWinners } from './types';
-// import { IWinnerCar } from '../winner-car/types';
 
 class Winners implements IWinners {
-    service;
-    winnerCars: WinnerCar[];
-    totalCount;
-    page;
-    winnersOnPage;
-    sort;
-    order;
+    public service;
+    private winnerCars: WinnerCar[];
+    private totalCount: number;
+    private page: number;
+    readonly winnersOnPage;
+    private sort: 'time' | 'wins';
+    private order: 'ASC' | 'DESC';
     constructor() {
         this.totalCount = 0;
         this.winnerCars = [];
@@ -22,7 +21,7 @@ class Winners implements IWinners {
         this.order = 'ASC';
     }
 
-    init() {
+    public init() {
         this.renderWinnersPage();
         this.addPaginationListener();
     }
@@ -43,13 +42,13 @@ class Winners implements IWinners {
         }
     }
 
-    renderWinnersPage() {
+    private renderWinnersPage() {
         this.renderWinnersContent();
         this.renderWinnerCars();
         this.addSortListener();
     }
 
-    renderWinnersContent() {
+    private renderWinnersContent() {
         const fragment = document.createDocumentFragment();
         const winnersContentTemp = document.querySelector(Selector.WinnersContentTemp) as HTMLTemplateElement;
         const winnersContentClone = winnersContentTemp.content.cloneNode(true) as HTMLElement;
@@ -60,7 +59,7 @@ class Winners implements IWinners {
         wrapper.append(fragment);
     }
 
-    async renderWinnerCars() {
+    public async renderWinnerCars() {
         await this.getWinnerCars();
         const totalCount = document.querySelector(Selector.WinnersCount) as HTMLTitleElement;
         totalCount.innerHTML = `${this.totalCount}`;
@@ -72,19 +71,19 @@ class Winners implements IWinners {
         this.checkDisabledPagination();
     }
 
-    async removeWinner(id: number) {
+    public async removeWinner(id: number) {
         await this.service.deleteWinner(id);
         this.renderWinnerCars();
     }
 
-    checkDisabledPagination() {
+    private checkDisabledPagination() {
         const prevButton = document.querySelector(Selector.WinnersPrev) as HTMLButtonElement;
         const nextButton = document.querySelector(Selector.WinnersNext) as HTMLButtonElement;
         prevButton.disabled = this.page === 1 ? true : false;
         nextButton.disabled = this.totalCount / this.winnersOnPage <= this.page ? true : false;
     }
 
-    addPaginationListener() {
+    private addPaginationListener() {
         const paginationButtons = document.querySelectorAll(
             `${Selector.WinnersPrev}, ${Selector.WinnersNext}`
         ) as NodeListOf<HTMLDivElement>;
@@ -100,12 +99,11 @@ class Winners implements IWinners {
         });
     }
 
-    addSortListener() {
+    private addSortListener() {
         const time = document.querySelector(Selector.HeaderBestTime) as HTMLDivElement;
         time.addEventListener('click', () => {
             this.sort = 'time';
             this.order = this.order === 'ASC' ? 'DESC' : 'ASC';
-            console.log(this.sort, this.order);
             this.renderWinnerCars();
         });
         const wins = document.querySelector(Selector.HeaderWins) as HTMLDivElement;
@@ -115,103 +113,6 @@ class Winners implements IWinners {
             this.renderWinnerCars();
         });
     }
-
-    // async generateCars() {
-    //     const carProducers = Object.keys(carNames);
-    //     for (let i = 0; i < 100; i += 1) {
-    //         const randomName = this.generateName(carProducers);
-    //         const randomColor = this.generateColor();
-    //         await this.service.createCar(randomName, randomColor);
-    //     }
-    //     const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
-    //     carsContainer.innerHTML = '';
-    //     await this.getCars();
-    //     this.renderCars();
-    // }
-
-    // getRandomInteger(min: number, max: number) {
-    //     return Math.floor(Math.random() * (max - min + 1)) + min;
-    // }
-
-    // generateName(carProducers: string[]) {
-    //     const carProducerRandom = carProducers[this.getRandomInteger(1, +carProducers.length) - 1];
-    //     const models = carNames[carProducerRandom];
-    //     const modelRandom = models[this.getRandomInteger(1, +models.length) - 1];
-    //     return `${carProducerRandom} ${modelRandom}`;
-    // }
-
-    // generateColor() {
-    //     const letters = '0123456789ABCDEF';
-    //     let color = '#';
-    //     for (let i = 0; i < 6; i += 1) {
-    //         color += letters[Math.floor(Math.random() * 16)];
-    //     }
-    //     return color;
-    // }
-
-    // addCarListener() {
-    //     const carContainers = document.querySelectorAll(SELECTOR.CAR_CONTENT) as NodeListOf<HTMLDivElement>;
-    //     carContainers.forEach((item) => {
-    //         item.addEventListener('click', (event) => {
-    //             const button = event.target as HTMLButtonElement;
-    //             const currentCar = event.currentTarget as HTMLDivElement;
-    //             if (this.checkContainsSelector(button, 'select')) {
-    //                 this.selectCar(currentCar);
-    //             } else if (this.checkContainsSelector(button, 'remove')) {
-    //                 this.removeCar(currentCar);
-    //             }
-    //         });
-    //     });
-    // }
-
-    // checkContainsSelector(element: HTMLElement, selector: string) {
-    //     return element.classList.contains(selector);
-    // }
-
-    // selectCar(currentCar: HTMLDivElement) {
-    //     this.idCurrentCar = +currentCar.id.slice(3);
-    //     const updateName = document.querySelector(SELECTOR.UPDATE_NAME) as HTMLInputElement;
-    //     const updateColor = document.querySelector(SELECTOR.UPDATE_COLOR) as HTMLInputElement;
-    //     const updateButton = document.querySelector(SELECTOR.UPDATE_BUTTON) as HTMLButtonElement;
-    //     this.removeDisabled(updateName, updateColor, updateButton);
-    // }
-
-    // async removeCar(currentCar: HTMLDivElement) {
-    //     this.idCurrentCar = +currentCar.id.slice(3);
-    //     await this.service.deleteCar(this.idCurrentCar);
-    //     const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
-    //     carsContainer.innerHTML = '';
-    //     await this.getCars();
-    //     this.renderCars();
-    // }
-
-    // removeDisabled(...elements: (HTMLInputElement | HTMLButtonElement)[]) {
-    //     elements.forEach((item) => {
-    //         item.disabled = false;
-    //     });
-    // }
-
-    // addDisabled(...elements: (HTMLInputElement | HTMLButtonElement)[]) {
-    //     elements.forEach((item) => {
-    //         item.disabled = true;
-    //     });
-    // }
-
-    // addUpdateListener() {
-    //     const updateButton = document.querySelector(SELECTOR.UPDATE_BUTTON) as HTMLButtonElement;
-    //     updateButton.addEventListener('click', async () => {
-    //         const updateName = document.querySelector(SELECTOR.UPDATE_NAME) as HTMLInputElement;
-    //         const name = updateName.value;
-    //         const updateColor = document.querySelector(SELECTOR.UPDATE_COLOR) as HTMLInputElement;
-    //         const color = updateColor.value;
-    //         await this.service.updateCar(this.idCurrentCar, name, color);
-    //         updateName.value = '';
-    //         const updateButton = document.querySelector(SELECTOR.UPDATE_BUTTON) as HTMLButtonElement;
-    //         this.addDisabled(updateName, updateColor, updateButton);
-    //         await this.getCars();
-    //         this.renderCars();
-    //     });
-    // }
 }
 
 export default Winners;

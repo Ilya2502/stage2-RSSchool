@@ -4,10 +4,10 @@ import { Selector } from '../../types/types';
 import { CarType } from '../../services/car-service/types';
 
 class Car implements ICar {
-    private service;
-    name;
-    color;
-    id;
+    public service;
+    readonly name;
+    readonly color;
+    readonly id;
     intervalId!: NodeJS.Timer;
     constructor(car: CarType) {
         this.service = new CarService();
@@ -16,14 +16,7 @@ class Car implements ICar {
         this.id = car.id;
     }
 
-    init() {
-        // this.service.updateCar(5, 'Moskvich', '#dddfee');
-        // this.service.start(4);
-        // this.service.drive(4);
-        // this.service.stop(4);
-    }
-
-    renderCar() {
+    public renderCar() {
         const fragment = document.createDocumentFragment();
         const carContentTemp = document.querySelector(Selector.CarContentTemp) as HTMLTemplateElement;
         const carContentClone = carContentTemp.content.cloneNode(true) as HTMLElement;
@@ -54,7 +47,7 @@ class Car implements ICar {
         carsContainer.append(fragment);
     }
 
-    async startCar() {
+    public async startCar() {
         const carContent = document.querySelector(`#car${this.id}`) as HTMLDivElement;
         const iconContainer = document.querySelector(`#icon${this.id}`) as HTMLDivElement;
         const distance = carContent.offsetWidth - iconContainer.offsetLeft - iconContainer.offsetWidth;
@@ -72,7 +65,7 @@ class Car implements ICar {
         }
     }
 
-    async stopCar() {
+    public async stopCar() {
         const drugProperties = await this.service.stop(this.id);
         if (drugProperties) {
             this.stopDisabled();
@@ -82,21 +75,21 @@ class Car implements ICar {
         }
     }
 
-    startDisabled() {
+    private startDisabled() {
         const stopButton = document.querySelector(`#stop${this.id}`) as HTMLButtonElement;
         const startButton = document.querySelector(`#start${this.id}`) as HTMLButtonElement;
         stopButton.disabled = false;
         startButton.disabled = true;
     }
 
-    stopDisabled() {
+    private stopDisabled() {
         const stopButton = document.querySelector(`#stop${this.id}`) as HTMLButtonElement;
         const startButton = document.querySelector(`#start${this.id}`) as HTMLButtonElement;
         stopButton.disabled = true;
         startButton.disabled = false;
     }
 
-    async animatePosition(distance: number, time: number) {
+    private async animatePosition(distance: number, time: number) {
         const carImage = document.querySelector(`#icon${this.id}`) as HTMLDivElement;
         let currentPosition = 0;
         const stepCount = (time / 1000) * 60;

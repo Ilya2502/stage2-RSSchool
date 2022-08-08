@@ -1,20 +1,18 @@
 import GarageService from '../../services/garage-service/garage-service';
 import Car from '../car/car';
+import Winners from '../winners/winners';
 import { IGarage, WinnerRace } from './types';
-// import { CarType } from '../../services/car-service/types';
 import { carNames } from '../../constants/constants';
 import { Selector } from '../../types/types';
-// import { IWinners } from '../winners/types';
-import Winners from '../winners/winners';
 
 class Garage implements IGarage {
     private service;
-    cars: Car[];
-    totalCount;
-    page;
-    carsOnPage;
-    idCurrentCar;
-    winners: Winners;
+    public cars: Car[];
+    private totalCount;
+    private page;
+    readonly carsOnPage;
+    private idCurrentCar;
+    private winners: Winners;
     constructor() {
         this.service = new GarageService();
         this.totalCount = 0;
@@ -25,7 +23,7 @@ class Garage implements IGarage {
         this.winners = new Winners();
     }
 
-    init() {
+    public init() {
         this.renderPage();
         this.addAllListeners();
     }
@@ -43,7 +41,7 @@ class Garage implements IGarage {
         }
     }
 
-    renderPage() {
+    private renderPage() {
         const wrapper = document.createElement('div');
         wrapper.id = Selector.Wrapper.slice(1);
         const body = document.querySelector(Selector.Body) as HTMLBodyElement;
@@ -54,7 +52,7 @@ class Garage implements IGarage {
         this.renderCars();
     }
 
-    renderNavigation() {
+    private renderNavigation() {
         const fragment = document.createDocumentFragment();
         const navigationTemp = document.querySelector(Selector.NavigationTemp) as HTMLTemplateElement;
         const navigationClone = navigationTemp.content.cloneNode(true) as HTMLElement;
@@ -63,7 +61,7 @@ class Garage implements IGarage {
         wrapper.append(fragment);
     }
 
-    renderGarageMenu() {
+    private renderGarageMenu() {
         const fragment = document.createDocumentFragment();
         const garageMenuTemp = document.querySelector(Selector.GarageMenuTemp) as HTMLTemplateElement;
         const garageMenuClone = garageMenuTemp.content.cloneNode(true) as HTMLElement;
@@ -80,7 +78,7 @@ class Garage implements IGarage {
         wrapper.append(fragment);
     }
 
-    renderGarageContent() {
+    private renderGarageContent() {
         const fragment = document.createDocumentFragment();
         const garageContentTemp = document.querySelector(Selector.GarageContentTemp) as HTMLTemplateElement;
         const garageContentClone = garageContentTemp.content.cloneNode(true) as HTMLElement;
@@ -91,7 +89,7 @@ class Garage implements IGarage {
         wrapper.append(fragment);
     }
 
-    async renderCars() {
+    private async renderCars() {
         await this.getCars();
         const totalCount = document.querySelector(Selector.TotalCount) as HTMLTitleElement;
         totalCount.innerHTML = `${this.totalCount}`;
@@ -105,14 +103,14 @@ class Garage implements IGarage {
         this.addRemoveListener();
     }
 
-    checkDisabledPagination() {
+    private checkDisabledPagination() {
         const prevButton = document.querySelector(Selector.PrevButtonGarage) as HTMLButtonElement;
         const nextButton = document.querySelector(Selector.NextButtonGarage) as HTMLButtonElement;
         prevButton.disabled = this.page === 1 ? true : false;
         nextButton.disabled = this.totalCount / this.carsOnPage <= this.page ? true : false;
     }
 
-    addAllListeners() {
+    private addAllListeners() {
         this.addCreateListener();
         this.addUpdateListener();
         this.addGenerateCarsListener();
@@ -122,7 +120,7 @@ class Garage implements IGarage {
         this.addWrapperListener();
     }
 
-    addNavigationListener() {
+    public addNavigationListener() {
         const toGarage = document.querySelector(Selector.ToGarage) as HTMLButtonElement;
         const toWinners = document.querySelector(Selector.ToWinners) as HTMLButtonElement;
         const garageMenu = document.querySelector(Selector.GarageMenu) as HTMLDivElement;
@@ -140,7 +138,7 @@ class Garage implements IGarage {
         });
     }
 
-    addCreateListener() {
+    private addCreateListener() {
         const createButton = document.querySelector(Selector.CreateButton) as HTMLButtonElement;
         createButton.addEventListener('click', async () => {
             const createName = document.querySelector(Selector.CreateName) as HTMLInputElement;
@@ -153,12 +151,12 @@ class Garage implements IGarage {
         });
     }
 
-    addGenerateCarsListener() {
+    private addGenerateCarsListener() {
         const generateCarsButton = document.querySelector(Selector.generateCars) as HTMLButtonElement;
         generateCarsButton.addEventListener('click', this.generateCars.bind(this));
     }
 
-    addPaginationListener() {
+    private addPaginationListener() {
         const paginationButtons = document.querySelectorAll(
             `${Selector.PrevButtonGarage}, ${Selector.NextButtonGarage}`
         ) as NodeListOf<HTMLDivElement>;
@@ -174,7 +172,7 @@ class Garage implements IGarage {
         });
     }
 
-    addRaceListener() {
+    private addRaceListener() {
         const raceButton = document.querySelector(Selector.Race) as HTMLButtonElement;
         const winnerMessage = document.querySelector(Selector.WinnerMessage) as HTMLParagraphElement;
         raceButton.addEventListener('click', () => {
@@ -192,7 +190,7 @@ class Garage implements IGarage {
         });
     }
 
-    async writeWinner(newWinner: WinnerRace) {
+    private async writeWinner(newWinner: WinnerRace) {
         const oldWinner = await this.winners.service.getWinner(newWinner.id);
         if (!oldWinner?.time) {
             this.winners.service.createWinner(newWinner.id, 1, newWinner.time);
@@ -203,7 +201,7 @@ class Garage implements IGarage {
         this.winners.renderWinnerCars();
     }
 
-    addResetListener() {
+    private addResetListener() {
         const resetButton = document.querySelector(Selector.Reset) as HTMLButtonElement;
         const raceButton = document.querySelector(Selector.Race) as HTMLButtonElement;
         resetButton.addEventListener('click', () => {
@@ -214,7 +212,7 @@ class Garage implements IGarage {
         });
     }
 
-    addWrapperListener() {
+    private addWrapperListener() {
         const wrapper = document.querySelector(Selector.Wrapper) as HTMLDivElement;
         const winnerMessage = document.querySelector(Selector.WinnerMessage) as HTMLParagraphElement;
         wrapper.addEventListener('click', () => {
@@ -222,7 +220,7 @@ class Garage implements IGarage {
         });
     }
 
-    async generateCars() {
+    private async generateCars() {
         const carProducers = Object.keys(carNames);
         for (let i = 0; i < 100; i += 1) {
             const randomName = this.generateName(carProducers);
@@ -234,18 +232,18 @@ class Garage implements IGarage {
         this.renderCars();
     }
 
-    getRandomInteger(min: number, max: number) {
+    private getRandomInteger(min: number, max: number) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    generateName(carProducers: string[]) {
+    private generateName(carProducers: string[]) {
         const carProducerRandom = carProducers[this.getRandomInteger(1, +carProducers.length) - 1];
         const models = carNames[carProducerRandom];
         const modelRandom = models[this.getRandomInteger(1, +models.length) - 1];
         return `${carProducerRandom} ${modelRandom}`;
     }
 
-    generateColor() {
+    private generateColor() {
         const letters = '0123456789ABCDEF';
         let color = '#';
         for (let i = 0; i < 6; i += 1) {
@@ -254,7 +252,7 @@ class Garage implements IGarage {
         return color;
     }
 
-    addSelectListener() {
+    private addSelectListener() {
         const selectButton = document.querySelectorAll(Selector.Select) as NodeListOf<HTMLButtonElement>;
         selectButton.forEach((item) => {
             item.addEventListener('click', () => {
@@ -263,7 +261,7 @@ class Garage implements IGarage {
         });
     }
 
-    addRemoveListener() {
+    private addRemoveListener() {
         const removeButton = document.querySelectorAll(Selector.Remove) as NodeListOf<HTMLButtonElement>;
         removeButton.forEach((item) => {
             item.addEventListener('click', () => {
@@ -274,11 +272,7 @@ class Garage implements IGarage {
         });
     }
 
-    checkContainsSelector(element: HTMLElement, selector: string) {
-        return element.classList.contains(selector);
-    }
-
-    selectCar(currentCar: HTMLButtonElement) {
+    private selectCar(currentCar: HTMLButtonElement) {
         this.idCurrentCar = +currentCar.id.slice(6);
         const updateName = document.querySelector(Selector.UpdateName) as HTMLInputElement;
         const updateColor = document.querySelector(Selector.UpdateColor) as HTMLInputElement;
@@ -286,27 +280,26 @@ class Garage implements IGarage {
         this.removeDisabled(updateName, updateColor, updateButton);
     }
 
-    async removeCar(idCurrentCar: number) {
-        // this.idCurrentCar = +currentCar.id.slice(6);
+    private async removeCar(idCurrentCar: number) {
         await this.service.deleteCar(idCurrentCar);
         const carsContainer = document.querySelector(Selector.CarsContainer) as HTMLDivElement;
         carsContainer.innerHTML = '';
         this.renderCars();
     }
 
-    removeDisabled(...elements: (HTMLInputElement | HTMLButtonElement)[]) {
+    private removeDisabled(...elements: (HTMLInputElement | HTMLButtonElement)[]) {
         elements.forEach((item) => {
             item.disabled = false;
         });
     }
 
-    addDisabled(...elements: (HTMLInputElement | HTMLButtonElement)[]) {
+    private addDisabled(...elements: (HTMLInputElement | HTMLButtonElement)[]) {
         elements.forEach((item) => {
             item.disabled = true;
         });
     }
 
-    addUpdateListener() {
+    private addUpdateListener() {
         const updateButton = document.querySelector(Selector.UpdateButton) as HTMLButtonElement;
         updateButton.addEventListener('click', async () => {
             const updateName = document.querySelector(Selector.UpdateName) as HTMLInputElement;

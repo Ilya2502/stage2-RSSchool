@@ -2,8 +2,9 @@ import { CarType } from '../../services/car-service/types'
 
 export interface IGarage {
     cars: CarType[],
-    totalCount: number,
+    carsOnPage: number,
     init(): void,
+    addNavigationListener(): void,
 }
 
 export type WinnerRace = {

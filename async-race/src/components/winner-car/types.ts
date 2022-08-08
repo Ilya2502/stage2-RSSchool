@@ -1,5 +1,9 @@
 export interface IWinnerCar {
-    // winnersCars: WinnerType[],
-    // totalCount: number,
-    // init(): void,
+    name: string;
+    color: string;
+    id: number;
+    wins: number;
+    time: number;
+    number: number;
+    renderWinnerCar(): void;
 }

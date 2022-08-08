@@ -4,7 +4,7 @@ class FetchService implements IFetchService {
     readonly baseUrl = 'http://127.0.0.1:3000';
     totalCount = 0;
 
-    async typedFetch<T, B>(
+    private async typedFetch<T, B>(
         endPoint: string,
         request: RequestType,
         body?: B
@@ -19,11 +19,11 @@ class FetchService implements IFetchService {
                 });
             });
         } catch (error) {
-            console.log(error);
+            console.log('engine crush');
         }
     }
 
-    getRequestConfig<B>(requestType: RequestType, body?: B) {
+    private getRequestConfig<B>(requestType: RequestType, body?: B) {
         const config = {
             body: JSON.stringify(body),
             headers: {
@@ -50,23 +50,23 @@ class FetchService implements IFetchService {
         }
     }
 
-    async getData<T>(endPoint: string) {
+    protected async getData<T>(endPoint: string) {
         return await this.typedFetch<T, never>(endPoint, 'GET');
     }
 
-    async postData<R, B>(endPoint: string, body: B) {
+    protected async postData<R, B>(endPoint: string, body: B) {
         return await this.typedFetch<R, B>(endPoint, 'POST', body);
     }
 
-    async putData<R, B>(endPoint: string, body: B) {
+    protected async putData<R, B>(endPoint: string, body: B) {
         return await this.typedFetch<R, B>(endPoint, 'PUT', body);
     }
 
-    async patchData<T>(endPoint: string) {
+    protected async patchData<T>(endPoint: string) {
         return await this.typedFetch<T, never>(endPoint, 'PATCH');
     }
 
-    async deleteData(endPoint: string) {
+    protected async deleteData(endPoint: string) {
         return await this.typedFetch<never, never>(endPoint, 'DELETE');
     }
 }
