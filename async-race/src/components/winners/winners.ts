@@ -1,30 +1,47 @@
 import WinnersService from '../../services/winners-service/winners-service';
-// import Car from '../car/car';
+import WinnerCar from '../winner-car/winner-car';
 import { Selector } from '../../types/types';
-import { IWinners, WinnerType } from './types';
+import { IWinners } from './types';
+// import { IWinnerCar } from '../winner-car/types';
 
 class Winners implements IWinners {
     service;
-    winnersCars: WinnerType[];
+    winnerCars: WinnerCar[];
     totalCount;
     page;
     winnersOnPage;
     constructor() {
         this.totalCount = 0;
-        this.winnersCars = [];
+        this.winnerCars = [];
         this.page = 1;
         this.winnersOnPage = 10;
         this.service = new WinnersService();
     }
 
     init() {
+        this.renderWinnersPage();
+        this.addPaginationListener();
+    }
+
+    private async getWinnerCars() {
+        const responseWinners = await this.service.getWinners(this.page, this.winnersOnPage);
+        if (responseWinners?.data) {
+            this.winnerCars = [];
+            for (let i = 0; i < responseWinners.data.length; i += 1) {
+                const car = await this.service.getCar(responseWinners.data[i].id);
+                if (car) {
+                    this.winnerCars.push(new WinnerCar(responseWinners.data[i], car, i));
+                }
+            }
+        }
+        if (responseWinners?.totalCount) {
+            this.totalCount = +responseWinners.totalCount;
+        }
+    }
+
+    renderWinnersPage() {
         this.renderWinnersContent();
-        // this.renderWinnersContainer();
-        this.addAllListeners();
-        // this.service.updateWinner(8, 1, 8);
-        // this.service.getWinner(8);
-        // this.service.deleteWinner(1);
-        // this.service.getWinners();
+        this.renderWinnerCars();
     }
 
     renderWinnersContent() {
@@ -38,125 +55,45 @@ class Winners implements IWinners {
         wrapper.append(fragment);
     }
 
-    addAllListeners() {
-        console.log('hi');
+    async renderWinnerCars() {
+        await this.getWinnerCars();
+        const totalCount = document.querySelector(Selector.WinnersCount) as HTMLTitleElement;
+        totalCount.innerHTML = `${this.totalCount}`;
+        const winnerCarsContainer = document.querySelector(Selector.WinnerCarsContainer) as HTMLDivElement;
+        winnerCarsContainer.innerHTML = '';
+        this.winnerCars.forEach((item) => {
+            item.renderWinnerCar();
+        });
+        this.checkDisabledPagination();
     }
 
-    // renderNavigation() {
-    //     const fragment = document.createDocumentFragment();
-    //     const navigationTemp = document.querySelector(SELECTOR.NAVIGATION_TEMP) as HTMLTemplateElement;
-    //     const navigationClone = navigationTemp.content.cloneNode(true) as HTMLElement;
-    //     fragment.append(navigationClone);
-    //     const wrapper = document.querySelector(SELECTOR.WRAPPER) as HTMLDivElement;
-    //     wrapper.append(fragment);
-    // }
+    async removeWinner(id: number) {
+        await this.service.deleteWinner(id);
+        this.renderWinnerCars();
+    }
 
-    // renderGarageMenu() {
-    //     const fragment = document.createDocumentFragment();
-    //     const garageMenuTemp = document.querySelector(SELECTOR.GARAGE_MENU_TEMP) as HTMLTemplateElement;
-    //     const garageMenuClone = garageMenuTemp.content.cloneNode(true) as HTMLElement;
-    //     const createName = garageMenuClone.querySelector(SELECTOR.MODELS_LIST);
-    //     for (const key in carNames) {
-    //         carNames[key].forEach((item) => {
-    //             const option = document.createElement('option');
-    //             option.value = `${key} ${item}`;
-    //             createName?.append(option);
-    //         });
-    //     }
-    //     fragment.append(garageMenuClone);
-    //     const wrapper = document.querySelector(SELECTOR.WRAPPER) as HTMLDivElement;
-    //     wrapper.append(fragment);
-    // }
+    checkDisabledPagination() {
+        const prevButton = document.querySelector(Selector.WinnersPrev) as HTMLButtonElement;
+        const nextButton = document.querySelector(Selector.WinnersNext) as HTMLButtonElement;
+        prevButton.disabled = this.page === 1 ? true : false;
+        nextButton.disabled = this.totalCount / this.winnersOnPage <= this.page ? true : false;
+    }
 
-    // renderGarageContent() {
-    //     const fragment = document.createDocumentFragment();
-    //     const garageContentTemp = document.querySelector(SELECTOR.GARAGE_CONTENT_TEMP) as HTMLTemplateElement;
-    //     const garageContentClone = garageContentTemp.content.cloneNode(true) as HTMLElement;
-    //     const page = garageContentClone.querySelector(SELECTOR.GARAGE_PAGE) as HTMLTitleElement;
-    //     page.innerHTML = `${this.page}`;
-    //     fragment.append(garageContentClone);
-    //     const wrapper = document.querySelector(SELECTOR.WRAPPER) as HTMLDivElement;
-    //     wrapper.append(fragment);
-    // }
-
-    // renderCars() {
-    //     const totalCount = document.querySelector(SELECTOR.TOTAL_COUNT) as HTMLTitleElement;
-    //     totalCount.innerHTML = `${this.totalCount}`;
-    //     const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
-    //     carsContainer.innerHTML = '';
-    //     this.cars.forEach((item) => {
-    //         item.renderCar();
-    //     });
-    //     console.log(this.cars);
-    //     this.checkDisabledPagination();
-    //     this.addCarListener();
-    // }
-
-    // checkDisabledPagination() {
-    //     const prevButton = document.querySelector(SELECTOR.PREV_BUTTON_GARAGE) as HTMLButtonElement;
-    //     const nextButton = document.querySelector(SELECTOR.NEXT_BUTTON_GARAGE) as HTMLButtonElement;
-    //     prevButton.disabled = this.page === 1 ? true : false;
-    //     nextButton.disabled = this.totalCount / this.carsOnPage <= this.page ? true : false;
-    // }
-
-    // addAllListeners() {
-    //     this.addNavigationListener();
-    //     this.addCreateListener();
-    //     this.addUpdateListener();
-    //     this.addGenerateCarsListener();
-    //     this.addPaginationListener();
-    // }
-
-    // addNavigationListener() {
-    //     const toGarage = document.querySelector(SELECTOR.TO_GARAGE) as HTMLButtonElement;
-    //     const toWinners = document.querySelector(SELECTOR.TO_WINNERS) as HTMLButtonElement;
-    //     const garageMenu = document.querySelector(SELECTOR.GARAGE_MENU) as HTMLDivElement;
-    //     const garageContent = document.querySelector(SELECTOR.GARAGE_CONTENT) as HTMLDivElement;
-    //     toGarage.addEventListener('click', () => {
-    //         garageMenu.classList.remove('hidden-page');
-    //         garageContent.classList.remove('hidden-page');
-    //     });
-    //     toWinners.addEventListener('click', () => {
-    //         garageMenu.classList.add('hidden-page');
-    //         garageContent.classList.add('hidden-page');
-    //     });
-    // }
-
-    // addCreateListener() {
-    //     const createButton = document.querySelector(SELECTOR.CREATE_BUTTON) as HTMLButtonElement;
-    //     createButton.addEventListener('click', async () => {
-    //         const createName = document.querySelector(SELECTOR.CREATE_NAME) as HTMLInputElement;
-    //         const name = createName.value;
-    //         const createColor = document.querySelector(SELECTOR.CREATE_COLOR) as HTMLInputElement;
-    //         const color = createColor.value;
-    //         this.service.createCar(name, color);
-    //         createName.value = '';
-    //         await this.getCars();
-    //         this.renderCars();
-    //     });
-    // }
-
-    // addGenerateCarsListener() {
-    //     const generateCarsButton = document.querySelector(SELECTOR.GENERATE_CARS) as HTMLButtonElement;
-    //     generateCarsButton.addEventListener('click', this.generateCars.bind(this));
-    // }
-
-    // addPaginationListener() {
-    //     const paginationButtons = document.querySelectorAll(
-    //         `${SELECTOR.PREV_BUTTON_GARAGE}, ${SELECTOR.NEXT_BUTTON_GARAGE}`
-    //     ) as NodeListOf<HTMLDivElement>;
-    //     const page = document.querySelector(SELECTOR.GARAGE_PAGE) as HTMLTitleElement;
-    //     paginationButtons.forEach((item) => {
-    //         item.addEventListener('click', async (event) => {
-    //             (event.target as HTMLButtonElement).id === 'garage-prev' ? (this.page -= 1) : (this.page += 1);
-    //             page.innerHTML = `${this.page}`;
-    //             const carsContainer = document.querySelector(SELECTOR.CARS_CONTAINER) as HTMLDivElement;
-    //             carsContainer.innerHTML = '';
-    //             await this.getCars();
-    //             this.renderCars();
-    //         });
-    //     });
-    // }
+    addPaginationListener() {
+        const paginationButtons = document.querySelectorAll(
+            `${Selector.WinnersPrev}, ${Selector.WinnersNext}`
+        ) as NodeListOf<HTMLDivElement>;
+        const page = document.querySelector(Selector.WinnersPage) as HTMLTitleElement;
+        paginationButtons.forEach((item) => {
+            item.addEventListener('click', async (event) => {
+                (event.target as HTMLButtonElement).id === 'winners-prev' ? (this.page -= 1) : (this.page += 1);
+                page.innerHTML = `${this.page}`;
+                const winnerCarsContainer = document.querySelector(Selector.WinnerCarsContainer) as HTMLDivElement;
+                winnerCarsContainer.innerHTML = '';
+                this.renderWinnerCars();
+            });
+        });
+    }
 
     // async generateCars() {
     //     const carProducers = Object.keys(carNames);

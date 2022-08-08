@@ -1,12 +1,15 @@
-import FetchService from '../fetch-service/fetch-service';
+import GarageService from '../garage-service/garage-service';
 import { IWinnersService, WinnerType } from './types';
 // import { WinnerType /*PostBodyType*/ } from '../car-service/types';
 
-class WinnersService extends FetchService implements IWinnersService {
+class WinnersService extends GarageService implements IWinnersService {
     async getWinner(id: number) {
         const endPoint = `winners/${id}`;
         const data = await this.getData<WinnerType>(endPoint);
-        console.log(data);
+        if (data) {
+            return data.data;
+        }
+        // console.log(data);
     }
 
     async createWinner(id: number, wins: number, time: number) {
@@ -21,9 +24,9 @@ class WinnersService extends FetchService implements IWinnersService {
         await this.putData<WinnerType, WinnerType>(endPoint, body);
     }
 
-    async getWinners(page = 1, limit = 10, sort = 'time') {
-        const endPoint = `winners?_page=${page}&_limit=${limit}&_sort=${sort}`;
-        console.log(await this.getData<WinnerType[]>(endPoint));
+    async getWinners(page = 1, limit = 10, sort = 'time', order = 'ASC') {
+        const endPoint = `winners?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`;
+        // console.log(await this.getData<WinnerType[]>(endPoint));
         return this.getData<WinnerType[]>(endPoint);
     }
 

@@ -52,3 +52,29 @@
 .pagination-container {
     margin-top: 50px;
 }
+
+/* .winner-message-container {
+    position:fixed;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:100vh;
+} */
+
+.winner-message {
+    position: absolute;
+    top: 50%; left: 35%;
+    margin: 0 auto;
+    z-index: 999;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: rgb(255, 175, 175);
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+    background-color: black;
+    box-shadow: 0 0 0.4em olive, 0 0 .4em olive;
+    border-radius: 10px;
+}

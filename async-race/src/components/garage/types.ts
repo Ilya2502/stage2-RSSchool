@@ -5,3 +5,9 @@ export interface IGarage {
     totalCount: number,
     init(): void,
 }
+
+export type WinnerRace = {
+    name: string;
+    id: number;
+    time: number;
+}

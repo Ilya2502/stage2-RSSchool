@@ -6,7 +6,9 @@ class GarageService extends FetchService implements IGarageService {
     async getCar(id: number) {
         const endPoint = `garage/${id}`;
         const data = await this.getData<CarType>(endPoint);
-        console.log(data);
+        if (data) {
+            return data.data;
+        }
     }
 
     async createCar(name: string, color: string) {

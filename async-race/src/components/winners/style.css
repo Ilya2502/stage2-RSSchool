@@ -13,18 +13,33 @@
     background-color: rgb(96, 149, 242);
 }
 
-.header-number {
+.winner-cars-container {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+#winner-car-content {
+    display: flex;
+}
+
+.header-number, .winner-number {
     width: 70px;
 }
 
-.header-car {
+.header-car, .winner-car {
     width: 40px;
+    padding-right: 60px;
 }
 
-.header-name {
-    width: 100px;
+.header-name, .winner-name {
+    width: 150px;
 }
 
-.header-wins {
+.header-wins, .winner-wins {
     width: 60px; 
+}
+
+.winner-icon-car {
+    width: 40px;
+    height: 20px;
 }

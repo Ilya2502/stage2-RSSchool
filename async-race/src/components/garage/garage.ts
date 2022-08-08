@@ -1,11 +1,11 @@
 import GarageService from '../../services/garage-service/garage-service';
 import Car from '../car/car';
-import { IGarage } from './types';
+import { IGarage, WinnerRace } from './types';
 // import { CarType } from '../../services/car-service/types';
-import { /*SELECTOR,*/ carNames } from '../../constants/constants';
+import { carNames } from '../../constants/constants';
 import { Selector } from '../../types/types';
 // import { IWinners } from '../winners/types';
-// import Winners from '../winners/achievement';
+import Winners from '../winners/winners';
 
 class Garage implements IGarage {
     private service;
@@ -14,7 +14,7 @@ class Garage implements IGarage {
     page;
     carsOnPage;
     idCurrentCar;
-    // winners: IWinners;
+    winners: Winners;
     constructor() {
         this.service = new GarageService();
         this.totalCount = 0;
@@ -22,11 +22,11 @@ class Garage implements IGarage {
         this.page = 1;
         this.carsOnPage = 7;
         this.idCurrentCar = 0;
-        // this.winners = new Winners();
+        this.winners = new Winners();
     }
 
-    async init() {
-        await this.renderPage();
+    init() {
+        this.renderPage();
         this.addAllListeners();
     }
 
@@ -43,8 +43,7 @@ class Garage implements IGarage {
         }
     }
 
-    async renderPage() {
-        await this.getCars();
+    renderPage() {
         const wrapper = document.createElement('div');
         wrapper.id = Selector.Wrapper.slice(1);
         const body = document.querySelector(Selector.Body) as HTMLBodyElement;
@@ -92,7 +91,8 @@ class Garage implements IGarage {
         wrapper.append(fragment);
     }
 
-    renderCars() {
+    async renderCars() {
+        await this.getCars();
         const totalCount = document.querySelector(Selector.TotalCount) as HTMLTitleElement;
         totalCount.innerHTML = `${this.totalCount}`;
         const carsContainer = document.querySelector(Selector.CarsContainer) as HTMLDivElement;
@@ -119,6 +119,7 @@ class Garage implements IGarage {
         this.addPaginationListener();
         this.addRaceListener();
         this.addResetListener();
+        this.addWrapperListener();
     }
 
     addNavigationListener() {
@@ -148,7 +149,6 @@ class Garage implements IGarage {
             const color = createColor.value;
             await this.service.createCar(name, color);
             createName.value = '';
-            await this.getCars();
             this.renderCars();
         });
     }
@@ -169,7 +169,6 @@ class Garage implements IGarage {
                 page.innerHTML = `${this.page}`;
                 const carsContainer = document.querySelector(Selector.CarsContainer) as HTMLDivElement;
                 carsContainer.innerHTML = '';
-                await this.getCars();
                 this.renderCars();
             });
         });
@@ -177,19 +176,49 @@ class Garage implements IGarage {
 
     addRaceListener() {
         const raceButton = document.querySelector(Selector.Race) as HTMLButtonElement;
+        const winnerMessage = document.querySelector(Selector.WinnerMessage) as HTMLParagraphElement;
         raceButton.addEventListener('click', () => {
-            this.cars.forEach((item) => {
-                item.startCar();
+            let winner: null | WinnerRace = null;
+            this.addDisabled(raceButton);
+            this.cars.forEach(async (item) => {
+                const response = await item.startCar();
+                if (!winner && response) {
+                    winner = response;
+                    winnerMessage.innerHTML = `${response.name} went first (${response.time} s)`;
+                    winnerMessage.classList.remove('hidden-page');
+                    this.writeWinner(winner);
+                }
             });
         });
     }
 
+    async writeWinner(newWinner: WinnerRace) {
+        const oldWinner = await this.winners.service.getWinner(newWinner.id);
+        if (!oldWinner?.time) {
+            this.winners.service.createWinner(newWinner.id, 1, newWinner.time);
+        } else {
+            const bestTime = Math.min(newWinner.time, oldWinner.time);
+            this.winners.service.updateWinner(oldWinner.id, oldWinner.wins + 1, bestTime);
+        }
+        this.winners.renderWinnerCars();
+    }
+
     addResetListener() {
         const resetButton = document.querySelector(Selector.Reset) as HTMLButtonElement;
+        const raceButton = document.querySelector(Selector.Race) as HTMLButtonElement;
         resetButton.addEventListener('click', () => {
+            this.removeDisabled(raceButton);
             this.cars.forEach((item) => {
                 item.stopCar();
             });
+        });
+    }
+
+    addWrapperListener() {
+        const wrapper = document.querySelector(Selector.Wrapper) as HTMLDivElement;
+        const winnerMessage = document.querySelector(Selector.WinnerMessage) as HTMLParagraphElement;
+        wrapper.addEventListener('click', () => {
+            winnerMessage.classList.add('hidden-page');
         });
     }
 
@@ -202,7 +231,6 @@ class Garage implements IGarage {
         }
         const carsContainer = document.querySelector(Selector.CarsContainer) as HTMLDivElement;
         carsContainer.innerHTML = '';
-        await this.getCars();
         this.renderCars();
     }
 
@@ -239,7 +267,9 @@ class Garage implements IGarage {
         const removeButton = document.querySelectorAll(Selector.Remove) as NodeListOf<HTMLButtonElement>;
         removeButton.forEach((item) => {
             item.addEventListener('click', () => {
-                this.removeCar(item);
+                this.idCurrentCar = +item.id.slice(6);
+                this.removeCar(this.idCurrentCar);
+                this.winners.removeWinner(this.idCurrentCar);
             });
         });
     }
@@ -256,12 +286,11 @@ class Garage implements IGarage {
         this.removeDisabled(updateName, updateColor, updateButton);
     }
 
-    async removeCar(currentCar: HTMLButtonElement) {
-        this.idCurrentCar = +currentCar.id.slice(6);
-        await this.service.deleteCar(this.idCurrentCar);
+    async removeCar(idCurrentCar: number) {
+        // this.idCurrentCar = +currentCar.id.slice(6);
+        await this.service.deleteCar(idCurrentCar);
         const carsContainer = document.querySelector(Selector.CarsContainer) as HTMLDivElement;
         carsContainer.innerHTML = '';
-        await this.getCars();
         this.renderCars();
     }
 
@@ -288,7 +317,6 @@ class Garage implements IGarage {
             updateName.value = '';
             const updateButton = document.querySelector(Selector.UpdateButton) as HTMLButtonElement;
             this.addDisabled(updateName, updateColor, updateButton);
-            await this.getCars();
             this.renderCars();
         });
     }

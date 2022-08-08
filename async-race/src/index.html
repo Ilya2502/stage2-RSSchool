@@ -44,6 +44,7 @@
                     <button class="button" id="garage-prev">PREV</button>
                     <button class="button" id="garage-next">NEXT</button>
                 </div>
+                <p class="winner-message hidden-page"></p>
             </div>
         </template>
 
@@ -80,12 +81,27 @@
                             <div class="header-wins">Wins</div>
                             <div class="header-best-time">Best time (seconds)</div>
                         </div>
+                        <div class="winner-cars-container"></div>
                     </div>
                 </div>
                 <div class="pagination-container">
                     <button class="button" id="winners-prev">PREV</button>
                     <button class="button" id="winners-next">NEXT</button>
                 </div>
+            </div>
+        </template>
+
+        <template id="winner-car-content-temp">
+            <div id="winner-car-content">
+                <div class="winner-number"></div>
+                <div class="winner-car">
+                    <svg class="winner-icon-car">
+                        <use class="icon-use" xlink:href="./assets/sprite.svg#car"></use>
+                    </svg>
+                </div>
+                <div class="winner-name"></div>
+                <div class="winner-wins"></div>
+                <div class="winner-time"></div>
             </div>
         </template>
     </body>

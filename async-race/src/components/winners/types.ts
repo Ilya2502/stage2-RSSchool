@@ -1,15 +1,15 @@
 // import { CarType } from '../../services/car-service/types';
 
 export type WinnerType = {
-    name: string;
-    color: string;
+    // name: string;
+    // color: string;
     id: number;
-    countWins: number;
-    bestTime: number;
+    wins: number;
+    time: number;
 }
 
 export interface IWinners {
-    winnersCars: WinnerType[],
+    winnerCars: WinnerType[],
     totalCount: number,
     init(): void,
 }

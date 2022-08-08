@@ -66,6 +66,8 @@ class Car implements ICar {
             const drive = await this.service.drive(this.id);
             if (!drive) {
                 clearInterval(this.intervalId);
+            } else {
+                return { id: this.id, name: this.name, time: +(time / 1000).toFixed(2) };
             }
         }
     }
