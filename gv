@@ -1,0 +1,119 @@
+[33mcommit 443afa3fd58b28064215588aa98184e7b77193ba[m[33m ([m[1;36mHEAD -> [m[1;32masync-race[m[33m, [m[1;31morigin/async-race[m[33m)[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Mon Aug 8 00:58:45 2022 +0300
+
+    feat: add winners-service
+
+[33mcommit d9040096dd91a068c91313b88a9f9f120270a400[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sun Aug 7 16:23:01 2022 +0300
+
+    feat: add common animation
+
+[33mcommit bbfdda313de745b144160c0dc72a761490eea9ea[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sun Aug 7 16:10:08 2022 +0300
+
+    feat: add animation single car
+
+[33mcommit 64247a08e87d5e0193a86d22155d4b3f23eeb756[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sat Aug 6 18:35:30 2022 +0300
+
+    feat: add class Winners
+
+[33mcommit 27d2f18a4d499cac87283ce27fd98395e8f2630b[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sat Aug 6 15:47:09 2022 +0300
+
+    refactor: refactor addPaginationListener()
+
+[33mcommit 3fb2be0025403e9f37fe100a407d36a13306f625[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sat Aug 6 14:45:42 2022 +0300
+
+    feat: add pagination
+
+[33mcommit acb8aef04019c0ed8c347ac0b2c01b1c118cf7fa[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sat Aug 6 14:08:28 2022 +0300
+
+    fix: fix generateColor()
+
+[33mcommit 67807bcf001d602d5be115f7b2bb2f4cbb5f8aa3[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sat Aug 6 13:21:59 2022 +0300
+
+    feat: add remove listener
+
+[33mcommit 4d47c9328a0badcd61acd262094679b962aecea2[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sat Aug 6 00:39:42 2022 +0300
+
+    feat: add listener to navigation, create car, generate cars
+
+[33mcommit 0e822439e8e42d842daaba074eabe008306830f1[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Fri Aug 5 19:01:52 2022 +0300
+
+    feat: add html garage, generate random cars
+
+[33mcommit 369a7f3a69f1ea83041f609f482cf3004aaacef9[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Fri Aug 5 00:43:06 2022 +0300
+
+    feat: add generate navigation and garage-menu
+
+[33mcommit b001d7c9e9ab142bebbfa0a5a9983dd9a4d4216c[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Thu Aug 4 21:04:04 2022 +0300
+
+    refactor: change typedFetch and transfer getCar, createCar from Car to Garage
+
+[33mcommit 671e7515479be20057c6a6a0881492fec978fe44[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sun Jul 31 22:03:45 2022 +0300
+
+    feat: add service-methods
+
+[33mcommit 21d8f817309eb31d794e001a7771df1e932de8ee[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sun Jul 31 02:14:18 2022 +0300
+
+    fix: fix return typedFetch
+
+[33mcommit c63b03877ec27f13529e3a33b5925daa12bd701a[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sun Jul 31 02:11:34 2022 +0300
+
+    feat: add FetchService
+
+[33mcommit 743f57bf1d8a5c9425104e4b2d8ef34c6d68b728[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sat Jul 30 23:31:19 2022 +0300
+
+    refactor: change some comments
+
+[33mcommit b6a68c7863eee0094c22c1464f1bfb16cc5ab5ee[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sat Jul 30 19:52:23 2022 +0300
+
+    feat: add property cars in class Garage
+
+[33mcommit c67c0f10c25cef88addbbc0f56a3a434e04224de[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sat Jul 30 19:38:45 2022 +0300
+
+    feat: add classes Car and Garage
+
+[33mcommit f9b83c37a107a17305b367f63e4e0a77c3aed7bd[m
+Author: Ilya2502 <gavran2502@mail.ru>
+Date:   Sat Jul 30 11:37:17 2022 +0300
+
+    start project
+
+[33mcommit afde5ee359b420c6c65349ad547b1c5bf0f3dfd0[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: rs-app[bot] <57502719+rs-app[bot]@users.noreply.github.com>
+Date:   Mon Mar 14 10:59:59 2022 +0000
+
+    Initial commit

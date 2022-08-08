@@ -48,4 +48,6 @@ export enum Selector {
     WinnersPrev = '#winners-prev',
     WinnersNext = '#winners-next',
     WinnerMessage = '.winner-message',
+    HeaderBestTime = '.header-best-time',
+    HeaderWins = '.header-wins',
 }

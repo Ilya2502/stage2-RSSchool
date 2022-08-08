@@ -10,12 +10,16 @@ class Winners implements IWinners {
     totalCount;
     page;
     winnersOnPage;
+    sort;
+    order;
     constructor() {
         this.totalCount = 0;
         this.winnerCars = [];
         this.page = 1;
         this.winnersOnPage = 10;
         this.service = new WinnersService();
+        this.sort = 'time';
+        this.order = 'ASC';
     }
 
     init() {
@@ -24,7 +28,7 @@ class Winners implements IWinners {
     }
 
     private async getWinnerCars() {
-        const responseWinners = await this.service.getWinners(this.page, this.winnersOnPage);
+        const responseWinners = await this.service.getWinners(this.page, this.winnersOnPage, this.sort, this.order);
         if (responseWinners?.data) {
             this.winnerCars = [];
             for (let i = 0; i < responseWinners.data.length; i += 1) {
@@ -42,6 +46,7 @@ class Winners implements IWinners {
     renderWinnersPage() {
         this.renderWinnersContent();
         this.renderWinnerCars();
+        this.addSortListener();
     }
 
     renderWinnersContent() {
@@ -92,6 +97,22 @@ class Winners implements IWinners {
                 winnerCarsContainer.innerHTML = '';
                 this.renderWinnerCars();
             });
+        });
+    }
+
+    addSortListener() {
+        const time = document.querySelector(Selector.HeaderBestTime) as HTMLDivElement;
+        time.addEventListener('click', () => {
+            this.sort = 'time';
+            this.order = this.order === 'ASC' ? 'DESC' : 'ASC';
+            console.log(this.sort, this.order);
+            this.renderWinnerCars();
+        });
+        const wins = document.querySelector(Selector.HeaderWins) as HTMLDivElement;
+        wins.addEventListener('click', () => {
+            this.sort = 'wins';
+            this.order = this.order === 'ASC' ? 'DESC' : 'ASC';
+            this.renderWinnerCars();
         });
     }
 
