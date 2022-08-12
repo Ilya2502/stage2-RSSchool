@@ -14,7 +14,7 @@ class GarageService extends FetchService implements IGarageService {
     public async createCar(name: string, color: string) {
         const endPoint = 'garage';
         const body = { name, color };
-        await this.postData<CarType, PostBodyType>(endPoint, body);
+        return await this.postData<CarType, PostBodyType>(endPoint, body);
     }
 
     public async updateCar(id: number, name: string, color: string) {

@@ -101,6 +101,10 @@ class Garage implements IGarage {
         this.checkDisabledPagination();
         this.addSelectListener();
         this.addRemoveListener();
+        const resetButton = document.querySelector(Selector.Reset) as HTMLButtonElement;
+        const raceButton = document.querySelector(Selector.Race) as HTMLButtonElement;
+        this.removeDisabled(raceButton);
+        this.addDisabled(resetButton);
     }
 
     private checkDisabledPagination() {
@@ -178,6 +182,8 @@ class Garage implements IGarage {
         raceButton.addEventListener('click', () => {
             let winner: null | WinnerRace = null;
             this.addDisabled(raceButton);
+            const resetButton = document.querySelector(Selector.Reset) as HTMLButtonElement;
+            this.removeDisabled(resetButton);
             this.cars.forEach(async (item) => {
                 const response = await item.startCar();
                 if (!winner && response) {
@@ -206,6 +212,7 @@ class Garage implements IGarage {
         const raceButton = document.querySelector(Selector.Race) as HTMLButtonElement;
         resetButton.addEventListener('click', () => {
             this.removeDisabled(raceButton);
+            this.addDisabled(resetButton);
             this.cars.forEach((item) => {
                 item.stopCar();
             });
@@ -222,14 +229,16 @@ class Garage implements IGarage {
 
     private async generateCars() {
         const carProducers = Object.keys(carNames);
-        for (let i = 0; i < 100; i += 1) {
+        const carsHundred = Array.from({ length: 100 }, () => {
             const randomName = this.generateName(carProducers);
             const randomColor = this.generateColor();
-            await this.service.createCar(randomName, randomColor);
-        }
-        const carsContainer = document.querySelector(Selector.CarsContainer) as HTMLDivElement;
-        carsContainer.innerHTML = '';
-        this.renderCars();
+            return this.service.createCar(randomName, randomColor);
+        });
+        Promise.all(carsHundred).then(() => {
+            const carsContainer = document.querySelector(Selector.CarsContainer) as HTMLDivElement;
+            carsContainer.innerHTML = '';
+            this.renderCars();
+        });
     }
 
     private getRandomInteger(min: number, max: number) {

@@ -19,7 +19,7 @@ class FetchService implements IFetchService {
                 });
             });
         } catch (error) {
-            console.log('engine crush');
+            console.log('error');
         }
     }
 
