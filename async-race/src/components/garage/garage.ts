@@ -180,6 +180,17 @@ class Garage implements IGarage {
         const raceButton = document.querySelector(Selector.Race) as HTMLButtonElement;
         const winnerMessage = document.querySelector(Selector.WinnerMessage) as HTMLParagraphElement;
         raceButton.addEventListener('click', () => {
+            // this.addDisabled(raceButton);
+            // const resetButton = document.querySelector(Selector.Reset) as HTMLButtonElement;
+            // this.removeDisabled(resetButton);
+            // Promise.any(this.cars.map((item) => item.startCar())).then((response) => {
+            //     console.log(response);
+            //     if (response) {
+            //         winnerMessage.innerHTML = `${response?.name} went first (${response?.time} s)`;
+            //         winnerMessage.classList.remove('hidden-page');
+            //         this.writeWinner(response);
+            //     }
+            // });
             let winner: null | WinnerRace = null;
             this.addDisabled(raceButton);
             const resetButton = document.querySelector(Selector.Reset) as HTMLButtonElement;
